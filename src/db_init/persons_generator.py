@@ -44,28 +44,6 @@ def generate_person():
         "birthdate" : birthdate
     }
 
-def generate_customer():
-    "Generates a person and a customer and correlates them."
-    person = generate_person()
-    
-    person_email = person["email"]
-    customer = {
-        "person_email" : person_email,
-        "customer_id"  : person_email.split("@")[0]
-    }
-    return person, customer
-
-def generate_owner():
-    "Generates a person and an owner and correlates them."
-    person = generate_person()
-
-    person_email = person["email"]
-    owner = {
-        "person_email" : person_email,
-        "owner_id"     : person_email.split("@")[0]
-    }
-    return person, owner
-
 def generate_persons(number):
     """Generates <number> persons."""
     persons_list = []
@@ -75,23 +53,3 @@ def generate_persons(number):
         persons_list.append(person)
 
     return persons_list
-
-def generate_customers(number):
-    """Generates <number> persons and customers."""
-    _list = []
-
-    for _ in range(number):
-        person, customer = generate_customer()
-        _list.append((person, customer))
-
-    return _list
-
-def generate_owners(number):
-    """Generates <number> persons and owners."""
-    _list = []
-
-    for _ in range(number):
-        person, owner = generate_customer()
-        _list.append((person, owner))
-
-    return _list
