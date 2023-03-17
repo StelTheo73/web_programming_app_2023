@@ -211,7 +211,10 @@ def initialize_database():
     db.commit()
     db.close()
 
-if __name__ == "__main__":
+def main():
     create_random_data(200, 20)
     initialize_database()
     insert_data()
+
+if __name__ == "__main__":
+    main()
