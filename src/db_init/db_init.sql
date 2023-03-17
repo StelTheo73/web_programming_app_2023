@@ -31,7 +31,7 @@ CREATE TABLE Person (
 
 -- Address
 CREATE TABLE Address (
-    address_id CHAR(32) NOT NULL PRIMARY KEY,
+    address_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     email TEXT NOT NULL,
     city TEXT NOT NULL,
     street TEXT NOT NULL,
@@ -157,7 +157,7 @@ CREATE TABLE Contains (
     order_id INTEGER NOT NULL,
     item_id INTEGER NOT NULL,
     quantity INTEGER NOT NULL,
-    note TEXT NOT NULL,
+    note TEXT,
     CONSTRAINT fk_order_id
         FOREIGN KEY (order_id)
         REFERENCES Order_ (order_id)

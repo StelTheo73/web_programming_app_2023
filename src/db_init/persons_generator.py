@@ -1,10 +1,10 @@
 import random
+from unidecode import unidecode
 
 from src.db_init.random_generator import (
     DOMAINS,
-    FIRST_NAMES,
-    LAST_NAMES,
     NUMBERS,
+    NAMES_JSON,
     random_choice,
     random_date,
     random_id
@@ -15,17 +15,22 @@ EMAIL_FORMAT = "{firstname}_{lastname}_{number}@{domain}.com"
 
 def generate_person():
     """Generates a random person."""
-    firstname = random.choice(FIRST_NAMES)
-    lastname = random.choice(LAST_NAMES)
+    sex = random.choice(["male", "female"])
+
+    firstname = random.choice(NAMES_JSON[sex])
+    lastname = random.choice(NAMES_JSON[f"{sex}_surnames"])
     birthdate = random_date()
     phone = "69" + random_choice(NUMBERS, 9)
     password = "Aa123$00"
     
+    latin_firstname = unidecode(firstname)
+    latin_lastname = unidecode(lastname)
+
     email_number = random_choice(NUMBERS, 3)
     email = EMAIL_FORMAT.format(
-        firstname = firstname, 
-        lastname = lastname, 
-        number = email_number, 
+        firstname = latin_firstname,
+        lastname = latin_lastname,
+        number = email_number,
         domain = random.choice(DOMAINS)
     )
     while email in EMAILS_LIST:

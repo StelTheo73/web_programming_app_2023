@@ -17,6 +17,7 @@ ORDERS_FILE_PATH = os.path.join(TMP, "orders.json")
 CONTAINS_FILE_PATH = os.path.join(TMP, "contains.json")
 OPERATING_HOURS_FILE_PATH = os.path.join(TMP, "operating_hours.json")
 CATEGORIES_FILE_PATH = os.path.join(TMP, "categories.json")
+CARDS_FILE_PATH = os.path.join(TMP, "cards.json")
 
 # CITIES
 GREECE_CITIES = ["Αθήνα", "Πάτρα", "Θεσσαλονίκη"]

@@ -11,9 +11,6 @@ from src.db_init.random_generator import (
     NUMBERS,
     random_choice
 )
-from src.utils import (
-    create_id_for_dictionary
-)
 
 def generate_shop(shop_id):
     """Generates a shop."""
@@ -55,7 +52,7 @@ def generate_shops(number):
     """Generates <number> shops."""
     shops_list = []
     operating_hours_list = []
-    shop_id = 0
+    shop_id = 1
 
     for _ in range(number):
         shop, operating_hours = generate_shop(shop_id)

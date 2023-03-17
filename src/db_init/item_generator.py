@@ -33,15 +33,6 @@ def generate_item(item_list, shop_id, category_name, item_id):
     else:
         price = round(random.uniform(price_low, price_high), 2)
 
-    item = {
-        "name" : name,
-        "price" : price,
-        "shop_id" : shop_id,
-        "category_name" : category_name
-    }
-
-    # item_id = create_id_for_dictionary(item)
-
     return {
         "item_id" : item_id,
         "name" : name,

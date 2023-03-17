@@ -16,7 +16,8 @@ from src.db_init.constants import (
     ITEMS_FILE_PATH,
     OPERATING_HOURS_FILE_PATH,
     ORDERS_FILE_PATH,
-    CATEGORIES_FILE_PATH
+    CATEGORIES_FILE_PATH,
+    CARDS_FILE_PATH
 )
 from src.db_init.create_random_data import create_random_data
 
@@ -34,16 +35,20 @@ ITEMS_FILE_FULL_PATH = os.path.join(PWD, ITEMS_FILE_PATH)
 OPERATING_HOURS_FILE_FULL_PATH = os.path.join(PWD, OPERATING_HOURS_FILE_PATH)
 ORDERS_FILE_FULL_PATH = os.path.join(PWD, ORDERS_FILE_PATH)
 CATEGORIES_FILE_FULL_PATH = os.path.join(PWD, CATEGORIES_FILE_PATH)
+CARDS_FILE_FULL_PATH = os.path.join(PWD, CARDS_FILE_PATH)
 
 def insert_data():
     insert_persons()
     insert_persons_addresses()
+    insert_cards()
     insert_shops()
     insert_shop_addresses()
     insert_categories()
     insert_orders()
     insert_has_category()
     insert_items()
+    insert_contains()
+    insert_operating_hours()
 
 def insert_persons():    
     with open(PERSONS_FILE_FULL_PATH, "r", encoding="utf-8") as stream:
@@ -66,9 +71,23 @@ def insert_persons_addresses():
 
     for address in addresses:
         db.execute("INSERT INTO Address VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [
-            address["address_id"], address["email"], address["city"], address["street"],
+            None, address["email"], address["city"], address["street"],
             address["number"], address["postcode"], address["country"], address["floor"],
             address["name_on_bell"], address["note"]
+        ])
+
+    db.commit()
+    db.close()
+
+def insert_cards():
+    with open(CARDS_FILE_FULL_PATH, "r", encoding="utf-8") as stream:
+        cards = json.load(stream)
+    db = sqlite3.connect(DATABASE_FULL_PATH)
+
+    for card in cards:
+        db.execute("INSERT INTO Card VALUES (?, ?, ?, ?, ?)", [
+            card["email"], card["card_number"], card["cvv"],
+            card["expiration_date"], card["cardholder"]
         ])
 
     db.commit()
@@ -156,6 +175,33 @@ def insert_items():
     db.commit()
     db.close()
 
+def insert_contains():
+    with open(CONTAINS_FILE_FULL_PATH, "r", encoding="utf-8") as stream:
+        contains = json.load(stream)
+    db = sqlite3.connect(DATABASE_FULL_PATH)
+
+    for contain in contains:
+        db.execute("INSERT INTO Contains VALUES (?, ?, ?, ?, ?)", [
+            None, contain["order_id"], contain["item_id"],
+            contain["quantity"], contain["note"]
+        ])
+
+    db.commit()
+    db.close()
+
+def insert_operating_hours():
+    with open(OPERATING_HOURS_FILE_FULL_PATH, "r", encoding="utf-8") as stream:
+        operating_hours = json.load(stream)
+    db = sqlite3.connect(DATABASE_FULL_PATH)
+
+    for hour in operating_hours:
+        db.execute("INSERT INTO Operating_Hours VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [
+            hour["shop_id"], hour["sunday"], hour["monday"], hour["tuesday"],
+            hour["wednesday"], hour["thursday"], hour["friday"], hour["saturday"]
+        ])
+
+    db.commit()
+    db.close()
 
 def initialize_database():
     """Creates the tables of the database."""

@@ -4,9 +4,6 @@ from src.db_init.constants import GREECE_CITIES
 from src.db_init.random_generator import (
     LOREM_IPSUM,
 )
-from src.utils import (
-    create_id_for_dictionary
-)
 
 def generate_cities():
     """Generates cities."""
@@ -46,9 +43,6 @@ def generate_address():
         "note" : None
     }
 
-    _id = create_id_for_dictionary(address)
-    address["address_id"] = _id
-
     return address
 
 def generate_shop_address(shop_id):
@@ -74,9 +68,6 @@ def generate_shop_address(shop_id):
         "postcode" : postcode,
         "country" : country,
     }
-
-    _id = create_id_for_dictionary(address)
-    address["address_id"] = _id
 
     return address
 

@@ -13,13 +13,16 @@ from src.db_init.constants import (
     ORDERS_FILE_PATH,
     CONTAINS_FILE_PATH,
     OPERATING_HOURS_FILE_PATH,
-    HAS_CATEGORY_FILE_PATH,
     CATEGORIES_FILE_PATH,
+    CARDS_FILE_PATH,
     FOOD_CATEGORIES
 )
 from src.db_init.addresses_generator import (
     generate_addresses_and_assign_to_person,
     generate_shop_address,
+)
+from src.db_init.cards_generator import (
+    generate_cards
 )
 from src.db_init.item_generator import (
     generate_items
@@ -59,6 +62,17 @@ def create_persons_addresses(persons):
     addresses_stream = json.dumps(addresses_list, indent = 2, ensure_ascii = False)
     write_text_to_file(addresses_stream, CUSTOMERS_ADDRESSES_FILE_PATH)
 
+def create_persons_cards(persons):
+    cards_list = []
+
+    for person in persons:
+        cards = generate_cards(person)
+        for card in cards:
+            cards_list.append(card)
+
+    cards_stream = json.dumps(cards_list, indent = 2, ensure_ascii = False)
+    write_text_to_file(cards_stream, CARDS_FILE_PATH)
+
 def create_shops(shops):
     shops_list = []
 
@@ -86,7 +100,7 @@ def create_items_for_shops(shops):
     _items_list = []
     _categories_list = []
 
-    item_id = 0
+    item_id = 1
     for shop in shops:
         items, categories, item_id = generate_items(shop, item_id)
 
@@ -118,7 +132,7 @@ def make_orders(persons, shops, items):
 
     items_by_shop = order_items_by_shop(items)
 
-    order_id = 0
+    order_id = 1
     for person in persons:
         person_id = person["email"]
         orders = random.randint(0, 20)
@@ -128,7 +142,10 @@ def make_orders(persons, shops, items):
             items = items_by_shop[shop_id]
             order, contains = make_random_order(person_id, order_id, items)
             orders_list.append(order)
-            contains_list.append(contains)
+
+            for contain in contains:
+                contains_list.append(contain)
+
             order_id += 1
 
     orders_stream = json.dumps(orders_list, indent = 2, ensure_ascii = False)
@@ -154,6 +171,7 @@ def create_random_data(persons, shops):
 
     persons = create_persons(persons)
     create_persons_addresses(persons)
+    create_persons_cards(persons)
     shops = create_shops(shops)
     create_shops_addresses(shops)
 
