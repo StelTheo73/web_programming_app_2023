@@ -5,9 +5,13 @@ body {
     border: 1px solid grey;
 }
 
-#navbar-and-sidebar-wrapper {
+/* #navbar-and-sidebar-wrapper {
     padding-right: 1em;
 }
+
+header {
+    padding-left: 0em;
+} */
 
 .fa, .fab, .fas {
     font-size: 30px;
