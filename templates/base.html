@@ -21,21 +21,45 @@
 
         <!-- JS -->
         <script src="../javascript/base.js" defer type="module"></script>
+        <script src="../javascript/sidebar.js" defer type="module"></script>
+
     </head>
     <body>
 
       <!-- NAV AND SIDENAV-->
       <div id="navbar-and-sidebar-wrapper">
 
+        <!-- SIDEBAR -->
         <div id="main-sidebar" class="overlay">
           <a href="#" id="close-main-sidebar-btn">×</a>
           <div class="overlay-content">
             <a href="/templates/base.html">Home</a>
-            <a href="#">Categories</a>
+
+            <!-- FOOD CATEGORIES -->
+            <a href="#">Categories</a> <!-- TODO: HIDE CONTENT ON CLICK -->
+            <div class="d-flex flex-wrap justify-content-start px-5 px-sm-1" id="sidebar-categories-div">
+              <div class="m-1 px-2 sidebar-category-div">Burgers<!-- TODO: ADD IMAGES BEYOND TITLE WITH WITH W/H  RATIO = 10/5  --></div>
+              <div class="m-1 px-2 sidebar-category-div">Pizza</div>
+              <div class="m-1 px-2 sidebar-category-div">Αναψυκτικά</div>
+              <div class="m-1 px-2 sidebar-category-div">Γλυκά</div>
+              <div class="m-1 px-2 sidebar-category-div">Ζυμαρικά</div>
+              <div class="m-1 px-2 sidebar-category-div">Θαλασσινά</div>
+              <div class="m-1 px-2 sidebar-category-div">Καφέδες</div>
+              <div class="m-1 px-2 sidebar-category-div">Κρέπες</div>
+              <div class="m-1 px-2 sidebar-category-div">Μαγειρευτά</div>
+              <div class="m-1 px-2 sidebar-category-div">Ορεκτικά</div>
+              <div class="m-1 px-2 sidebar-category-div">Σαλάτες</div>
+              <div class="m-1 px-2 sidebar-category-div">Σουβλάκια</div>
+              <div class="m-1 px-2 sidebar-category-div">Σφολιάτες</div>
+              <div class="m-1 px-2 sidebar-category-div">Ψητά</div>
+            </div>
+            <!-- END FOOD CATEGORIES -->
+
             <a href="#">Shops</a>
             <a href="#footer" id="sidebar-link-to-footer">Contact Us</a>
           </div>
         </div>
+        <!-- END SIDEBAR -->
   
         <div id="main-navbar">
           <header class="py-3 mb-3 border-bottom" id="main-header">
@@ -58,18 +82,18 @@
                 <form class="w-100 me-3">
                   <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                 </form>
-        
+
                 <div class="flex-shrink-0 dropdown">
-                  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-user-circle"></i>
                   </a>
-                  <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                    <li><a class="dropdown-item" href="#">Sign In</a></li>
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Sign Out</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Sign Up</a></li>
-                  </ul>
+                  <div class="dropdown-menu dropdown-menu-right text-small shadow" id="user-dropdown-menu">
+                    <div><a class="dropdown-item" href="#">Sign In</a></div>
+                    <div><a class="dropdown-item" href="#">Profile</a></div>
+                    <div><a class="dropdown-item" href="#">Sign Out</a></div>
+                    <div><hr class="dropdown-divider"></div>
+                    <div><a class="dropdown-item" href="#">Sign Up</a></div>
+                    </div>
                 </div>
               </div>
             </div>

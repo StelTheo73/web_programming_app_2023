@@ -1,4 +1,4 @@
-"use-strict"
+"use strict";
 
 console.log("Hello");
 
@@ -38,4 +38,4 @@ document.getElementById("close-main-sidebar-btn").addEventListener("click", clos
 document.getElementById("sidebar-link-to-footer").addEventListener("click", closeMainSidebar);
 
 // Initialize Objects
-let mainSidebar = new MainSidebar("main-sidebar");
+const mainSidebar = new MainSidebar("main-sidebar");
