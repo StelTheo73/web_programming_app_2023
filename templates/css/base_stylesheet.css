@@ -1,0 +1,33 @@
+body {
+    max-width: 1500px;
+    margin: 0 auto;
+    position: sticky;
+    border: 1px solid grey;
+}
+
+#main-and-sidebar-wrapper {
+    padding-right: 1em;
+}
+
+.fa, .fab, .fas {
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.fa-github {
+    color:rgba(0,0,0, 0.9);
+    line-height: 2em;
+}
+
+.fa-linkedin {
+    color: blue;
+    line-height: 2em;
+}
+
+.footer-icons {
+    margin-left: 0.5em;
+}
+
+.mailto-a {
+    line-height: 1em;
+}

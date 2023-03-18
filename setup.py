@@ -53,13 +53,19 @@ def create_folders():
         with open(DATABASE_PATH, "r", encoding = "utf-8"):
             pass
 
-def clear_tmp_after_initialization():
-    pass
+def clear_tmp_after_db_initialization():
+    for element in os.listdir(TMP):
+        _element = os.path.join(TMP, element)
+        if os.path.isfile(_element):
+                extension = os.path.splitext(_element)[1]
+                if extension == ".json":
+                    os.remove(_element)
 
 def setup(init_db):
     create_folders()
     if init_db:
         db_init()
+        clear_tmp_after_db_initialization()
 
 if __name__ == "__main__":
     init_db = parse_arguments(sys.argv)
