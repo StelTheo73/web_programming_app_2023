@@ -130,3 +130,6 @@ dmypy.json
 
 # Files under /tmp/
 /tmp/
+
+# VS Code Settings
+.vscode
