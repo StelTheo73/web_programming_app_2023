@@ -30,7 +30,7 @@ def parse_arguments(argv):
 
     for opt, arg in opts:
         if opt in ("-h", "--help"):
-            print_help()
+            print_help(argv)
             sys.exit(0)
         elif opt in ["-i", "--init-db"]:
             if (not isinstance(arg, str)) or (arg.capitalize() not in ("True", "False", "1", "0")):
