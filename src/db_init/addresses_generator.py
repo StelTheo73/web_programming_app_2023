@@ -45,7 +45,7 @@ def generate_address():
 
     return address
 
-def generate_shop_address(shop_id):
+def generate_shop_address():
     """Generate an address for a shop."""
     word1 = ""
     word2 = ""
@@ -61,7 +61,6 @@ def generate_shop_address(shop_id):
     country = "Greece"
 
     address = {
-        "shop_id" : shop_id,
         "city" : city,
         "street" : street,
         "number" : number,

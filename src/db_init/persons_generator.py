@@ -22,7 +22,7 @@ def generate_person():
     birthdate = random_date()
     phone = "69" + random_choice(NUMBERS, 9)
     password = "Aa123$00"
-    
+
     latin_firstname = unidecode(firstname)
     latin_lastname = unidecode(lastname)
 

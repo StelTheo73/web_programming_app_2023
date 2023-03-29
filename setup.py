@@ -2,12 +2,11 @@ import getopt
 import os
 import os.path
 import sys
-
+from src.db_init.db_init_2 import main as initialize_db
 from src.constants import (
     DB_FOLDER,
     DATABASE_PATH
 )
-from src.db_init.db_init import main as db_init
 
 PWD = os.getcwd()
 TMP = os.path.join(PWD, "tmp")
@@ -48,27 +47,27 @@ def create_folders():
     
     if not os.path.exists(DATABASE_FOLDER):
         os.mkdir(DATABASE_FOLDER)
-    
-    if not os.path.exists(DATABASE_PATH):
-        with open(DATABASE_PATH, "r", encoding = "utf-8"):
-            pass
+
 
 def clear_tmp_after_db_initialization():
     for element in os.listdir(TMP):
         _element = os.path.join(TMP, element)
         if os.path.isfile(_element):
-                extension = os.path.splitext(_element)[1]
+                (_, extension) = os.path.splitext(_element)
                 if extension == ".json":
                     os.remove(_element)
 
 def setup(init_db):
     create_folders()
     if init_db:
-        db_init()
+        initialize_db(400, 100)
         clear_tmp_after_db_initialization()
 
 if __name__ == "__main__":
-    init_db = parse_arguments(sys.argv)
-    setup(init_db)
+    # init_db = parse_arguments(sys.argv)
+    # setup(init_db)
+
+    from tmp.test_mongo_queries import main
+    main()
 
 # python -m setup

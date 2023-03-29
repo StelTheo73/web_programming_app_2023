@@ -1,6 +1,7 @@
 import random
 
 from src.db_init.constants import (
+    CATEGORIES_MAP,
     SHOP_TYPES,
     SHOP_TYPE_OPERATING_HOURS,
     OPERATING_HOURS_PLANS
@@ -12,11 +13,13 @@ from src.db_init.random_generator import (
     random_choice
 )
 
-def generate_shop(shop_id):
+def generate_shop():
     """Generates a shop."""
     word1 = ""
     word2 = ""
     domain = random.choice(DOMAINS)
+    operating_hours = {}
+    categories = []
 
     while (word1 in ["", " "]) or (word2 in ["", " "]):
         word1 = random.choice(LOREM_IPSUM).capitalize()
@@ -28,36 +31,36 @@ def generate_shop(shop_id):
     shop_email = shop_name.replace(" ", "_") +\
                 "@" + domain + ".com"
 
+
+    for category in CATEGORIES_MAP[shop_type]:
+        categories.append(category)
+
     shop = {
-        "shop_id" : shop_id,
         "type" : shop_type,
         "name" : shop_name,
         "email" : shop_email,
-        "phone" : shop_phone
+        "phone" : shop_phone,
+        "categories" : categories
     }
-
-    # shop_id = create_id_for_dictionary(shop)
-    # shop["shop_id"] = shop_id
 
     # Operating hours
     operating_hours_type = SHOP_TYPE_OPERATING_HOURS[shop_type]
-    operating_hours = {"shop_id" : shop_id}
     for day in OPERATING_HOURS_PLANS[operating_hours_type].keys():
         hours = OPERATING_HOURS_PLANS[operating_hours_type][day]
         operating_hours[day.lower()] = hours
 
-    return shop, operating_hours
+    shop["operating_hours"] = operating_hours
+
+    return shop
 
 def generate_shops(number):
     """Generates <number> shops."""
     shops_list = []
-    operating_hours_list = []
     shop_id = 1
 
     for _ in range(number):
-        shop, operating_hours = generate_shop(shop_id)
+        shop = generate_shop()
         shops_list.append(shop)
-        operating_hours_list.append(operating_hours)
         shop_id += 1
 
-    return shops_list, operating_hours_list
+    return shops_list
