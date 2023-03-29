@@ -14,7 +14,9 @@ def make_random_order(person, shop):
 
     for _ in range(no_of_items):
         payment_mean = random.choice(PAYMENT_MEANS)
+
         datetime = random_datetime(2020, 2022)
+        address = random.choice(person["addresses"])
 
         order_item = random.choice(items)
         order_item["note"] = None
@@ -28,6 +30,7 @@ def make_random_order(person, shop):
         "status" : "DELIVERED",
         "order_contains" : order_contains,
         "payment_mean" : payment_mean,
+        "address" : address
     }
 
     if payment_mean == "CARD":

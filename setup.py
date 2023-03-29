@@ -60,14 +60,14 @@ def clear_tmp_after_db_initialization():
 def setup(init_db):
     create_folders()
     if init_db:
-        initialize_db(400, 100)
+        initialize_db(1000, 100)
         clear_tmp_after_db_initialization()
 
 if __name__ == "__main__":
-    # init_db = parse_arguments(sys.argv)
-    # setup(init_db)
+    init_db = parse_arguments(sys.argv)
+    setup(init_db)
 
-    from tmp.test_mongo_queries import main
-    main()
+    # from tmp.test_mongo_queries import main
+    # main()
 
 # python -m setup
