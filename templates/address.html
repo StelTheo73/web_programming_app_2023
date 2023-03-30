@@ -18,10 +18,12 @@
         <link rel="stylesheet" href="css/base_stylesheet.css">
         <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="css/addresses.css">
 
         <!-- JS -->
         <script src="../javascript/base.js" defer type="module"></script>
         <script src="../javascript/sidebar.js" defer type="module"></script>
+        <script src="../javascript/addresses.js" defer type="module"></script>
 
     </head>
     <body>
@@ -36,7 +38,7 @@
             <a href="/templates/base.html">Home</a>
 
             <!-- FOOD CATEGORIES -->
-            <a href="#" class="sidebar-dropdown-link" id="sidebar-categories-link">Categories</a>
+            <a href="#" class="sidebar-dropdown-link" id="sidebar-categories-link">Categories</a> <!-- TODO: HIDE CONTENT ON CLICK -->
             <div class="d-flex flex-wrap justify-content-start px-sm-1 sidebar-items-div">
               <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Burgers</span></div>
               <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Pizza</span></div>
@@ -95,7 +97,7 @@
                       <li><a class="dropdown-item" href="#" type="button">Προβολή Προφίλ</a></li>
                       <li><a class="dropdown-item" href="#" type="button">Παραγγελίες</a></li>
                       <li><a class="dropdown-item" href="/templates/address.html" type="button">Διαχείριση Διευθύνσεων</a></li>
-                      <li><a class="dropdown-item" href="/templates/cards.html" type="button">Διχαείριση Καρτών</a></li>
+                      <li><a class="dropdown-item" href="/templates/cards.html" type="button">Διαείριση Καρτών</a></li>
                       <li><hr class="dropdown-divider"></li>
                       <li><a class="dropdown-item" href="#" type="button">Εγγραφή</a></li>
                       <li><a class="dropdown-item" href="#" type="button">Αποσύνδεση</a></li>
@@ -114,12 +116,52 @@
 
       <!-- MAIN -->
       <main>
-        <div class="container">
-          <h1>Main Content Here!</h1>
+          <div class="container" id="user-items">
+                  <!-- ROW -->
+                  <div class="row">
+                    <div class="col-6">
+                      <h1>Διαχείριση Διευθύνσεων</h1>
+                    </div>
+                    
+                    <div class="col-6 d-flex justify-content-end align-items-center">
+                      <button type="button" class="btn btn-primary bg-success add-new-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Προσθήκη Νέας
+                      </button>
+                    </div>
+                    
+                    <!-- MODAL -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            ...
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Understood</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>                    
+                    <!-- END MODAL -->
+                  </div>
+                  <!-- END ROW -->
+                  
+                  <!-- ROW -->
+                  <div class="row">
+                    <!-- ADDRESSES HERE -->
+                  </div>
+                  <!-- END ROW -->
 
-        </div>
+          </div>
       </main>
       <!-- END MAIN -->
+
+
 
       <!-- FOOTER -->
       <hr>
@@ -128,12 +170,12 @@
         <!-- FOOTER ROW -->
         <div class="row justify-content-start">
           <h5>Contact</h5>
-          <div class="col-sm-6 pt-2">
+          <div class="col pt-2">
             <a href="mailto:" title="mailto" class="mailto-a">Makris Konstantinos</a>
             <br>
             <a href="https://github.com/makket13" target="_blank" title="github.com/makket13"><i class="fab fa-github"></i></a>
           </div>
-          <div class="col-sm-6 pt-2">
+          <div class="col pt-2">
             <a href="mailto:up1072791@upnet.gr" title="mailto:up1072791@upnet.gr"  class="mailto-a">Theofilou Stylianos</a>
             <br>
             <a href="https://github.com/StelTheo73" target="_blank" title="github.com/StelTheo73"><i class="fab fa-github"></i></a>

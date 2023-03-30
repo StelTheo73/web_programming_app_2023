@@ -29,11 +29,11 @@ from src.db_init.shops_generator import (
     generate_shops
 )
 
-def create_person_addresses():
+def create_person_addresses(person):
     addresses_list = []
     num_of_addresses = random.randint(1, 3)
     for _ in range(num_of_addresses):
-        address = generate_address()
+        address = generate_address(person)
         addresses_list.append(address)
 
     return addresses_list
@@ -92,7 +92,7 @@ def main(persons_number, shops_number):
     print("Generating additional info for persons...")
     for person in persons_list:
         _person = person
-        _person["addresses"] = create_person_addresses()
+        _person["addresses"] = create_person_addresses(person)
         _person["cards"] = create_person_cards(person)
 
         persons_doc.insert_one(_person)
