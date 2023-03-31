@@ -7,43 +7,33 @@ from src.db_init.random_generator import (
     random_datetime
 )
 
-def make_random_order(customer_email, order_id, items):
+def make_random_order(person, shop):
     order_contains = []
-    _previously_added_items = []
-    price = 0
-
+    items = shop["items"]
     no_of_items = random.randint(1, 5)
 
     for _ in range(no_of_items):
         payment_mean = random.choice(PAYMENT_MEANS)
+
         datetime = random_datetime(2020, 2022)
+        address = random.choice(person["addresses"])
 
-        item = random.choice(items)
-        item_id = item["item_id"]
-        while item_id in _previously_added_items:
-            item = random.choice(items)
-            item_id = item["item_id"]
-        _previously_added_items.append(item_id)
+        order_item = random.choice(items)
+        order_item["note"] = None
 
-        item_price = item["price"]
-        quantity = random.randint(1, 3)
-
-        price += item_price * quantity
-        order_item = {
-            "order_id": order_id,
-            "item_id" : item_id,
-            "quantity" : quantity,
-            "note"  : None
-        }
         order_contains.append(order_item)
 
     order = {
-        "order_id" : order_id,
-        "email" : customer_email,
+        "person_id" : person["_id"],
+        "shop_id" : shop["_id"],
+        "datetime" : datetime,
         "status" : "DELIVERED",
-        "total_price" : round(price, 2),
+        "order_contains" : order_contains,
         "payment_mean" : payment_mean,
-        "datetime" : datetime
+        "address" : address
     }
 
-    return order, order_contains
+    if payment_mean == "CARD":
+        order["card"] = random.choice(person["cards"])
+
+    return order

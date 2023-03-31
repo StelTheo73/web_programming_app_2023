@@ -17,7 +17,7 @@ def generate_cities():
 
     return cities
 
-def generate_address():
+def generate_address(person):
     """Generate an address."""
     word1 = ""
     word2 = ""
@@ -40,12 +40,13 @@ def generate_address():
         "postcode" : postcode,
         "country" : country,
         "floor" : floor,
+        "bell" : person["firstname"] + " " + person["lastname"],
         "note" : None
     }
 
     return address
 
-def generate_shop_address(shop_id):
+def generate_shop_address():
     """Generate an address for a shop."""
     word1 = ""
     word2 = ""
@@ -61,7 +62,6 @@ def generate_shop_address(shop_id):
     country = "Greece"
 
     address = {
-        "shop_id" : shop_id,
         "city" : city,
         "street" : street,
         "number" : number,
@@ -70,21 +70,3 @@ def generate_shop_address(shop_id):
     }
 
     return address
-
-def generate_address_and_assign_to_person(person_email):
-    """Generates an address and correlates it with a person."""
-    firstname, lastname, _ = person_email.split("_")
-
-    address = generate_address()
-    address["email"] = person_email
-    address["name_on_bell"] = lastname + " " + firstname
-
-    return address
-
-def generate_addresses_and_assign_to_person(number, person_id):
-    """Generates <number> addresses and correlates them with a person."""
-    _list = []
-    for _ in range(number):
-        address = generate_address_and_assign_to_person(person_id)
-        _list.append(address)
-    return _list

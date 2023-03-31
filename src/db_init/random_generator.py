@@ -329,14 +329,20 @@ def random_email():
 
 def random_date(start_year = 1970, end_year = 2008, start_month = 1, end_month = 12):
     year = random.randint(start_year, end_year)
-    month = random.randint(start_month, end_month)
+    month = str(random.randint(start_month, end_month))
 
     if(month == 2):
-        day = random.randint(1, 28)
+        day = str(random.randint(1, 28))
+        
     elif(month in [4, 6, 9, 11]):
-        day = random.randint(1, 30)
+        day = str(random.randint(1, 30))
     else:
-        day = random.randint(1, 31)
+        day = str(random.randint(1, 31))
+
+    if len(month) == 1:
+        month = "0" + month
+    if len(day) == "1":
+        day = "0" + day
 
     return f"{year}-{month}-{day}"
 

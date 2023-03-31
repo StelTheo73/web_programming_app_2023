@@ -1,0 +1,58 @@
+[
+    {
+        "name" : "Burgers",
+        "image" : "../../images/hamburger.png"
+    },
+    {
+        "name" : "Pizza",
+        "image" : "../../images/pizza.png"
+    },
+    {
+        "name" : "Αναψυκτικά",
+        "image" : "../../images/cola.png"
+    },
+    {
+        "name" : "Γλυκά",
+        "image" : "../../images/cake-slice.png"
+    },
+    {
+        "name" : "Ζυμαρικά",
+        "image" : "../../images/spaguetti.png"
+    },
+    {
+        "name" : "Θαλασσινά",
+        "image" : "../../images/fish.png"
+    },
+    {
+        "name" : "Καφέδες",
+        "image" : "../../images/coffee-cup.png"
+    },
+    {
+        "name" : "Κρέπες",
+        "image" : "../../images/crepe.png"
+    },
+    {
+        "name" : "Μαγειρευτά",
+        "image" : "../../images/boil.png"
+    },
+    {
+        "name" : "Ορεκτικά",
+        "image" : "../../images/appetizer.png"
+    },
+    {
+        "name" : "Σαλάτες",
+        "image" : "../../images/salad.png"
+    },
+    {
+        "name" : "Σουβλάκια",
+        "image" : "../../images/skewer.png"
+    },
+    {
+        "name" : "Σφολιάτες",
+        "image" : "../../images/curry-puff.png"
+    },
+    {
+        "name" : "Ψητά",
+        "image" : "../../images/barbeque.png"
+    }
+]

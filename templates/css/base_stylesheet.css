@@ -3,7 +3,7 @@ body {
     margin: 0 auto;
     position: sticky;
     border: 1px solid grey;
-
+    border-radius: 10px;
 }
 
 /* #navbar-and-sidebar-wrapper {
@@ -14,7 +14,7 @@ header {
     padding-left: 0em;
 } */
 
-.fa, .fab, .fas {
+.fa, .fab, .fas, .far {
     font-size: 30px;
     text-decoration: none;
 }

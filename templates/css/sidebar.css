@@ -1,5 +1,5 @@
 .overlay {
-    max-width: 1500px;
+    max-width: 400px;
     height: 100%;
     width: 0;
     position: fixed;
@@ -8,6 +8,7 @@
     background-color: rgba(0,0,0, 0.9);
     overflow-x: hidden;
     transition: 0.5s;
+    border-radius: 10px;
 }
 
 .overlay-content {
@@ -61,14 +62,14 @@
     line-height: 0.5em;
 }
 
-.sidebar-items-div {
+/* .sidebar-items-div {
     border: 1px solid red;
-}
+} */
 
 .sidebar-item-div {
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: center;
     /* border: 1px solid green; */
     color: aliceblue;
     width: 8em;
