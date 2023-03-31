@@ -77,8 +77,30 @@ def create_orders():
 
     client.close()
 
+def drop_db():
+    client = pymongo.MongoClient(CLIENT_URI)
+    
+    print("Dropping previous documents...")
+    
+    db = client[DATABASE_NAME]
+    persons_doc = db["persons"]
+    shops_doc = db["shops"]
+    orders_doc = db["orders"]
+
+    persons_doc.drop()
+    shops_doc.drop()
+    orders_doc.drop()
+    
+    print("Done")
+
+    client.close()
+
+
 def main(persons_number, shops_number):
-    print("COnnecting to database...")
+    
+    drop_db()
+    
+    print("Connecting to database...")
     client = pymongo.MongoClient(CLIENT_URI)
     db = client[DATABASE_NAME]
     persons_doc = db["persons"]
