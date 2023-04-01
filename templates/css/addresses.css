@@ -1,4 +1,4 @@
-#user-items > .row {
+.user-items > .row {
     padding: 1em;;
     border: 1px solid lightgray;
     border-radius: 10px;

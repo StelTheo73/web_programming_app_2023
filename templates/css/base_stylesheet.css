@@ -4,6 +4,7 @@ body {
     position: sticky;
     border: 1px solid grey;
     border-radius: 10px;
+    margin-top: 1em;
 }
 
 /* #navbar-and-sidebar-wrapper {
