@@ -4,6 +4,10 @@
     border-radius: 10px;
 }
 
+.user-items > .row:nth-child(2) > div {
+    margin-bottom: 0.25em;
+}
+
 .add-new-btn {
     min-height: 3em;
     max-height: 3em;
@@ -12,10 +16,10 @@
 .address-card-wrapper {
     border: 1px solid lightgray;
     border-radius: 10px;
-    margin-bottom: 1em;
     padding: 1em;
     max-width: 20em;
     min-width: 20em;
+    height: 100%;
 }
 
 .address-card-wrapper > div {

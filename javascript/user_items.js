@@ -139,7 +139,7 @@ function addCard(card, parentDiv) {
             <input type="text" value="${cardholder}" readonly>
           </div>
           <div>
-            <span><i class="far fa-edit text-primary"></i></span>
+           
             <span><i class="fas fa-trash-alt text-danger"></i></span>
           </div>
         </div>
