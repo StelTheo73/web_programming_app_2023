@@ -7,7 +7,7 @@ from src.db_init.random_generator import (
     random_datetime
 )
 
-def make_random_order(person, shop):
+def make_random_order(person, address, shop):
     order_contains = []
     items = shop["items"]
     no_of_items = random.randint(1, 5)
@@ -16,10 +16,17 @@ def make_random_order(person, shop):
         payment_mean = random.choice(PAYMENT_MEANS)
 
         datetime = random_datetime(2020, 2022)
-        address = random.choice(person["addresses"])
 
         order_item = random.choice(items)
-        order_item["note"] = None
+
+        try :
+            del order_item["tags"]
+        except KeyError:
+            pass
+        try:
+            del order_item["category_name"]
+        except KeyError:
+            pass
 
         order_contains.append(order_item)
 

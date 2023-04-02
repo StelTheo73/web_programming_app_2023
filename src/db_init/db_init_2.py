@@ -72,16 +72,23 @@ def create_orders():
 
         for _ in range(num_of_orders):
             shop = random.choice(shops)
-            order = make_random_order(person, shop)
-            orders_doc.insert_one(order)
+            address = None
+
+            for address in person["addresses"]:
+                if address["city"] == shop["address"]["city"]:
+                    break
+
+            if address is not None:
+                order = make_random_order(person, address, shop)
+                orders_doc.insert_one(order)
 
     client.close()
 
 def drop_db():
     client = pymongo.MongoClient(CLIENT_URI)
-    
+
     print("Dropping previous documents...")
-    
+
     db = client[DATABASE_NAME]
     persons_doc = db["persons"]
     shops_doc = db["shops"]
@@ -90,16 +97,16 @@ def drop_db():
     persons_doc.drop()
     shops_doc.drop()
     orders_doc.drop()
-    
+
     print("Done")
 
     client.close()
 
 
 def main(persons_number, shops_number):
-    
+
     drop_db()
-    
+
     print("Connecting to database...")
     client = pymongo.MongoClient(CLIENT_URI)
     db = client[DATABASE_NAME]
