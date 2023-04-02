@@ -26,7 +26,6 @@
     background-color: cornsilk;
 }
 
-
 .order-wrapper > div {
     margin-right: 0em;
     margin-bottom: 0.5em;
@@ -97,13 +96,7 @@
     opacity: 1;
     transition: 0.5s linear;
     background-color: white;
-    
-    
-    /* transition-property: width;
-    transition-duration: 500ms;
-    transition-timing-function: linear; */
 }
-
 
 #order-items-modal > div > .close-modal-btn {
     color: lightgray;
