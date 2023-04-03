@@ -52,37 +52,72 @@ function addOrders() {
     }
 }
 
+function flipCardListeners() {
+  let flipCardButtons = document.querySelectorAll(".flip-card-btn");
+
+  flipCardButtons.forEach(function(button) {
+      let flipCardInner = button.parentElement.parentElement.parentElement.parentElement;
+      let flipCardFront = flipCardInner.querySelector(".flip-card-front");
+      let flipCardBackItem = flipCardInner.querySelector(".item-info-flip-card");
+      let flipCardBackShop = flipCardInner.querySelector(".shop-info-flip-card");
+      
+      
+      let flipCardShow, flipCardHide;
+      
+    if (button.className.indexOf("items-info-flip-btn") >= 0) {
+      flipCardHide = flipCardFront;
+      // flipCardInner.querySelector(".flip-card-front");      
+      flipCardShow = flipCardBackItem;
+      
+      // flipCardInner.querySelector(".item-info-flip-card");
+
+      button.addEventListener("click", function() {
+        flipCardInner.style.transform = "rotateY(180deg)";
+  
+        flipCardHide.style.display = "none";
+        flipCardShow.style.display = "block";
+      });
+
+    }
+    else if (button.className.indexOf("shop-info-flip-btn") >= 0) {
+      flipCardHide = flipCardFront; 
+      // flipCardInner.querySelector(".flip-card-front");
+      flipCardShow = flipCardBackShop; 
+      // flipCardInner.querySelector(".shop-info-flip-card");
+
+        button.addEventListener("click", function() {
+          flipCardInner.style.transform = "rotateY(180deg)";
+  
+          flipCardHide.style.display = "none";
+          flipCardShow.style.display = "block";
+      });
+    }
+    else if (button.className.indexOf("order-info-flip-btn") >= 0) {
+      flipCardShow = flipCardFront
+      // flipCardInner.querySelector(".flip-card-front");
+      if (button.className.indexOf("from-item-info") >= 0) {
+        flipCardHide = flipCardBackItem;
+        // flipCardInner.querySelector(".item-info-flip-card");
+      }
+      else if (button.className.indexOf("from-shop-info") >= 0) {
+        flipCardHide = flipCardBackShop;
+        // flipCardInner.querySelector(".shop-info-flip-card");
+      }
+
+      button.addEventListener("click", function() {
+        flipCardInner.style.transform = "";
+  
+        flipCardHide.style.display = "none";
+        flipCardShow.style.display = "block";
+      });
+    }
+
+  })
+}
+
 import { RequestMaker } from "./request_maker.js";
 const requestMaker = new RequestMaker();
 addOrders();
-
-
-/* ============ */
-
-// Get the modal
-let modal = document.querySelector("#order-items-modal");
-// let modal2 = document.querySelector("#shop-info-modal");
-
-// Get the close button
-let closeBtn = document.querySelector(".close-modal-btn");
-let btn = document.querySelector("#open-items-modal-btn");
-let btn2 = document.querySelector("#open-shop-info-modal-btn");
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-  modal.classList.add("show");
-
-}
-btn2.onclick = function() {
-  modal.style.display = "block";
-  modal.classList.add("show");
-
-}
-
-
-closeBtn.onclick = function() {
-  modal.style.display = "none";
-  modal.classList.remove("show");
-}
+flipCardListeners();
 
 
