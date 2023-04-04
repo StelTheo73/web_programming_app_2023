@@ -11,10 +11,9 @@ def generate_card(person):
     firstname = person["firstname"]
     lastname = person["lastname"]
 
-    expiration_date = random_date()
+    expiration_date = random_date(2022, 2027)
     expiration_date_list = expiration_date.split("-")
-    expiration_date_list[2] = "01" # day = 01
-    expiration_date = "-".join(expiration_date_list)
+    expiration_date = f"{expiration_date_list[0]}-{expiration_date_list[1]}" 
 
     cardholder = f"{firstname} {lastname}".upper()
     card_number = random_choice(NUMBERS, 16)

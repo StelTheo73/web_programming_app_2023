@@ -11,6 +11,7 @@ def make_random_order(person, address, shop):
     order_contains = []
     items = shop["items"]
     no_of_items = random.randint(1, 5)
+    rating = random.randint(1, 5)
 
     for _ in range(no_of_items):
         payment_mean = random.choice(PAYMENT_MEANS)
@@ -29,7 +30,7 @@ def make_random_order(person, address, shop):
             pass
 
         order_contains.append(order_item)
-
+    
     order = {
         "person_id" : person["_id"],
         "shop_id" : shop["_id"],
@@ -37,7 +38,8 @@ def make_random_order(person, address, shop):
         "status" : "DELIVERED",
         "order_contains" : order_contains,
         "payment_mean" : payment_mean,
-        "address" : address
+        "address" : address,
+        "rating" : rating
     }
 
     if payment_mean == "CARD":

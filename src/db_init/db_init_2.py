@@ -64,7 +64,7 @@ def create_orders():
     # persons_ids = persons_doc.find({"_id" : objInstance}, {"_id" : 1, "firstname" : 1})
 
     persons = persons_doc.find({}, {"_id" : 1, "cards" : 1, "addresses" : 1})
-    shops = shops_doc.find({}, {"_id" : 1, "items" : 1})
+    shops = shops_doc.find({}, {"_id" : 1, "items" : 1, "address" : 1})
     shops = list(shops)
 
     for person in persons:

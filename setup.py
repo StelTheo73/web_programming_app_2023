@@ -67,7 +67,7 @@ if __name__ == "__main__":
     init_db = parse_arguments(sys.argv)
     setup(init_db)
 
-    # from tmp.test_mongo_queries import main
-    # main()
+    from tmp.test_mongo_queries import main
+    main()
 
 # python -m setup

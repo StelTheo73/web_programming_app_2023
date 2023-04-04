@@ -1,14 +1,26 @@
 "use-strict";
 
-function indexOfObject(items_list, item) {
-  // console.log("item");
-  // console.log(item);
-  for (let i = 0; i < items_list.length; i++) {
-    // console.log("item of list")
-    // console.log(items_list[i]);
+let PAYMENT_MAP = {
+  "CARD" : "far fa-credit-card",
+  "GOOGLE PAY" : "fab fa-google-pay",
+  "CASH" : "fa fa-money-bill-alt"
+}
 
+let parseValue = (value, type = "string") => {
+  let typeMap = {
+    "string" : "",
+    "number" : 0
+  }
+  
+  if ((value != undefined) & (value != null)) return value;
+  else {
+    return typeMap[type];
+  }
+}
+
+function indexOfObject(items_list, item) {
+  for (let i = 0; i < items_list.length; i++) {
     if (JSON.stringify(items_list[i]) === JSON.stringify(item)) {
-      // console.log("found at " + i);
       return i;
     }
   }
@@ -21,10 +33,7 @@ function categorizeItems(items) {
     let position = 0;
 
     for (let item of items) {
-      // console.log(items_list);
       position = indexOfObject(items_list, item);
-      // console.log(position);
-      // console.log("\n==========================\n");
 
       if (position >= 0) {
           quantity[position]++;
@@ -43,12 +52,119 @@ function categorizeItems(items) {
 
 }
 
+function calculateCost(items) {
+  let cost = 0;
+  for (let item of items) {
+    cost = cost + item["price"] * item["quantity"];
+  }
+  return Math.ceil(cost*100) / 100;
+} 
+
+function visualizeRating(rating) {
+  let stars = ["far fa-star", "far fa-star",
+    "far fa-star", "far fa-star", "far fa-star"
+  ];
+
+  for (let i = 0; i < rating; i++) {
+    stars[i] = "fas fa-star";
+  }
+
+  return stars;
+}
+
 function addOrders() {
     let orders = requestMaker.fetchOrders(null);
+    let parentElement = document.querySelector("#user-orders > .row:nth-child(2)");
     for (let order of orders) {
         let items = categorizeItems(order["order_contains"]);
-        console.log(items);
-        // console.log("\n==========================\n");
+        let shopName = parseValue(order["name"]);
+        let datetime = parseValue(order["datetime"]);
+        let status_ = parseValue(order["status"]);
+        
+        let paymentMean = parseValue(order["payment_mean"]);
+        let card = parseValue(order["card"]);
+        let cardNumber = parseValue(card["card_number"]);
+        if (cardNumber){
+          cardNumber = "&nbsp;(" + cardNumber + ")";
+        }
+        let rating = parseValue(order["rating"], "number");
+        
+        let street = parseValue(order["address"]["street"]);
+        let number = parseValue(order["address"]["number"]);
+        let city = parseValue(order["address"]["city"]);
+        let  postcode = parseValue(order["address"]["postcode"]);
+        let country = parseValue(order["address"]["country"]);
+        let bell = parseValue(order["address"]["bell"]);
+        let floor = parseValue(order["address"]["floor"]);
+        let note = parseValue(order["address"]["note"]);
+
+        let cost = calculateCost(items);
+        let stars = visualizeRating(rating); 
+
+        let paymentMeanIcon = PAYMENT_MAP[paymentMean];
+
+        let ORDERS_TEMPLATE = `
+          <div class="col-12 col-md-6 col-xl-4 flip-card">
+            <div class="order-wrapper flip-card-inner">
+                <div class="flip-card-front">
+                    <div>
+                        <span>${shopName}</span>
+                    </div>
+                    <div>
+                        <span>Ημερομηνία</span>
+                        <span>${datetime}</span>
+                    </div>
+                    <div>
+                        <span>Κατάσταση</span>
+                        <span>${status_}</span>
+                    </div>
+                    <div>
+                        <span>Κόστος</span>
+                        <span>${cost}</span>
+                    </div>
+                    <div>
+                        <span>Τρόπος πληρωμής</span>
+                        <span><i class="${paymentMeanIcon}"></i>${cardNumber}</span>
+                    </div>
+                    <div>
+                        <span>${street}, ${number}, ${city}, ${postcode}, ${country}</span>
+                    </div>
+                    <div>
+                        <span>${floor}, ${bell}</span>
+                    </div>
+                    <div>
+                        <span class="button-span"><button class="btn btn-outline-secondary flip-card-btn items-info-flip-btn">Προβολή Προϊόντων</button></span>
+                    </div>
+                    <div>
+                        <span class="button-span"><button class="btn btn-outline-secondary flip-card-btn shop-info-flip-btn">Επικοινωνία με το κατάστημα</button></span>
+                    </div>
+                    <div>
+                        <span>
+                          <i class="${stars[0]}"></i>
+                          <i class="${stars[1]}"></i>
+                          <i class="${stars[2]}"></i>
+                          <i class="${stars[3]}"></i>
+                          <i class="${stars[4]}"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="flip-card-back item-info-flip-card">
+                    <div>${items}</div>
+                    <div>
+                        <span class="button-span"><button class="btn btn-outline-secondary flip-card-btn order-info-flip-btn from-item-info">Προβολή Παραγγελίας</button></span>
+                    </div>
+                </div>
+                <div class="flip-card-back shop-info-flip-card">
+                    <div>Shop info</div>
+                    <div>
+                        <span class="button-span"><button class="btn btn-outline-secondary flip-card-btn order-info-flip-btn from-shop-info">Προβολή Παραγγελίας</button></span>
+                    </div>
+                </div>
+            </div>
+          </div>
+        `
+
+        parentElement.innerHTML = parentElement.innerHTML + ORDERS_TEMPLATE;
     }
 }
 
@@ -56,21 +172,18 @@ function flipCardListeners() {
   let flipCardButtons = document.querySelectorAll(".flip-card-btn");
 
   flipCardButtons.forEach(function(button) {
-      let flipCardInner = button.parentElement.parentElement.parentElement.parentElement;
-      let flipCardFront = flipCardInner.querySelector(".flip-card-front");
-      let flipCardBackItem = flipCardInner.querySelector(".item-info-flip-card");
-      let flipCardBackShop = flipCardInner.querySelector(".shop-info-flip-card");
-      
-      
-      let flipCardShow, flipCardHide;
+    let flipCardInner = button.parentElement.parentElement.parentElement.parentElement;
+    let flipCardFront = flipCardInner.querySelector(".flip-card-front");
+    let flipCardBackItem = flipCardInner.querySelector(".item-info-flip-card");
+    let flipCardBackShop = flipCardInner.querySelector(".shop-info-flip-card");
+    
+    
+    let flipCardShow, flipCardHide;
       
     if (button.className.indexOf("items-info-flip-btn") >= 0) {
       flipCardHide = flipCardFront;
-      // flipCardInner.querySelector(".flip-card-front");      
       flipCardShow = flipCardBackItem;
       
-      // flipCardInner.querySelector(".item-info-flip-card");
-
       button.addEventListener("click", function() {
         flipCardInner.style.transform = "rotateY(180deg)";
   
@@ -81,9 +194,7 @@ function flipCardListeners() {
     }
     else if (button.className.indexOf("shop-info-flip-btn") >= 0) {
       flipCardHide = flipCardFront; 
-      // flipCardInner.querySelector(".flip-card-front");
       flipCardShow = flipCardBackShop; 
-      // flipCardInner.querySelector(".shop-info-flip-card");
 
         button.addEventListener("click", function() {
           flipCardInner.style.transform = "rotateY(180deg)";
@@ -94,14 +205,11 @@ function flipCardListeners() {
     }
     else if (button.className.indexOf("order-info-flip-btn") >= 0) {
       flipCardShow = flipCardFront
-      // flipCardInner.querySelector(".flip-card-front");
       if (button.className.indexOf("from-item-info") >= 0) {
         flipCardHide = flipCardBackItem;
-        // flipCardInner.querySelector(".item-info-flip-card");
       }
       else if (button.className.indexOf("from-shop-info") >= 0) {
         flipCardHide = flipCardBackShop;
-        // flipCardInner.querySelector(".shop-info-flip-card");
       }
 
       button.addEventListener("click", function() {

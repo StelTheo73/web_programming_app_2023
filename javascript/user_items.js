@@ -29,32 +29,32 @@ const ADDRESSES = [
     }
 ]
 
+// TODO : FETCH CARDS
+const CARDS = [
+  {
+      "card_number": "9653066179213801",
+      "cvv": "570",
+      "expiration_date": "1980-10-01",
+      "cardholder": "ΣΤΈΛΛΑ ΖΑΧΑΡΊΟΥ"
+  },
+  {
+      "card_number": "8514710048592345",
+      "cvv": "286",
+      "expiration_date": "1978-01-01",
+      "cardholder": "ΣΤΈΛΛΑ ΖΑΧΑΡΊΟΥ"
+  },
+  {
+      "card_number": "8405301532889154",
+      "cvv": "100",
+      "expiration_date": "1983-09-01",
+      "cardholder": "ΣΤΈΛΛΑ ΖΑΧΑΡΊΟΥ"
+  }
+]
+
 let parseValue = (value) => {
     if ((value != undefined) & (value != null)) return value;
     else return ""
 }
-
-// TODO : FETCH CARDS
-const CARDS = [
-    {
-        "card_number": "9653066179213801",
-        "cvv": "570",
-        "expiration_date": "1980-10-01",
-        "cardholder": "ΣΤΈΛΛΑ ΖΑΧΑΡΊΟΥ"
-    },
-    {
-        "card_number": "8514710048592345",
-        "cvv": "286",
-        "expiration_date": "1978-01-01",
-        "cardholder": "ΣΤΈΛΛΑ ΖΑΧΑΡΊΟΥ"
-    },
-    {
-        "card_number": "8405301532889154",
-        "cvv": "100",
-        "expiration_date": "1983-09-01",
-        "cardholder": "ΣΤΈΛΛΑ ΖΑΧΑΡΊΟΥ"
-    }
-]
 
 function addAddress(address, parentDiv) {
     let city = parseValue(address["city"]);

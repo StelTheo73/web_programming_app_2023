@@ -1277,241 +1277,218 @@ let SHOPS = [
 ]
 
 let ORDERS = [
-    {
-        "_id": {
-          "$oid": "642722e4f571449b429d61b5"
-        },
-        "person_id": {
-          "$oid": "642722e4f571449b429d5d68"
-        },
-        "shop_id": {
-          "$oid": "642722e4f571449b429d616c"
-        },
-        "datetime": "2020-04-18 21:32:01",
-        "status": "DELIVERED",
-        "order_contains": [
-          {
-            "name": "Κοτόπουλο",
-            "price": 9.89
-          },
-          {
-            "name": "Σαρδέλα",
-            "price": 9.06
-          },
-          {
-            "name": "Λαβράκι",
-            "price": 11.8
-          }
-        ],
-        "payment_mean": "CARD",
-        "address": {
-          "city": "Αθήνα",
-          "street": "Integre Cum",
-          "number": "89",
-          "postcode": "71283",
-          "country": "Greece",
-          "floor": "7",
-          "bell": "Κλέων Λόντος",
-          "note": null
-        },
-        "card": {
-          "card_number": "8528357772436118",
-          "cvv": "272",
-          "expiration_date": "1981-01-01",
-          "cardholder": "ΚΛΈΩΝ ΛΌΝΤΟΣ"
-        }
-    },
-    {
-        "_id": {
-          "$oid": "642722e4f571449b429d61b6"
-        },
-        "person_id": {
-          "$oid": "642722e4f571449b429d5d68"
-        },
-        "shop_id": {
-          "$oid": "642722e4f571449b429d6188"
-        },
-        "datetime": "2022-04-18 13:51:41",
-        "status": "DELIVERED",
-        "order_contains": [
-          {
-            "name": "Κρέπα σοκολάτα",
-            "price": 6.53
-          },
-          {
-            "name": "Chef",
-            "price": 7.61
-          },
-          {
-            "name": "Καρμπονάρα",
-            "price": 8.54
-          },
-          {
-            "name": "Coca Cola Zero",
-            "price": 3.77
-          }
-        ],
-        "payment_mean": "CARD",
-        "address": {
-          "city": "Αθήνα",
-          "street": "Stet Consetetur",
-          "number": "59",
-          "postcode": "76857",
-          "country": "Greece",
-          "floor": "5",
-          "bell": "Κλέων Λόντος",
-          "note": null
-        },
-        "card": {
-          "card_number": "8528357772436118",
-          "cvv": "272",
-          "expiration_date": "1981-01-01",
-          "cardholder": "ΚΛΈΩΝ ΛΌΝΤΟΣ"
-        }
-    },
-    {
-        "_id": {
-          "$oid": "642722e4f571449b429d61b7"
-        },
-        "person_id": {
-          "$oid": "642722e4f571449b429d5d68"
-        },
-        "shop_id": {
-          "$oid": "642722e4f571449b429d618f"
-        },
-        "datetime": "2020-05-15 19:42:58",
-        "status": "DELIVERED",
-        "order_contains": [
-          {
-            "name": "Μπιφτέκι",
-            "price": 10.52
-          },
-          {
-            "name": "Σαρδέλα",
-            "price": 8.32
-          },
-          {
-            "name": "Σαρδέλα",
-            "price": 8.32
-          },
-          {
-            "name": "Chef",
-            "price": 7.04
-          },
-          {
-            "name": "Καλαμαράκια",
-            "price": 8.95
-          }
-        ],
-        "payment_mean": "CARD",
-        "address": {
-          "city": "Αθήνα",
-          "street": "Stet Consetetur",
-          "number": "59",
-          "postcode": "76857",
-          "country": "Greece",
-          "floor": "5",
-          "bell": "Κλέων Λόντος",
-          "note": null
-        },
-        "card": {
-          "card_number": "8528357772436118",
-          "cvv": "272",
-          "expiration_date": "1981-01-01",
-          "cardholder": "ΚΛΈΩΝ ΛΌΝΤΟΣ"
-        }
-    },
-    {
-        "_id": {
-          "$oid": "642722e4f571449b429d61b8"
-        },
-        "person_id": {
-          "$oid": "642722e4f571449b429d5d68"
-        },
-        "shop_id": {
-          "$oid": "642722e4f571449b429d61a1"
-        },
-        "datetime": "2021-02-19 20:57:51",
-        "status": "DELIVERED",
-        "order_contains": [
-          {
-            "name": "Καλαμαράκια",
-            "price": 10.39
-          },
-          {
-            "name": "Σαγανάκι",
-            "price": 6.57
-          },
-          {
-            "name": "Chef",
-            "price": 9.26
-          },
-          {
-            "name": "Chef",
-            "price": 9.26
-          }
-        ],
-        "payment_mean": "CARD",
-        "address": {
-          "city": "Αθήνα",
-          "street": "Stet Consetetur",
-          "number": "59",
-          "postcode": "76857",
-          "country": "Greece",
-          "floor": "5",
-          "bell": "Κλέων Λόντος",
-          "note": null
-        },
-        "card": {
-          "card_number": "8528357772436118",
-          "cvv": "272",
-          "expiration_date": "1981-01-01",
-          "cardholder": "ΚΛΈΩΝ ΛΌΝΤΟΣ"
-        }
-    },
-    {
-        "_id": {
-          "$oid": "642722e4f571449b429d61b9"
-        },
-        "person_id": {
-          "$oid": "642722e4f571449b429d5d68"
-        },
-        "shop_id": {
-          "$oid": "642722e4f571449b429d61ad"
-        },
-        "datetime": "2022-02-19 16:40:13",
-        "status": "DELIVERED",
-        "order_contains": [
-          {
-            "name": "Caesar's",
-            "price": 6.93
-          },
-          {
-            "name": "κρέπα oreo",
-            "price": 5.7
-          },
-          {
-            "name": "Pizza Pepperoni",
-            "price": 10.74
-          },
-          {
-            "name": "Λεμονάδα",
-            "price": 2.92
-          }
-        ],
-        "payment_mean": "CASH",
-        "address": {
-          "city": "Αθήνα",
-          "street": "Integre Cum",
-          "number": "89",
-          "postcode": "71283",
-          "country": "Greece",
-          "floor": "7",
-          "bell": "Κλέων Λόντος",
-          "note": null
-        }
-    }
-];
+  { '_id': '642d12fd9f0c2c52ba5b8643',
+    'person_id': '642d12fd9f0c2c52ba5b81f6',
+    'shop_id': '642d12fd9f0c2c52ba5b85f9',
+    'datetime': '2020-03-16 09:59:12',
+    'status': 'DELIVERED',
+    'order_contains': [ {'name': 'Φέτα Ψητή', 'price': 5.5600000000000005}, 
+                        {'name': 'Σαγανάκι', 'price': 6.71},
+                        {'name': 'Σαγανάκι', 'price': 6.71},
+                        {'name': 'Τυροπιτάκια', 'price': 3.84}],
+    'payment_mean': 'CARD',
+    'address': { 'city': 'Θεσσαλονίκη',
+                 'street': 'Recteque Consul',
+                 'number': '17',
+                 'postcode': '68098',
+                 'country': 'Greece',
+                 'floor': '7',
+                 'bell': 'Δίας Παππάς',
+                 'note': null},
+    'rating': 1,
+    'card': { 'card_number': '2164002006127014',
+              'cvv': '079',
+              'expiration_date': '2025-04',
+              'cardholder': 'ΔΊΑΣ ΠΑΠΠΆΣ'},
+    'name': 'Habemus Ancillae'}
+  ,
+  { '_id': '642d12fd9f0c2c52ba5b8648',
+    'person_id': '642d12fd9f0c2c52ba5b81f6',
+    'shop_id': '642d12fd9f0c2c52ba5b8618',
+    'datetime': '2020-05-31 19:22:12',
+    'status': 'DELIVERED',
+    'order_contains': [ {'name': 'Σουβλάκι Χοιρινό σε πίτα', 'price': 4.58},
+                        {'name': 'Μπιφτέκι', 'price': 7.22},
+                        {'name': 'Πορτοκαλάδα', 'price': 3.89},
+                        {'name': 'Chef', 'price': 8.34},
+                        {'name': 'Coca Cola Light', 'price': 2.7}],
+    'payment_mean': 'CARD',
+    'address': { 'city': 'Αθήνα',
+                 'street': 'Sit Has',
+                 'number': '106',
+                 'postcode': '24032',
+                 'country': 'Greece',
+                 'floor': '5',
+                 'bell': 'Δίας Παππάς',
+                 'note': null},
+    'rating': 1,
+    'card': { 'card_number': '6177775241138187',
+              'cvv': '793',
+              'expiration_date': '2024-02',
+              'cardholder': 'ΔΊΑΣ ΠΑΠΠΆΣ'},
+    'name': 'Nam Te'}
+  ,
+  { '_id': '642d12fd9f0c2c52ba5b8646',
+    'person_id': '642d12fd9f0c2c52ba5b81f6',
+    'shop_id': '642d12fd9f0c2c52ba5b861d',
+    'datetime': '2020-08-11 00:22:52',
+    'status': 'DELIVERED',
+    'order_contains': [ {'name': 'Πέννες', 'price': 8.43},
+                        {'name': 'Pizza Capricciosa', 'price': 10.21},
+                        {'name': 'Pizza Diavola', 'price': 13.78},
+                        {'name': 'Κρέπα σοκολάτα', 'price': 4.13}],
+    'payment_mean': 'CASH',
+    'address': { 'city': 'Θεσσαλονίκη',
+                 'street': 'Recteque Consul',
+                 'number': '17',
+                 'postcode': '68098',
+                 'country': 'Greece',
+                 'floor': '7',
+                 'bell': 'Δίας Παππάς',
+                 'note': null},
+    'rating': 1,
+    'name': 'Pro His'}
+  ,
+  { '_id': '642d12fd9f0c2c52ba5b864a',
+    'person_id': '642d12fd9f0c2c52ba5b81f6',
+    'shop_id': '642d12fd9f0c2c52ba5b863a',
+    'datetime': '2020-09-9 00:50:34',
+    'status': 'DELIVERED',
+    'order_contains': [{'name': 'Παγωτό', 'price': 2.03}],
+    'payment_mean': 'GOOGLE PAY',
+    'address': { 'city': 'Θεσσαλονίκη',
+                 'street': 'Recteque Consul',
+                 'number': '17',
+                 'postcode': '68098',
+                 'country': 'Greece',
+                 'floor': '7',
+                 'bell': 'Δίας Παππάς',
+                 'note': null},
+    'rating': 3,
+    'name': 'Ne Cu'}
+  ,
+  { '_id': '642d12fd9f0c2c52ba5b864c',
+    'person_id': '642d12fd9f0c2c52ba5b81f6',
+    'shop_id': '642d12fd9f0c2c52ba5b85f6',
+    'datetime': '2020-10-10 20:45:05',
+    'status': 'DELIVERED',
+    'order_contains': [ {'name': 'Λουκανικόπιτα', 'price': 2.4},
+                        {'name': 'Λουκανικόπιτα', 'price': 2.4},
+                        {'name': 'Freddo Espresso', 'price': 2.12}],
+    'payment_mean': 'CARD',
+    'address': { 'city': 'Αθήνα',
+                 'street': 'Sit Has',
+                 'number': '106',
+                 'postcode': '24032',
+                 'country': 'Greece',
+                 'floor': '5',
+                 'bell': 'Δίας Παππάς',
+                 'note': null},
+    'rating': 4,
+    'card': { 'card_number': '2164002006127014',
+              'cvv': '079',
+              'expiration_date': '2025-04',
+              'cardholder': 'ΔΊΑΣ ΠΑΠΠΆΣ'},
+    'name': 'Quaestio Ut'}
+  ,
+  { '_id': '642d12fd9f0c2c52ba5b8645',
+    'person_id': '642d12fd9f0c2c52ba5b81f6',
+    'shop_id': '642d12fd9f0c2c52ba5b85f0',
+    'datetime': '2020-12-22 23:14:44',
+    'status': 'DELIVERED',
+    'order_contains': [ {'name': 'Λεμονάδα', 'price': 3.51},
+                        {'name': 'Χωριάτικη', 'price': 9.58}],
+    'payment_mean': 'CARD',
+    'address': { 'city': 'Θεσσαλονίκη',
+                 'street': 'Recteque Consul',
+                 'number': '17',
+                 'postcode': '68098',
+                 'country': 'Greece',
+                 'floor': '7',
+                 'bell': 'Δίας Παππάς',
+                 'note': null},
+    'rating': 3,
+    'card': { 'card_number': '2164002006127014',
+              'cvv': '079',
+              'expiration_date': '2025-04',
+              'cardholder': 'ΔΊΑΣ ΠΑΠΠΆΣ'},
+    'name': 'Erroribus Sed'}
+  ,
+  { '_id': '642d12fd9f0c2c52ba5b864b',
+    'person_id': '642d12fd9f0c2c52ba5b81f6',
+    'shop_id': '642d12fd9f0c2c52ba5b8629',
+    'datetime': '2021-07-13 02:26:48',
+    'status': 'DELIVERED',
+    'order_contains': [{'name': 'Λαβράκι', 'price': 12.64}],
+    'payment_mean': 'GOOGLE PAY',
+    'address': { 'city': 'Θεσσαλονίκη',
+                 'street': 'Recteque Consul',
+                 'number': '17',
+                 'postcode': '68098',
+                 'country': 'Greece',
+                 'floor': '7',
+                 'bell': 'Δίας Παππάς',
+                 'note': null},
+    'rating': 1,
+    'name': 'Suavitate Ubique'}
+  ,
+  { '_id': '642d12fd9f0c2c52ba5b8647',
+    'person_id': '642d12fd9f0c2c52ba5b81f6',
+    'shop_id': '642d12fd9f0c2c52ba5b85e4',
+    'datetime': '2022-02-31 22:52:45',
+    'status': 'DELIVERED',
+    'order_contains': [{'name': 'Pizza Special', 'price': 15.59}],
+    'payment_mean': 'CASH',
+    'address': { 'city': 'Θεσσαλονίκη',
+                 'street': 'Recteque Consul',
+                 'number': '17',
+                 'postcode': '68098',
+                 'country': 'Greece',
+                 'floor': '7',
+                 'bell': 'Δίας Παππάς',
+                 'note': null},
+    'rating': 2,
+    'name': 'Pericula Vel'}
+  ,
+  { '_id': '642d12fd9f0c2c52ba5b8644',
+    'person_id': '642d12fd9f0c2c52ba5b81f6',
+    'shop_id': '642d12fd9f0c2c52ba5b85eb',
+    'datetime': '2022-03-7 06:19:45',
+    'status': 'DELIVERED',
+    'order_contains': [ {'name': 'Κεμπάπ', 'price': 7.58},
+                        {'name': 'Νερό 0.5L', 'price': 0.5},
+                        {'name': 'Λεμονάδα', 'price': 2.09},
+                        {'name': 'Τσιπούρα', 'price': 12.67}],
+    'payment_mean': 'CASH',
+    'address': { 'city': 'Θεσσαλονίκη',
+                 'street': 'Recteque Consul',
+                 'number': '17',
+                 'postcode': '68098',
+                 'country': 'Greece',
+                 'floor': '7',
+                 'bell': 'Δίας Παππάς',
+                 'note': null},
+    'rating': 4,
+    'name': 'Melius Definitionem'}
+  ,
+  { '_id': '642d12fd9f0c2c52ba5b8649',
+    'person_id': '642d12fd9f0c2c52ba5b81f6',
+    'shop_id': '642d12fd9f0c2c52ba5b85e9',
+    'datetime': '2022-10-17 11:45:29',
+    'status': 'DELIVERED',
+    'order_contains': [{'name': 'Μπριζόλα', 'price': 8.68}],
+    'payment_mean': 'GOOGLE PAY',
+    'address': { 'city': 'Θεσσαλονίκη',
+                 'street': 'Recteque Consul',
+                 'number': '17',
+                 'postcode': '68098',
+                 'country': 'Greece',
+                 'floor': '7',
+                 'bell': 'Δίας Παππάς',
+                 'note': null},
+    'rating': 5,
+    'name': 'Officiis Nam'}
+  ]
 
 // TODO : FETCH FROM DB
 class RequestMaker {
