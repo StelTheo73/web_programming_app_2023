@@ -6,6 +6,8 @@
 
 .user-items > .row:nth-child(2) > div {
     margin-bottom: 0.25em;
+    display: flex;
+    justify-content: center;
 }
 
 .add-new-btn {
