@@ -50,24 +50,11 @@
     margin-right: 0em;
     margin-bottom: 0.5em;
     display: grid;
+    grid-template-columns: repeat(4, 4em);
 }
 /* END FRONT AND BACK FLIP CARDS */
 
-/* ORDER INFO FLIP CARD */
-.order-wrapper > div:nth-child(1) > div {
-    grid-template-columns: repeat(4, 4em);
-}
-/* END ORDER INFO FLIP CARD */
-
-/* Items info flip card (back) */
-/* .order-wrapper > div:nth-child(2) > div {
-    grid-template-columns: repeat(4, 4em);
-} */
-
-/* Shop info flip card (back) */
-/* .order-wrapper > div:nth-child(3) > div {
-    grid-template-columns: repeat(4, 4em);
-} */
+/* =============================================================== */
 
 /* SPANS */
 .order-wrapper > div > div > span {
@@ -82,6 +69,8 @@
     color: black;
 }
 /* END SPANS */
+
+/* =============================================================== */
 
 /* CHILDREN OF ORDER INFO FLIP CARD (FRONT) */
 /* DATE, COST & PAYMENT MEAN */
@@ -113,12 +102,57 @@
 /* END CUSTOMER ADDRESS */
 /* END CHILDREN OF ORDER INFO FLIP CARD (FRONT) */
 
+/* =============================================================== */
+
+/* CHILDREN OF ITEMS & SHOP FLIP CARD (BACK) */
+/* ITEM NAME */
+.order-wrapper > .item-info-flip-card > div > span:nth-child(1) {
+    grid-column: 1 / span 2;
+}
+/* END ITEM NAME */
+
+/* ITEM QUANTITY */
+.order-wrapper > .item-info-flip-card > div > span:nth-child(2) {
+    grid-column: 3 / span 1;
+}
+/* END ITEM NAME */
+
+/* ITEM PRICE */
+.order-wrapper > .item-info-flip-card > div > span:nth-child(3) {
+    grid-column: 4 / span 1;
+}
+/* END ITEM PRICE */
+
+/* SHOP NAME, EMAIL AND PHONE */
+.order-wrapper > .shop-info-flip-card > div > span {
+    grid-column: 1 / span 4;
+}
+/* END SHOP NAME, EMAIL AND PHONE */
+
+/* SHOP NAME (BACK) */
+.order-wrapper > .flip-card-back > div:nth-child(1) > span {
+    grid-column: 1 / span 4;
+    font-weight: bolder;
+    font-size: large;
+}
+/* END SHOP NAME BACK */
+/* END CHILDREN OF ITEMS & SHOP FLIP CARD (BACK) */
+
+/* =============================================================== */
+
 /* BUTTONS */
-.order-wrapper > div:nth-child(1) > div > span.button-span {
+.order-wrapper > .flip-card-front > div > span.button-span {
+    grid-column: 1 / span 4;
+    width: 100%;
+}
+
+.order-wrapper > .flip-card-back > div > span.button-span {
     grid-column: 1 / span 4;
     width: 100%;
 }
 /* END BUTTONS */
+
+/* =============================================================== */
 
 /* FLIP CARD STYLING */
 .flip-card {

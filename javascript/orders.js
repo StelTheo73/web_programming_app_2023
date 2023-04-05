@@ -72,12 +72,91 @@ function visualizeRating(rating) {
   return stars;
 }
 
+function addItems(items, childSelectorNumber, shopName) {
+  let childSelector = "#user-orders > .row:nth-child(2) > div:nth-child(" + 
+                      childSelectorNumber +
+                      ") > div > div:nth-child(2)";
+  let itemsDiv = document.querySelector(childSelector);
+  itemsDiv.innerHTML = itemsDiv.innerHTML + `
+    <div>
+      <span>${shopName}</span>
+    </div>
+  `;
+
+  items.forEach(item => {
+    let name = parseValue(item["name"]);
+    let quantity = parseValue(item["quantity"], "number");
+    let price = parseValue(item["price"], "number");
+
+    if (quantity > 1) {
+      let one_price = price;
+      price = price * quantity;
+      price = price + "&nbsp;(" + one_price + ")";
+    }
+
+    itemsDiv.innerHTML = itemsDiv.innerHTML + `
+      <div>
+        <span>${name}</span>
+        <span>${quantity}</span>
+        <span>${price}</span>
+      </div>
+    `;
+  });
+
+  itemsDiv.innerHTML = itemsDiv.innerHTML + `
+  <div>
+    <span class="button-span"><button class="btn btn-outline-secondary flip-card-btn order-info-flip-btn from-item-info">Προβολή Παραγγελίας</button></span>
+  </div>
+  `;
+};
+
+function addShopInfo(order, childSelectorNumber) {
+  let childSelector = "#user-orders > .row:nth-child(2) > div:nth-child(" + 
+                      childSelectorNumber +
+                      ") > div > div:nth-child(3)";
+  let shopDiv = document.querySelector(childSelector);
+  
+  let shopName = parseValue(order["shop_name"]);
+  let shopPhone = parseValue(order["shop_phone"]);
+  let shopEmail = parseValue(order["shop_email"]);
+
+  let street = parseValue(order["shop_address"]["street"]);
+  let number = parseValue(order["shop_address"]["number"]);
+  let city = parseValue(order["shop_address"]["city"]);
+  let  postcode = parseValue(order["shop_address"]["postcode"]);
+  let country = parseValue(order["shop_address"]["country"]);
+
+  shopDiv.innerHTML = shopDiv.innerHTML + `
+    <div>
+      <span>${shopName}</span>
+    </div>
+    <div>
+      <span>${street}, ${number}, ${city}, ${postcode}, ${country}</span>
+    </div>
+    <div>  
+      <span>${shopPhone}</span>
+    </div>
+    <div>
+      <span>${shopEmail}</span>
+    </div>
+  `;
+
+  shopDiv.innerHTML = shopDiv.innerHTML + `
+  <div>
+    <span class="button-span"><button class="btn btn-outline-secondary flip-card-btn order-info-flip-btn from-shop-info">Προβολή Παραγγελίας</button></span>
+  </div>
+  `;
+}
+
 function addOrders() {
     let orders = requestMaker.fetchOrders(null);
+    let orderSelector = 1;
+    console.log(orders);
+
     let parentElement = document.querySelector("#user-orders > .row:nth-child(2)");
     for (let order of orders) {
         let items = categorizeItems(order["order_contains"]);
-        let shopName = parseValue(order["name"]);
+        let shopName = parseValue(order["shop_name"]);
         let datetime = parseValue(order["datetime"]);
         let status_ = parseValue(order["status"]);
         
@@ -102,11 +181,11 @@ function addOrders() {
         let stars = visualizeRating(rating); 
 
         let paymentMeanIcon = PAYMENT_MAP[paymentMean];
-
+        
         let ORDERS_TEMPLATE = `
-          <div class="col-12 col-md-6 col-xl-4 flip-card">
-            <div class="order-wrapper flip-card-inner">
-                <div class="flip-card-front">
+        <div class="col-12 col-md-6 col-xl-4 flip-card">
+          <div class="order-wrapper flip-card-inner">
+            <div class="flip-card-front">
                     <div>
                         <span>${shopName}</span>
                     </div>
@@ -149,22 +228,21 @@ function addOrders() {
                     </div>
                 </div>
                 <div class="flip-card-back item-info-flip-card">
-                    <div>${items}</div>
-                    <div>
-                        <span class="button-span"><button class="btn btn-outline-secondary flip-card-btn order-info-flip-btn from-item-info">Προβολή Παραγγελίας</button></span>
-                    </div>
+
                 </div>
                 <div class="flip-card-back shop-info-flip-card">
-                    <div>Shop info</div>
-                    <div>
-                        <span class="button-span"><button class="btn btn-outline-secondary flip-card-btn order-info-flip-btn from-shop-info">Προβολή Παραγγελίας</button></span>
-                    </div>
+
                 </div>
             </div>
           </div>
         `
 
         parentElement.innerHTML = parentElement.innerHTML + ORDERS_TEMPLATE;
+
+        addItems(items, orderSelector, shopName);
+        addShopInfo(order, orderSelector);
+
+        orderSelector++;
     }
 }
 
