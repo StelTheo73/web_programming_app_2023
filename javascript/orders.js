@@ -156,6 +156,7 @@ function addOrders() {
     let parentElement = document.querySelector("#user-orders > .row:nth-child(2)");
     for (let order of orders) {
         let items = categorizeItems(order["order_contains"]);
+        let order_id = parseValue(order["_id"]);
         let shopName = parseValue(order["shop_name"]);
         let datetime = parseValue(order["datetime"]);
         let status_ = parseValue(order["status"]);
@@ -185,7 +186,7 @@ function addOrders() {
         let ORDERS_TEMPLATE = `
         <div class="col-12 col-md-6 col-xl-4 flip-card">
           <div class="order-wrapper flip-card-inner">
-            <div class="flip-card-front">
+            <div class="flip-card-front" id="${order_id}">
                     <div>
                         <span>${shopName}</span>
                     </div>
@@ -247,58 +248,39 @@ function addOrders() {
 }
 
 function flipCardListeners() {
-  let flipCardButtons = document.querySelectorAll(".flip-card-btn");
+  let orderCards = document.querySelectorAll(".flip-card");
 
-  flipCardButtons.forEach(function(button) {
-    let flipCardInner = button.parentElement.parentElement.parentElement.parentElement;
-    let flipCardFront = flipCardInner.querySelector(".flip-card-front");
-    let flipCardBackItem = flipCardInner.querySelector(".item-info-flip-card");
-    let flipCardBackShop = flipCardInner.querySelector(".shop-info-flip-card");
-    
-    
-    let flipCardShow, flipCardHide;
-      
-    if (button.className.indexOf("items-info-flip-btn") >= 0) {
-      flipCardHide = flipCardFront;
-      flipCardShow = flipCardBackItem;
-      
-      button.addEventListener("click", function() {
+  orderCards.forEach((orderCard) => {
+    orderCard.addEventListener("click", (event) => {
+      let targetClass = event.target.className;
+
+      let flipCardInner = orderCard.querySelector(".flip-card-inner");
+      let flipCardFront = flipCardInner.querySelector(".flip-card-front");
+      let flipCardBackItem = flipCardInner.querySelector(".item-info-flip-card");
+      let flipCardBackShop = flipCardInner.querySelector(".shop-info-flip-card");
+
+      if (targetClass.indexOf("items-info-flip-btn") >= 0) {
         flipCardInner.style.transform = "rotateY(180deg)";
-  
-        flipCardHide.style.display = "none";
-        flipCardShow.style.display = "block";
-      });
-
-    }
-    else if (button.className.indexOf("shop-info-flip-btn") >= 0) {
-      flipCardHide = flipCardFront; 
-      flipCardShow = flipCardBackShop; 
-
-        button.addEventListener("click", function() {
-          flipCardInner.style.transform = "rotateY(180deg)";
-  
-          flipCardHide.style.display = "none";
-          flipCardShow.style.display = "block";
-      });
-    }
-    else if (button.className.indexOf("order-info-flip-btn") >= 0) {
-      flipCardShow = flipCardFront
-      if (button.className.indexOf("from-item-info") >= 0) {
-        flipCardHide = flipCardBackItem;
+        flipCardFront.style.display = "none";
+        flipCardBackItem.style.display = "block";
       }
-      else if (button.className.indexOf("from-shop-info") >= 0) {
-        flipCardHide = flipCardBackShop;
+      else if (targetClass.indexOf("shop-info-flip-btn") >= 0) {
+        flipCardInner.style.transform = "rotateY(180deg)";
+        flipCardFront.style.display = "none";
+        flipCardBackShop.style.display = "block";
       }
-
-      button.addEventListener("click", function() {
+      else if (targetClass.indexOf("from-item-info") >= 0) {
         flipCardInner.style.transform = "";
-  
-        flipCardHide.style.display = "none";
-        flipCardShow.style.display = "block";
-      });
-    }
-
-  })
+        flipCardBackItem.style.display = "none";
+        flipCardFront.style.display = "block";
+      }
+      else if (targetClass.indexOf("from-shop-info") >= 0) {
+        flipCardInner.style.transform = "";
+        flipCardBackShop.style.display = "none";
+        flipCardFront.style.display = "block";
+      }
+    });
+  });
 }
 
 import { RequestMaker } from "./request_maker.js";
