@@ -114,60 +114,105 @@ CATEGORIES_MAP = {
 # ITEMS MAP
 FOOD_MAP = {
     #   "Category Name" : (
-    #       ["Food Name", lowest_value, highest_value], ...
+    #       ["Food Name", lowest_value, highest_value, tags], ...
     #   )
     "Burgers" : (
-        ["Cheese Burger", 3, 4, ["cheese", "burger"]], ["Hamburger", 3, 4, ["burger"]], ["Green Burger", 4, 5, ["burger"]],
-        ["Texas Burger", 5, 6, ["texas" ,"burger"]], ["Double Burger", 7, 8, ["burger"]], ["Chicken Burger", 6, 7, ["chicken", "burger"]]
-
+        ["Cheese Burger", 3, 4, ["cheese", "burger", "cheeseburger"]], 
+        ["Hamburger", 3, 4, ["burger"]],
+        ["Green Burger", 4, 5, ["veggie", "green", "vegan", "burger"]],
+        ["Texas Burger", 5, 6, ["texas" ,"burger"]],
+        ["Double Burger", 7, 8, ["double", "burger"]],
+        ["Chicken Burger", 6, 7, ["chicken", "burger"]]
     ),
     "Pizza" : (
-        ["Pizza Margherita", 9, 13, ["margherita", "pizza"]], ["Pizza 4 τυριά", 10, 15, ["four", "cheese", "pizza"]], ["Pizza Capricciosa", 10, 15, ["capricciosa", "pizza"]],
-        ["Pizza Diavola", 12, 16, ["diavola", "pizza"]], ["Pizza Pepperoni", 10, 15, ["pepperoni", "pizza"]], ["Pizza Special", 12, 16, ["special", "pizza"]]
+        ["Pizza Margherita", 9, 13, ["margherita", "daisy",
+                                     "mozzarella", "tomato", "sauce", "pizza"]],
+        ["Pizza 4 τυριά", 10, 15, ["four", "4", "cheese", "chesses", "pizza"]],
+        ["Pizza Capricciosa", 10, 15, ["capricciosa", "capricious", "pizza"]],
+        ["Pizza Diavola", 12, 16, ["diavola", "devil", "pizza"]],
+        ["Pizza Pepperoni", 10, 15, ["pepperoni", "pizza"]],
+        ["Pizza Special", 12, 16, ["special", "pizza"]]
     ),
     "Αναψυκτικά" : (
-        ["Νερό 0.5L", 0.5, 0.5, ["water"]], ["Νερό 1.5L", 1, 2, ["water"]], ["Coca Cola", 2, 3, ["coca", "cola"]],
-        ["Coca Cola Light", 2, 3, ["coca", "cola", "light"]], ["Coca Cola Zero", 2, 3, ["coca", "cola", "zero"]],
-        ["Πορτοκαλάδα", 2, 3, ["orange", "juice"]], ["Λεμονάδα", 2, 3, ["lemon", "juice"]]
+        ["Νερό 0.5L", 0.5, 0.5, ["water"]],
+        ["Νερό 1.5L", 1, 2, ["water"]],
+        ["Coca Cola", 2, 3, ["coca", "cola"]],
+        ["Coca Cola Light", 2, 3, ["coca", "cola", "light"]],
+        ["Coca Cola Zero", 2, 3, ["coca", "cola", "zero"]],
+        ["Πορτοκαλάδα", 2, 3, ["orange", "juice"]],
+        ["Λεμονάδα", 2, 3, ["lemon", "juice", "lemonade"]]
     ),
     "Γλυκά" : (
-        ["Γαλακτομπούρεκο", 3, 5, ["sweet"]], ["Κανταΐφι", 3, 5, ["sweet"]], ["Μπακλαβάς", 3, 5, ["sweet"]],
-        ["Πάστα", 2, 4, ["sweet"]], ["Παγωτό", 2, 3, ["ice", "cream", "icecream"]]
+        ["Γαλακτομπούρεκο", 3, 5, ["sweet", "galaktoboureko"]],
+        ["Κανταΐφι", 3, 5, ["sweet", "kandaifi"]],
+        ["Μπακλαβάς", 3, 5, ["sweet", "Baklava"]],
+        ["Πάστα", 2, 4, ["sweet", "paste"]],
+        ["Παγωτό", 2, 3, ["sweet", "ice", "cream"]]
     ),
     "Ζυμαρικά" : (
-        ["Καρμπονάρα", 7, 10, ["carbonara", "pasta"]], ["Πέννες", 7, 10, ["pennes", "pasta"]], ["Σπαγγέτι", 7, 10, ["spaghetti", "pasta"]]
+        ["Καρμπονάρα", 7, 10, ["spaghetti", "carbonara", "pasta"]],
+        ["Πέννες", 7, 10, ["spaghetti", "penne", "pasta"]],
+        ["Σπαγγέτι", 7, 10, ["spaghetti", "pasta"]]
     ),
     "Θαλασσινά" : (
-        ["Τσιπούρα", 11, 13, ["bream", "fish"]], ["Λαβράκι", 11, 13, ["bass", "fish"]], ["Σαρδέλα", 7, 9, ["sardine", "fish"]], ["Καλαμαράκια", 8, 10, ["squid", "fish"]]
+        ["Τσιπούρα", 11, 13, ["bream", "flock", "fish", "seafood"]],
+        ["Λαβράκι", 11, 13, ["bass", "fish", "seafood"]],
+        ["Σαρδέλα", 7, 9, ["sardine", "fish", "seafood"]],
+        ["Καλαμαράκια", 8, 10, ["squid", "calamari", "fish", "seafood"]]
     ),
     "Καφέδες" : (
-        ["Freddo Espresso", 1, 2, ["freddo", "espresso", "coffee"]], ["Freddo Cappuccino", 1, 2, ["freddo", "cappuccino", "coffee"]], ["Espresso", 1, 2, ["espresso", "coffee"]],
-        ["Cappuccino", 1, 2, ["cappuccino", "coffee"]], ["Nes", 1, 2, ["nes", "coffee"]], ["Frappe", 1, 2, ["frappe", "coffee"]]
+        ["Freddo Espresso", 1, 2, ["freddo", "espresso", "coffee"]],
+        ["Freddo Cappuccino", 1, 2, ["freddo", "cappuccino", "coffee"]],
+        ["Espresso", 1, 2, ["espresso", "coffee"]],
+        ["Cappuccino", 1, 2, ["cappuccino", "coffee"]],
+        ["Nes", 1, 2, ["nes", "coffee"]],
+        ["Frappe", 1, 2, ["frappe", "coffee"]]
     ),
     "Κρέπες" : (
-        ["Κρέπα ζαμπόν τυρί", 4, 6, ["ham", "cheese", "crepe"]], ["Κρέπα special", 4, 6, ["special", "crepe"]], ["Κρέπα 4 τυριά", 4, 6, ["four", "cheese", "pizza"]],
-        ["Κρέπα σοκολάτα", 4, 6, ["chocolate", "crepe"]], ["κρέπα oreo", 4, 6, ["oreo", "crepe"]], ["Κρέπα λευκή σοκολάτα", 4, 6, ["white", "chocolate", "crepe"]]
+        ["Κρέπα ζαμπόν τυρί", 4, 6, ["ham", "cheese", "crepe"]],
+        ["Κρέπα special", 4, 6, ["special", "crepe"]],
+        ["Κρέπα 4 τυριά", 4, 6, ["four", "4", "cheese", "pizza"]],
+        ["Κρέπα σοκολάτα", 4, 6, ["chocolate", "crepe"]],
+        ["κρέπα oreo", 4, 6, ["oreo", "crepe"]],
+        ["Κρέπα λευκή σοκολάτα", 4, 6, ["white", "chocolate", "crepe"]]
     ),
     "Ορεκτικά" : (
-        ["Τηγανητές Πατάτες", 3, 4, ["fried", "potato"]], ["Ψωμί", 1, 2, ["bread"]], ["Τυροπιτάκια", 3, 5, ["cheese pie"]], ["Σαγανάκι", 5, 6, ["saganaki"]],
+        ["Τηγανητές Πατάτες", 3, 4, ["fried", "potato"]],
+        ["Ψωμί", 1, 2, ["bread"]],
+        ["Τυροπιτάκια", 3, 5, ["cheesecakes", "cheese", "pie"]],
+        ["Σαγανάκι", 5, 6, ["saganaki", "cheese"]],
         ["Φέτα Ψητή", 4, 5, ["feta"]]
     ),
     "Σαλάτες" : (
-        ["Χωριάτικη", 6, 9, ["greek", "salad"]], ["Caesar's", 6, 9, ["caesar", "salad"]], ["Chef", 6, 9, ["chef", "salad"]],
+        ["Χωριάτικη", 6, 9, ["greek", "salad"]],
+        ["Caesar's", 6, 9, ["caesar", "salad"]],
+        ["Chef", 6, 9, ["chef", "salad"]],
     ),
     "Σουβλάκια" : (
-        ["Γύρος Χοιρινός (μερίδα)", 6, 8, ["gyros"]], ["Γύρος κοτόπουλο (μερίδα)", 6, 8, ["gyros"]],
-        ["Γύρος Χοιρινός σε πίτα", 2, 4, ["gyros"]], ["Γύρος κοτόπουλο σε πίτα", 2, 4, ["gyros"]],
-        ["Σουβλάκι Χοιρινό (μερίδα)", 5, 7, ["souvlaki"]], ["Σουβλάκι Κοτόπουλο (μερίδα)", 5, 7, ["souvlaki"]],
-        ["Σουβλάκι Χοιρινό σε πίτα", 2, 4, ["souvlaki"]], ["Σουβλάκι κοτόπουλο σε πίτα", 2, 4, ["souvlaki"]]
+        ["Γύρος Χοιρινός (μερίδα)", 6, 8, ["round"]], 
+        ["Γύρος κοτόπουλο (μερίδα)", 6, 8, ["round"]],
+        ["Γύρος Χοιρινός σε πίτα", 2, 4, ["gyros", "wrapped"]],
+        ["Γύρος κοτόπουλο σε πίτα", 2, 4, ["gyros", "wrapped"]],
+        ["Σουβλάκι Χοιρινό (μερίδα)", 5, 7, ["souvlaki", "skewer"]],
+        ["Σουβλάκι Κοτόπουλο (μερίδα)", 5, 7, ["souvlaki"]],
+        ["Σουβλάκι Χοιρινό σε πίτα", 2, 4, ["souvlaki", "skewer", "wrapped"]],
+        ["Σουβλάκι κοτόπουλο σε πίτα", 2, 4, ["souvlaki", "wrapped"]]
     ),
     "Σφολιάτες" : (
-        ["Τυρόπιτα", 1, 2, ["cheese pie", "pie"]], ["Κασερόπιτα", 1, 2, ["casserole", "pie"]], ["Ζαμπονοτυρόπιτα", 1, 2, ["ham cheese", "pie"]],
-        ["Φλογέρα", 1, 2, ["flogera"]], ["Σπανακόπιτα", 1, 2, ["spinach", "pie"]], ["Λουκανικόπιτα", 1, 2, ["sausage", "pie"]]
+        ["Τυρόπιτα", 1, 2, ["cheese", "pie"]],
+        ["Κασερόπιτα", 1, 2, ["casserole", "pie"]],
+        ["Ζαμπονοτυρόπιτα", 1, 2, ["ham", "cheese", "pie"]],
+        ["Φλογέρα", 1, 2, ["flogera", "flute"]],
+        ["Σπανακόπιτα", 1, 2, ["spinach", "pie"]],
+        ["Λουκανικόπιτα", 1, 2, ["sausage", "pie"]]
     ),
     "Ψητά" : (
-        ["Μπριζόλα", 7, 10, ["steack"]], ["Μπιφτέκι", 7, 10, ["burger"]], ["Κεμπάπ", 6, 8, ["kebab"]], ["Λουκάνικο", 6, 8, ["sausage"]],
-        ["Κοτόπουλο", 8, 10, ["chicken"]], ["Σνίτσελ", 6, 9, ["schnitzel"]]
+        ["Μπριζόλα", 7, 10, ["steack", "meat"]],
+        ["Μπιφτέκι", 7, 10, ["burger", "meat"]],
+        ["Κεμπάπ", 6, 8, ["kebab", "meat"]],
+        ["Λουκάνικο", 6, 8, ["sausage", "meat"]],
+        ["Κοτόπουλο", 8, 10, ["chicken", "meat"]],
+        ["Σνίτσελ", 6, 9, ["schnitzel", "cutlet", "meat"]]
     )
 }
 
