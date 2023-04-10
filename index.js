@@ -1,4 +1,9 @@
-import { TranslatorAPI } from "./services/translateAPI.js";
+import { TranslatorAPI } from "./services/translateAPI/translateAPI.js";
+import { Collection, MongoClient, ObjectId } from "mongodb";
+import { DATABASE_CONFIG } from "./config/database.js";
+console.log(DATABASE_CONFIG.host);
+console.log(DATABASE_CONFIG.port);
+console.log(DATABASE_CONFIG.path);
 
 let translator = new TranslatorAPI();
 

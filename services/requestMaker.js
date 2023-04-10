@@ -1,4 +1,4 @@
-import http from "http";
+import http  from "http";
 let REQUESTS = 0;
 let RETRIES = 0;
 class RequestMaker {
