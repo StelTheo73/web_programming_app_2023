@@ -1,4 +1,4 @@
-import { DATABASE_CONFIG } from "../../config/database.js";
+import { DATABASE_CONFIG } from "../../config/database.mjs";
 import { MongoClient, ObjectId } from "mongodb";
 
 const HOST = DATABASE_CONFIG.host;

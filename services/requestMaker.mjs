@@ -1,9 +1,18 @@
+import { time } from "console";
 import http  from "http";
-let REQUESTS = 0;
 let RETRIES = 0;
+
 class RequestMaker {
     constructor (timeout=2000, maxRetries=10) {
         this.timeout = timeout;
+        this.maxRetries = maxRetries;
+    }
+
+    setTimeout(timeout) {
+        this.timeout = timeout;
+    }
+
+    setMaxRetries(maxRetries) {
         this.maxRetries = maxRetries;
     }
     
@@ -83,6 +92,6 @@ class RequestMaker {
 }
 
 // let requestMaker = new RequestMaker()
-// requestMaker.performRequest("POST", "127.0.0.1", 5000, "/1.0/translator/terminate", {"hello": "world"}, "application/json") 
+// requestMaker.performRequest("POST", "127.0.0.1", 5000, "/1.0/translator/translate-text", JSON.stringify({"text": "παγωτα"}), "application/json") 
 
 export {RequestMaker};

@@ -171,7 +171,7 @@ FOOD_MAP = {
     "Κρέπες" : (
         ["Κρέπα ζαμπόν τυρί", 4, 6, ["ham", "cheese", "crepe"]],
         ["Κρέπα special", 4, 6, ["special", "crepe"]],
-        ["Κρέπα 4 τυριά", 4, 6, ["four", "4", "cheese", "pizza"]],
+        ["Κρέπα 4 τυριά", 4, 6, ["four", "4", "cheese", "crepe"]],
         ["Κρέπα σοκολάτα", 4, 6, ["chocolate", "crepe"]],
         ["κρέπα oreo", 4, 6, ["oreo", "crepe"]],
         ["Κρέπα λευκή σοκολάτα", 4, 6, ["white", "chocolate", "crepe"]]

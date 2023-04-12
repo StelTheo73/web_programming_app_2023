@@ -1,12 +1,21 @@
-import { RequestMaker } from "../requestMaker.js";
+import { RequestMaker } from "../requestMaker.mjs";
+import { TRANSLATOR_API_CONFIG } from "../../config/translatorAPI.mjs"
 
+/**
+ * Class representing the client of the Translator API.
+ * @extends RequestMaker
+ */
 class TranslatorAPI extends RequestMaker {
+
+    /**
+     * Setup the request maker
+     */
     constructor() {
         // TODO : GET FROM CONFIG
         super();
-        this.hostname = "127.0.0.1";
-        this.port = 5000;
-        this.APIPath = "/1.0/translator";
+        this.hostname = TRANSLATOR_API_CONFIG.host;
+        this.port = TRANSLATOR_API_CONFIG.port;
+        this.APIPath = TRANSLATOR_API_CONFIG.path;
         this.translateTextPath = this.APIPath + "/translate-split-text";
     }
 
