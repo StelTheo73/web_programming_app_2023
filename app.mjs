@@ -1,29 +1,19 @@
 import express from "express";
+import { engine } from "express-handlebars";
 
 const app = express();
+app.engine(".hbs", engine({extname : ".hbs"}));
+app.set("view engine", ".hbs");
 
-// const router = express.Router();
 
-app.use(express.urlencoded({extended : false}));
-
-app.get("/", (request, response) => {
-    console.log("Home");
-    response.send("Home");
-    response.end();
+app.get("/", async (request, response) => {
+    console.log("GET /")
+    response.render("homepage", {});
 });
 
-// router.get("/about", (request, response) => {
-//     console.log("About this app");
-//     response.send("About this app");
-//     response.end();
-// });
+app.use((request, response) => {
+    console.log("Redirecting to /");
+    response.redirect("/");
+});
 
-// router.get("/random", (request, response) => {
-//     console.log("random");
-//     response.send("random text");
-//     response.end();
-// });
-
-// app.use("/", router);
-
-app.listen(3000, () => console.log("Listening to 3000"));
+app.listen(3000, () => console.log("Listening on localhost:3000..."));
