@@ -1,5 +1,6 @@
-import { parse } from "path";
+import { replacesTones } from "../../utils/greekRegex.mjs";
 import { MongoDBClient, ObjectId } from "./client.mjs";
+import { TranslatorAPI } from "../translateAPI/translateAPI.mjs";
 
 class SessionAPI extends MongoDBClient {
     constructor() {
@@ -261,48 +262,87 @@ class SessionAPI extends MongoDBClient {
      * @function searchShopAndItem
      * @param {String} - Text to search for in the database.
      */
-    async searchShopAndItem(text) {
-        let shops = [];
-        let productsByName = [];
-        let productsByNameSplit = [];
-        let productsByTagSplit = [];
-        let _query = {};
-        let _projection = {};
-        let pipeline = {};
+    async searchShopsAndItems(text, city) {
+        let textPattern = "";
+        let parsedText = "";
+        let cityPattern = "";
+        let parsedCity = "";
 
         text = text.toLowerCase();
-
-        // Search for shop
-        _query = {
-            name : text
-        };
-        _projection = {
-            _id : 0,
-            name : 1
-        };
-
-        shops = await this.find("shops", _query)
-
-        // Search for item by name
+        parsedText = replacesTones(text);
+        textPattern = `.*${parsedText}.*`;
+        city = city.toLowerCase();
+        parsedCity = replacesTones(city);
+        cityPattern = `.*${parsedCity}.*`;
         
-        
-        
-        
-        // productsByName = 
         // Translate and split
-        
-        // Search for item by name from translate and split
-        
-        // Search for item by tag from translate and split
-        pipeline = [
+        let translatedTextList = await this.translateAndSplitText(text);
+
+        // Search for shops and items
+        let [shops, productsByTagSplit] = await Promise.all([
+            this.searchShopsByName(textPattern, cityPattern),
+            this.searchItemsByTagSPlit(translatedTextList, cityPattern)
+        ]);
+
+        return [shops, productsByTagSplit];
+    }
+
+    async translateAndSplitText(text) {
+        let translator = new TranslatorAPI();
+        let response = await translator.translateSplitText(text);
+        let translatedText = JSON.parse(response.data)["translated_words"];
+
+        console.log(translatedText);
+        return translatedText;
+    }
+
+    async searchShopsByName(textPattern, cityPattern) {
+        let shops = [];
+
+        let _query = {
+            $and : [
+                {
+                    "name" : {
+                        $regex : textPattern,
+                        $options : "i"
+                    }
+                },
+                {
+                    "address.city" : {
+                        $regex : cityPattern,
+                        $options : "i"
+                    }
+                }
+            ]
+        };
+        let _projection = {
+            _id : 1,
+            name : 1,
+            operating_hours : 1
+        };
+
+        shops = await this.find("shops", _query, _projection);
+
+        return shops;
+    }
+
+    async searchItemsByName(textPattern, cityPattern) {
+        let pipeline = [
             {
                 $match : {
                     $and: [
-                        {"address.city" : "Πάτρα"},
-                        {$or: [
-                            {"items.tags" : "sweet"},
-                            {"items.tags" : "pizza"}
-                        ]}
+                        {
+                            "address.city" : {
+                                $regex : cityPattern, 
+                                $options : "i"
+                            }
+                        },
+                        {
+                            "items.name" : {
+                                $regex : textPattern,
+                                $options : "i"
+                            }
+                        }
                     ]
                 }
             },
@@ -318,10 +358,11 @@ class SessionAPI extends MongoDBClient {
                             cond  : {
                                 $and : [
                                     {
-                                        $or : [
-                                            {$in : ["sweet", "$$item.tags"]},
-                                            {$in : ["pizza", "$$item.tags"]}
-                                        ]
+                                        $regexMatch : {
+                                            input : "$$item.name",
+                                            regex : textPattern,
+                                            options : "i"
+                                        }
                                     }
                                 ]
                             }
@@ -336,20 +377,86 @@ class SessionAPI extends MongoDBClient {
             }
         ];
 
-        productsByTagSplit = await this.aggregate("shops", pipeline);
+        let productsByName = await this.aggregate("shops", pipeline);
+
+        return productsByName;
+    }
+
+    async searchItemsByTagSPlit(tagsList, cityPattern) {
+        let matchTagsList = [];
+        let filterTagsList = [];
+
+        for (let word of tagsList) {
+            matchTagsList.push({
+               "items.tags" : word 
+            });
+
+            filterTagsList.push({
+                $in : [word, "$$item.tags"]
+            });
+        }
+
+        let pipeline = [
+            {
+                $match : {
+                    $and: [
+                        {
+                            "address.city" : {
+                                $regex : cityPattern, 
+                                $options : "i"
+                            }
+                        },
+                        {
+                            $or: matchTagsList
+                        }
+                    ]
+                }
+            },
+            {
+                $project : {
+                    _id : 0,
+                    name : 1,
+                    operating_hours : 1,
+
+                    items : {
+                        $filter : {
+                            input : "$items",
+                            as    : "item",
+                            cond  : {
+                                $and : [
+                                    {
+                                        $or : filterTagsList
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                $sort : {
+                    name : 1        
+                }
+            }
+        ];
+
+        let productsByTagSplit = await this.aggregate("shops", pipeline);
 
         return productsByTagSplit;
     }
 }
 
-let ses = new SessionAPI();
+// let ses = new SessionAPI();
 // let data1 = await ses.getPersonCards("Dias_Pappas_908@hotmail.com")
 // let data2 = await ses.getPersonOrders("642d12fd9f0c2c52ba5b81f6", 2021);
 // console.log(data1);
 // console.log(data2);
 // console.log(data2[0].cards)
 
-let data3 = await ses.searchShopAndItem("pizza");
-for (let match of data3) {
-    console.log(match.items);
-}
+// let data3 = await ses.searchShopsAndItems("κοτοπλ", "θην");
+// // console.log(data3)
+// console.log("Result")
+// for (let match of data3[1]) {
+//     console.log(match.name);
+//     console.log(match.items);
+// }

@@ -19,18 +19,25 @@ class TranslatorAPI extends RequestMaker {
         this.translateTextPath = this.APIPath + "/translate-split-text";
     }
 
-    translateText(text) {
+    async translateSplitText(text) {
         let data = JSON.stringify({"text" : text});
-        this.doPOST(this.hostname, this.port, this.translateTextPath, data);
+        let responseText = await this.doPOST(this.hostname, this.port, this.translateTextPath, data);
+        return responseText;
     }
 
 }
 
 export { TranslatorAPI }
 // let translator = new TranslatorAPI();
+// let r = await translator.translateText("καλημερα, θελω Παγωτά και μπυρα και κοτοπουλα");
+// console.log(r);
 
 // for (let i = 0; i < 1000; i ++) {
-//     translator.translateText("καλημερα, θελω Παγωτά και μπυρα και κοτοπουλα");
-//     translator.translateText("παγωτά");
-//     translator.translateText("soublakia kai patates")
+//     let r = await translator.translateSplitText("καλημερα, θελω Παγωτά και μπυρα και κοτοπουλα");
+//     console.log(r);
+//     r = await translator.translateSplitText("παγωτά");
+//     console.log(r);
+//     r = await translator.translateSplitText("soublakia kai patates")
+//     console.log(r);
+//     console.log(i)
 // }
