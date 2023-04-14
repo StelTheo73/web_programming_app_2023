@@ -1,0 +1,117 @@
+<div class="container order-items" id="user-orders">
+    <!-- ROW -->
+    <div class="row">
+        <div class="col-12">
+            <h1>Οι παραγγελίες μου</h1>
+        </div>
+    </div>
+        <!-- END ROW -->
+        
+    <!-- ROW -->
+    <div class="row justify-content-center">
+        <!-- ORDERS HERE -->
+        {{#if orders}}
+            {{#each orders}}
+                <div class="col-12 col-md-6 col-xl-4 flip-card">
+                    <div class="order-wrapper flip-card-inner">
+
+                        <div class="flip-card-front">
+                            <div>
+                                <span>{{this.shopName}}</span>
+                            </div>
+                            <div>
+                                <span>Ημερομηνία</span>
+                                <span>{{this.datetime}}</span>
+                            </div>
+                            <div>
+                                <span>Κατάσταση</span>
+                                <span>{{this.status}}</span>
+                            </div>
+                            <div>
+                                <span>Κόστος</span>
+                                <span>{{this.cost}}</span>
+                            </div>
+                            <div>
+                                <span>Τρόπος Πληρωμής</span>
+                                <span>
+                                    <i class={{this.paymentMeanIcon}}></i>{{this.cardNumber}}
+                                </span>
+                            </div>
+                            <div>
+                                <span>
+                                    {{this.street}}, {{this.number}}, {{this.city}}, {{this.postcode}}, {{this.country}}
+                                </span>
+                            </div>
+                            <div>
+                                <span>
+                                    {{this.floor}}, {{this.bell}}
+                                </span>
+                            </div>
+                            <div>
+                                <span class="button-span"><button class="btn btn-outline-secondary flip-card-btn items-info-flip-btn">Προβολή Προϊόντων</button></span>
+                            </div>
+                            <div>
+                                <span class="button-span"><button class="btn btn-outline-secondary flip-card-btn shop-info-flip-btn">Επικοινωνία με το κατάστημα</button></span>
+                            </div>
+                            <div>
+                                <span>
+                                    {{#if this.stars}}
+                                        {{#each this.stars}}
+                                            <i class={{this}}></i>
+                                        {{/each}}
+                                    {{/if}}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="flip-card-back item-info-flip-card">
+                            <div>
+                                <span>{{this.shopName}}</span>
+                            </div>
+                            {{#if this.items}}
+                                {{#each this.items}}
+                                    <div>
+                                        <span>{{this.name}}</span>
+                                        <span>{{this.quantity}}</span>
+                                        <span>{{this.price}}</span>
+                                    </div>
+                                {{/each}}
+                            {{/if}}
+                            <div>
+                                <span class="button-span">
+                                    <button class="btn btn-outline-secondary flip-card-btn order-info-flip-btn from-item-info">Προβολή Παραγγελίας</button>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="flip-card-back shop-info-flip-card">
+                            <div>
+                                <span>{{this.shopName}}</span>
+                            </div>
+                            <div>
+                                <span>{{this.shopAddressStreet}}, {{this.shopAddressNumber}}, 
+                                    {{this.shopAddressCity}}, {{this.shopAddressPostcode}}, 
+                                    {{this.shopAddressCountry}}
+                                </span>
+                            </div>
+                            <div>  
+                                <span>{{this.shopPhone}}</span>
+                            </div>
+                            <div>
+                                <span>{{this.shopEmail}}</span>
+                            </div>
+                            <div>
+                                <span class="button-span">
+                                    <button class="btn btn-outline-secondary flip-card-btn order-info-flip-btn from-shop-info">Προβολή Παραγγελίας</button>
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            {{/each}}
+        {{/if}}
+    </div>
+    <!-- END ROW -->
+</div>

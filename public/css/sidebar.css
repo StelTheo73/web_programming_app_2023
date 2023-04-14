@@ -1,0 +1,156 @@
+.overlay {
+    max-width: 420px;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+    transition: 0.5s;
+    border-radius: 10px;
+}
+
+.overlay-content {
+    position: relative;
+    top: 2em;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 2em;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    width: fit-content;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay #close-main-sidebar-btn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay #close-main-sidebar-btn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+#close-main-sidebar-btn {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size: 18px;
+    width: fit-content;
+    height: min-content;
+    line-height: 0.5em;
+}
+
+/* .sidebar-items-div {
+    border: 1px solid red;
+} */
+
+.sidebar-item-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: aliceblue;
+    width: 6.5em;
+    height: 3.75em;
+    transition: 0.5s;
+    font-size: 1em;
+    color:  black;
+    background-color: cornsilk;
+}
+
+.sidebar-item-div:hover {
+    cursor: pointer;
+}
+
+.sidebar-item-div:nth-of-type(n) > span:nth-child(1) {
+    height: 100%;
+    background-position: top;
+    background-clip: border-box;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+ /* IMAGES FOR CATEGORIES */
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(1) > span:nth-child(1) {
+    background-image: url("../../images/hamburger.png");
+
+}
+
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(2) > span:nth-child(1) {
+    background-image: url("../../images/pizza.png");
+}
+
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(3) > span:nth-child(1) {
+    background-image: url("../../images/cola.png");
+}
+
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(4) > span:nth-child(1) {
+    background-image: url("../../images/cake-slice.png");
+}
+
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(5) > span:nth-child(1) {
+    background-image: url("../../images/spaguetti.png");
+}
+
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(6) > span:nth-child(1) {
+    background-image: url("../../images/fish.png");
+}
+
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(7) > span:nth-child(1) {
+    background-image: url("../../images/coffee-cup.png");
+}
+
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(8) > span:nth-child(1) {
+    background-image: url("../../images/crepe.png");
+}
+
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(9) > span:nth-child(1) {
+    background-image: url("../../images/boil.png");
+}
+
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(10) > span:nth-child(1) {
+    background-image: url("../../images/appetizer.png");
+}
+
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(11) > span:nth-child(1) {
+    background-image: url("../../images/salad.png");
+}
+
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(12) > span:nth-child(1) {
+    background-image: url("../../images/skewer.png");
+}
+
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(13) > span:nth-child(1) {
+    background-image: url("../../images/curry-puff.png");
+}
+
+.sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(14) > span:nth-child(1) {
+    background-image: url("../../images/barbeque.png");
+}
+ /* END IMAGES FOR CATEGORIES */
+
+.hide {
+    transition: 0.5s;
+    font-size: 0;
+}

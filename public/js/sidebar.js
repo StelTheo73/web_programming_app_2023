@@ -1,23 +1,4 @@
 "use strict";
-
-import {Categories} from "./categories.js";
-
-// Category DIV Element
-// class CategoryDIVElement {
-//     constructor(parent_id) {
-//         this.parent = document.getElementById(parent_id);
-//         this.element = document.createElement("div");
-//     }
-
-//     showCategories() {
-//         const categories = this.parent.childNodes;
-//         categories.forEach(category => {
-//             console.log(category);
-//         });
-//     }
-// }
-
-// Items DIV Elements
 class ItemDIVs {
     constructor() {
         this.parents = document.querySelectorAll("#sidebar-items-div");
@@ -55,11 +36,13 @@ class ItemDIVs {
 }
 
 // Initialize Objects
-const categoriesObj = new Categories();
-let categories = categoriesObj.getCategories();
+let categories = ["Burgers", "Pizza", "Αναψυκτικά", "Γλυκά",
+"Ζυμαρικά", "Θαλασσινά", "Καφέδες", "Κρέπες",
+"Μαγειρευτά", "Ορεκτικά", "Σαλάτες", "Σουβλάκια",
+"Σφολιάτες", "Ψητά"
+];
 
 const itemDIVsObj = new ItemDIVs();
-// console.log(categories);
 
 
 // EVENT LISTENERS

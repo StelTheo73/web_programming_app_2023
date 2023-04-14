@@ -1,20 +1,20 @@
-const express = require("express");
+// const express = require("express");
 
-const router = express.Router();
+// const router = express.Router();
 
-const searchRouter = require("./search.js");
+// const searchRouter = require("./search.js");
 
 
-router.use((response, request, next) => {
-    next();
-});
+// router.use((response, request, next) => {
+//     next();
+// });
 
-router.use("/submit-search", searchRouter);
+// router.use("/submit-search", searchRouter);
 
-// router.gwt("/", )
+// // router.gwt("/", )
 
-router.get("*", function (request, response) {
-    response.send("Error 404 - Page not found");
-});
+// router.get("*", function (request, response) {
+//     response.send("Error 404 - Page not found");
+// });
 
-module.exports = router;
+// module.exports = router;

@@ -5,7 +5,7 @@
 <div id="main-sidebar" class="overlay">
     <a href="#" id="close-main-sidebar-btn">×</a>
     <div class="overlay-content">
-    <a href="/templates/base.html">Home</a>
+    <a href="/">Home</a>
 
     <!-- FOOD CATEGORIES -->
     <a href="#" class="sidebar-dropdown-link" id="sidebar-categories-link">Categories</a>
@@ -45,7 +45,7 @@
             </div>
 
             <div>
-                <a href="/templates/base.html">Home</a>
+                <a href="/">Home</a>
             </div>
         </div>
         
@@ -53,7 +53,7 @@
 
         <!-- SEARCH FORM -->
         <form class="w-100 me-3">
-            <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+            <input type="search" action="/search" method="post" class="form-control" placeholder="Search..." aria-label="Search">
         </form>
         <!-- END SEARCH FORM -->
 
@@ -65,9 +65,9 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end shadow mt-1">
                 <li><a class="dropdown-item" href="#" type="button">Προβολή Προφίλ</a></li>
-                <li><a class="dropdown-item" href="/templates/orders.html" type="button">Παραγγελίες</a></li>
-                <li><a class="dropdown-item" href="/templates/address.html" type="button">Διαχείριση Διευθύνσεων</a></li>
-                <li><a class="dropdown-item" href="/templates/cards.html" type="button">Διαχείριση Καρτών</a></li>
+                <li><a class="dropdown-item" href="/orders" type="button">Παραγγελίες</a></li>
+                <li><a class="dropdown-item" href="/addresses" type="button">Διαχείριση Διευθύνσεων</a></li>
+                <li><a class="dropdown-item" href="/cards" type="button">Διαχείριση Καρτών</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#" type="button">Εγγραφή</a></li>
                 <li><a class="dropdown-item" href="#" type="button">Αποσύνδεση</a></li>

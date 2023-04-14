@@ -15,22 +15,23 @@
         <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.14.0/css/all.css">
 
         <!-- CUSTOM STYLESHEETS -->
-        <link rel="stylesheet" href="css/base_stylesheet.css">
-        <link rel="stylesheet" href="css/navbar.css">
-        <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="/css/base_stylesheet.css">
+        <link rel="stylesheet" href="/css/navbar.css">
+        <link rel="stylesheet" href="/css/sidebar.css">
+        <link rel="stylesheet" href="/css/addresses.css">
+        <link rel="stylesheet" href="/css/orders.css">
 
         <!-- JS -->
-        <script src="../javascript/base.js" defer type="module"></script>
-        <script src="../javascript/sidebar.js" defer type="module"></script>
+        <script src="/js/base.js" defer type="module"></script>
+        <script src="/js/sidebar.js" defer type="module"></script>
+        <script src="js/orders.js" defer type="module"></script>
 
     </head>
     <body>
         {{>nav}}
         <!-- MAIN -->
         <main>
-            <div class="container">
-                {{{body}}}
-            </div>
+            {{{body}}}
         </main>
         <!-- END MAIN -->
         {{>footer}}

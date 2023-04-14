@@ -142,24 +142,24 @@ class SessionAPI extends MongoDBClient {
      * 
      * @async
      * @function getPersonAddresses
-     * @param {String} _email - The email of the person.
+     * @param {String} _person_id - The id of the person.
      * @returns {Promise<Array>} The addresses of the person.
      */
-    async getPersonAddresses(_email) {
+    async getPersonAddresses(_person_id) {
         let addresses = [];
         
-        if (this.parseUserInput([_email])) {
+        if (this.parseUserInput([_person_id])) {
             let _query = {
-                email : _email
+                _id : new ObjectId(_person_id)
             }
             let _projection = {
-                _id : 1,
+                _id : 0,
                 addresses : 1
             }
 
             addresses = await this.find("persons", _query, _projection);
         }
-        return addresses;
+        return addresses[0].addresses;
     }
 
     /**
@@ -167,15 +167,15 @@ class SessionAPI extends MongoDBClient {
      * 
      * @async
      * @function getPersonCards
-     * @param {String} _email - The email of the person.
+     * @param {String} _person_id - The id of the person.
      * @returns {Promise<Array>} The cards of the person.
      */
-    async getPersonCards(_email) {
+    async getPersonCards(_person_id) {
         let cards = [];
 
-        if (this.parseUserInput([_email])) {
+        if (this.parseUserInput([_person_id])) {
             let _query = {
-                email : _email
+                _id : new ObjectId(_person_id)
             }
             let _projection = {
                 _id : 1,
@@ -196,18 +196,14 @@ class SessionAPI extends MongoDBClient {
      * @param {String} year - Year of the orders.
      * @returns {Promise<Array>} Array containing the orders.
      */
-    async getPersonOrders(_person_id, year) {
+    async getPersonOrders(_person_id) {
         let orders = [];
-        let yearPattern = `^${year}-*`;
 
         if (this.parseUserInput([_person_id])) {
             let pipeline = [
                 {
                     $match : {
-                        person_id : new ObjectId(_person_id),
-                        datetime : { 
-                            $regex : yearPattern
-                        }
+                        person_id : new ObjectId(_person_id)
                     }
                 },
                 {
@@ -445,6 +441,8 @@ class SessionAPI extends MongoDBClient {
         return productsByTagSplit;
     }
 }
+
+export { SessionAPI };
 
 // let ses = new SessionAPI();
 // let data1 = await ses.getPersonCards("Dias_Pappas_908@hotmail.com")
