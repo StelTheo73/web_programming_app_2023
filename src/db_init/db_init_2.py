@@ -32,8 +32,8 @@ from src.db_init.shops_generator import (
 def create_person_addresses(person):
     addresses_list = []
     num_of_addresses = random.randint(1, 3)
-    for _ in range(num_of_addresses):
-        address = generate_address(person)
+    for _id in range(num_of_addresses):
+        address = generate_address(person, _id)
         addresses_list.append(address)
 
     return addresses_list
@@ -41,8 +41,8 @@ def create_person_addresses(person):
 def create_person_cards(person):
     cards_list = []
     num_of_cards = random.randint(1, 3)
-    for _ in range(num_of_cards):
-        card = generate_card(person)
+    for _id in range(num_of_cards):
+        card = generate_card(person, _id)
         cards_list.append(card)
 
     return cards_list

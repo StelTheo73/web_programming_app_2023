@@ -159,7 +159,11 @@ class SessionAPI extends MongoDBClient {
 
             addresses = await this.find("persons", _query, _projection);
         }
-        return addresses[0].addresses;
+
+        if (addresses[0]) {
+            return addresses[0].addresses;
+        }
+        else return [];
     }
 
     /**
@@ -184,7 +188,11 @@ class SessionAPI extends MongoDBClient {
 
             cards = await this.find("persons", _query, _projection);
         }
-        return cards;
+
+        if (cards[0]) {
+            return cards[0].cards;
+        }
+        else return [];
     }
 
     /**
@@ -410,7 +418,7 @@ class SessionAPI extends MongoDBClient {
             },
             {
                 $project : {
-                    _id : 0,
+                    _id : 1,
                     name : 1,
                     operating_hours : 1,
 

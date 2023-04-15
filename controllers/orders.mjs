@@ -79,6 +79,7 @@ class OrdersParser {
             _order = OrdersParser.parseShopInfo(_order, order);
 
             // Order info
+            _order.orderId = order["_id"].valueOf();
             _order.datetime = parseValue(order["datetime"]);
             _order.status = parseValue(order["status"]);
 
@@ -86,9 +87,12 @@ class OrdersParser {
             _order.paymentMean = parseValue(order["payment_mean"]);
             _order.paymentMeanIcon = PAYMENT_MAP[_order.paymentMean];
             _order.card = parseValue(order["card"]);
-            _order.cardNumber = parseValue(order["card_number"]);
+            if (_order.card) {
+                _order.cardNumber = _order.card["card_number"];
+            }
+
             if (_order.cardNumber) {
-                _order.cardNumber = "&nbsp;(" + _order.cardNumber + ")";
+                _order.cardNumber = "(" + _order.cardNumber + ")";
             }
             
             // Address
@@ -124,7 +128,13 @@ class OrdersParser {
             if (_item.quantity > 1) {
                 let one_price = _item.price;
                 _item.price = _item.price * _item.quantity;
+
+                _item.price = _item.price.toFixed(2);
+                one_price = one_price.toFixed(2);
                 _item.price = _item.price + " (" + one_price + ")";
+            }
+            else {
+                _item.price = _item.price.toFixed(2);
             }
 
             _items.push(_item);

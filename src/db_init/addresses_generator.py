@@ -17,7 +17,7 @@ def generate_cities():
 
     return cities
 
-def generate_address(person):
+def generate_address(person, address_id):
     """Generate an address."""
     word1 = ""
     word2 = ""
@@ -34,6 +34,7 @@ def generate_address(person):
     floor = str(random.randint(1, 7))
 
     address = {
+        "address_id" : address_id,
         "city" : city,
         "street" : street,
         "number" : number,

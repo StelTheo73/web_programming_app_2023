@@ -1,4 +1,5 @@
 "use strict";
+
 class ItemDIVs {
     constructor() {
         this.parents = document.querySelectorAll("#sidebar-items-div");
@@ -31,19 +32,9 @@ class ItemDIVs {
             }
         }
     }
-
-
 }
 
-// Initialize Objects
-let categories = ["Burgers", "Pizza", "Αναψυκτικά", "Γλυκά",
-"Ζυμαρικά", "Θαλασσινά", "Καφέδες", "Κρέπες",
-"Μαγειρευτά", "Ορεκτικά", "Σαλάτες", "Σουβλάκια",
-"Σφολιάτες", "Ψητά"
-];
-
 const itemDIVsObj = new ItemDIVs();
-
 
 // EVENT LISTENERS
 const sidebarDropdownLinks = document.querySelectorAll(".sidebar-dropdown-link");
@@ -56,4 +47,4 @@ sidebarDropdownLinks.forEach(element => {
 const sidebarCloseButton = document.querySelector("#close-main-sidebar-btn");
 sidebarCloseButton.addEventListener("click", function() {
     itemDIVsObj.forceHide();
-})
+});

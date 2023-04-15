@@ -3,6 +3,8 @@ import { engine } from "express-handlebars";
 
 import { ordersRouter } from "./routes/orders.mjs";
 import { addressRouter } from "./routes/addresses.mjs";
+import { cardsRouter } from "./routes/cards.mjs";
+import { searchRouter } from "./routes/search.mjs";
 
 const app = express();
 
@@ -15,20 +17,13 @@ app.set("view engine", ".hbs");
 // Routers
 app.use("/", ordersRouter);
 app.use("/", addressRouter);
+app.use("/", cardsRouter);
+app.use("/", searchRouter);
 
 app.get("/", async (request, response) => {
     const myUrl = new URL("http://" + request.headers.host + request.url);
     console.log(request.method, ", ", request.url);
     response.render("homepage", {});
-});
-
-app.post("/search", async (request, response) => {
-    console.log(request.body);
-    const myUrl = new URL("http://" + request.headers.host + request.url);
-    console.log(request.method, ", ", request.url);
-
-    response.send(request.body);
-    response.end();
 });
 
 app.use((request, response) => {
