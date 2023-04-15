@@ -29,6 +29,8 @@ from src.db_init.shops_generator import (
     generate_shops
 )
 
+CWD = os.getcwd()
+
 def create_person_addresses(person):
     addresses_list = []
     num_of_addresses = random.randint(1, 3)
@@ -102,6 +104,23 @@ def drop_db():
 
     client.close()
 
+def map_shops():
+    client = pymongo.MongoClient(CLIENT_URI)
+    db = client[DATABASE_NAME]
+    shops_doc = db["shops"]
+    shops_dict = {}
+    pointer = 0
+
+    shops_cursor = shops_doc.find({}, {"_id" : 1})
+    for shop in shops_cursor:
+        shop_id = str(shop["_id"])
+        shops_dict[pointer] = shop_id
+        shops_dict[shop_id] = pointer
+        pointer+=1
+    
+    path = os.path.join(CWD, "db", "shops_map.json")
+    with open(path, "w") as stream:
+        json.dump(shops_dict, stream, indent=2)
 
 def main(persons_number, shops_number):
 
@@ -140,6 +159,9 @@ def main(persons_number, shops_number):
 
     print("Generating orders...")
     create_orders()
+
+    print("Mapping shops...")
+    map_shops()
 
     print("Done")
 

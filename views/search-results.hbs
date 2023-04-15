@@ -1,10 +1,11 @@
-<div class="container">
+<div class="container search-results">
     {{#if shops}}
         <h4>Καταστήματα</h4>
         <ul>
             {{#each shops}}
                 <li>
-                    {{this.shopId}}, {{this.shopName}}, {{this.operatingHours}} 
+                        <h5><a href="/shop/{{this.shopId}}">{{this.shopName}}</a></h5>
+                        <p>{{this.operatingHours}}</p>
                 </li>
             {{/each}}
         </ul>
@@ -27,15 +28,13 @@
         <ul>
             {{#each products}}
                 <li>
-                    {{this.shopId}}, {{this.shopName}}, {{this.operatingHours}}
+                    <h5><a href="/shop/{{this.shopId}}">{{this.shopName}}</a></h5>
                     <ul>
-                        {{#each this.items}}
-                            <li>
-                                {{this.itemId}}, {{this.itemName}}, {{this.itemPrice}}
-                            </li>
-                        {{/each}}
+                        {{#search-list-items this.items this.shopId}}
+                        {{/search-list-items}}
                     </ul>
                 </li>
+                <hr>
             {{/each}}
         </ul>
     {{/if}}

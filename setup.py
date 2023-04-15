@@ -3,7 +3,6 @@ import os
 import os.path
 import sys
 import threading
-import time
 
 from src.db_init.db_init_2 import main as initialize_db
 from src.constants import (
@@ -48,7 +47,7 @@ def parse_arguments(argv):
 def create_folders():
     if not os.path.exists(TMP):
         os.mkdir(TMP)
-    
+
     if not os.path.exists(DATABASE_FOLDER):
         os.mkdir(DATABASE_FOLDER)
 
@@ -56,13 +55,9 @@ def clear_tmp_after_db_initialization():
     for element in os.listdir(TMP):
         _element = os.path.join(TMP, element)
         if os.path.isfile(_element):
-                (_, extension) = os.path.splitext(_element)
-                if extension == ".json":
-                    os.remove(_element)
-
-# def serve(server):
-#     print("Starting transalteAPI server...")
-#     server.serve_forever()
+            (_, extension) = os.path.splitext(_element)
+            if extension == ".json":
+                os.remove(_element)
 
 def create_translate_API_server():
     server = TranslateAPIServer("127.0.0.1", 5000)
@@ -81,14 +76,11 @@ def setup(init_db):
     if init_db:
         initialize_db(1000, 100)
         clear_tmp_after_db_initialization()
+    
+    create_translate_API_server()
 
 if __name__ == "__main__":
     init_db = parse_arguments(sys.argv)
     setup(init_db)
-
-    create_translate_API_server()
-
-    # from tmp.test_mongo_queries import main
-    # main()
 
 # python -m setup

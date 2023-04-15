@@ -6,7 +6,7 @@ const addressRouter = express.Router();
 const sessionAPI = new SessionAPI();
 
 addressRouter.get("/addresses", async (request, response) => {
-    let addresses = await sessionAPI.getPersonAddresses("642d12fd9f0c2c52ba5b81f6");
+    let addresses = await sessionAPI.getPersonAddresses("643afad69ed6dd38e91f3081");
     addresses = AddressParser.parseAddresses(addresses);
     response.render("addresses", { addresses });
 });

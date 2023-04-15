@@ -1,3 +1,12 @@
+/* Earthy color palette */
+:root {
+    --brown: #854d27;
+    --orange: #dd7230;
+    --yellow: #f4c95d;
+    --khaki: #e7e393;
+    --black: #04030f;
+}
+
 .order-items > .row {
     padding: 1em;;
     border: 1px solid lightgray;
@@ -5,10 +14,9 @@
 }
 
 .order-items > .row:nth-child(2) > div {
-    background-image: url("../../images/order_background.png");
+    /* background-image: url("/images/order_background.png"); */
     background-repeat: no-repeat;
     background-size: contain;
-
     margin-bottom: 0.25em;
     max-width: max-content;
     min-width: max-content;
@@ -25,7 +33,7 @@
     min-height: 23em;
     opacity: 0.95;
     height: 100%;
-    background-color: cornsilk;
+    background-color: var(--khaki);
     overflow: auto;
 }
 

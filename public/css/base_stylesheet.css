@@ -1,18 +1,50 @@
+/* Earthy color palette */
+:root {
+    --brown: #854d27;
+    --orange: #dd7230;
+    --yellow: #f4c95d;
+    --khaki: #e7e393;
+    --black: #04030f;
+}
+
 body {
     max-width: 1500px;
     min-width: 10em;
+    min-height: fit-content;
+    max-height: fit-content;
     margin: 0 auto;
     position: sticky;
     border: 1px solid grey;
-    border-radius: 10px;
+    background-image: url("/images/body_background.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+    background-attachment: fixed;
+    background-color: var(--brown);
 }
 
-/* #navbar-and-sidebar-wrapper {
-    padding-right: 1em;
+main {
+    min-height: 20em;
+    padding: 1em;
 }
-header {
-    padding-left: 0em;
-} */
+
+main, footer, #navbar-and-sidebar-wrapper {
+    background-color: var(--orange);
+    /* border: 1px solid grey; */
+}
+
+main, footer {
+    opacity: 0.95;
+    border-top: 1px solid grey;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+}
+
+#navbar-and-sidebar-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
 
 .fa, .fab, .fas, .far, .fal {
     font-size: 30px;
