@@ -6,35 +6,20 @@
     </div>
     
     <div class="col-6 d-flex justify-content-end align-items-center">
-        <button type="button" class="btn btn-primary bg-success add-new-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Προσθήκη Νέας
+        <button type="button" class="btn btn-primary bg-secondary add-new-user-item-btn show-user-item">
+            Προσθήκη
+        </button>
+        <button type="button" class="btn btn-primary bg-danger close-new-user-item-btn add-user-item">
+            Ακύρωση
         </button>
     </div>
     
-    <!-- MODAL -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            ...
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-        </div>
-        </div>
-    </div>                    
-    <!-- END MODAL -->
+
     </div>
     <!-- END ROW -->
     
     <!-- ROW -->
-    <div class="row">
+    <div class="row show-user-item">
     <!-- CARDS HERE -->
     {{#if cards}}
         {{#each cards}}
@@ -66,6 +51,51 @@
     {{/if}}
     </div>
     <!-- END ROW -->
+
+    <!-- ROW -->
+    <div class="row add-user-item">
+        <div class="add-user-item-form-wrapper">
+            <form class="row needs-validation" id="addCardForm" method="post" action="/card/add" novalidate>
+                <div class="form-group col-12 col-sm-6">
+                    <label for="card_number" class="form-label required">Αρ. Κάρτας</label>
+                    <input type="text" class="form-control" id="card_number" name="card_number" required pattern="\d{10}">
+                    <div class="invalid-feedback">
+                        Παρακαλούμε πληκτρολόγησε τον αριθμό της κάρτας σου.
+                    </div>
+                </div>
+
+                <div class="form-group col-12 col-sm-6 my-1">
+                    <label for="cvv" class="form-label required">CVV</label>
+                    <input type="text" class="form-control" id="cvv" name="cvv" required pattern="\d{3}">
+                    <div class="invalid-feedback">
+                        Παρακαλούμε πληκτρολόγησε το CVV της κάρτας σου.
+                    </div>
+                </div>
+
+                <div class="form-group col-12 col-sm-6 my-1">
+                    <label for="cardholder" class="form-label required">Όνομα Κατόχου</label>
+                    <input type="text" class="form-control" id="cardholder" name="cardholder" required>
+                    <div class="invalid-feedback">
+                        Παρακαλούμε πληκτρολόγησε τo ονοματεπώνυμο του κατόχου της κάρτας.
+                    </div>
+                </div>
+
+                <div class="form-group col-12 col-sm-6 my-1">
+                    <label for="expiration_date" class="form-label required">Ημερομηνία Λήξης</label>
+                    <input type="month" class="form-control" id="expiration_date" name="expiration_date" required>
+                    <div class="invalid-feedback">
+                        Παρακαλούμε επέλεξε την ημερομηνία λήξης της κάρτας σου.
+                    </div>
+                </div>
+
+                <div class="col-12 my-1">
+                    <input type="submit" class="btn btn-primary bg-success add-item" value="Προσθήκη">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- END ROW -->
+
 </div>
 
 

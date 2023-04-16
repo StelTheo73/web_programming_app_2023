@@ -23,14 +23,34 @@ body {
     background-color: var(--brown);
 }
 
+.modal-overlay {
+    display: none;
+    background-color: var(--black);
+    /* opacity: 0.9; */
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+}
+
 main {
     min-height: 20em;
     padding: 1em;
 }
 
-main, footer, #navbar-and-sidebar-wrapper {
+main > div, #navbar-and-sidebar-wrapper, footer {
     background-color: var(--orange);
-    /* border: 1px solid grey; */
+}
+
+main > div {
+    border: 1px solid grey;
+    border-radius: 1em;
 }
 
 main, footer {
@@ -67,4 +87,9 @@ main, footer {
 
 .mailto-a {
     line-height: 1em;
+}
+
+label.required::after {
+    content: " *";
+    color: red;
 }

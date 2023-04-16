@@ -11,4 +11,10 @@ cardsRouter.get("/cards", async (request, response) => {
     response.render("cards", { cards });
 });
 
+cardsRouter.post("/card/add", async (request, response) => {
+    
+    response.send(request.body);
+    response.end();
+});
+
 export { cardsRouter };

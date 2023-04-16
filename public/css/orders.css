@@ -9,12 +9,9 @@
 
 .order-items > .row {
     padding: 1em;;
-    border: 1px solid lightgray;
-    border-radius: 10px;
 }
 
 .order-items > .row:nth-child(2) > div {
-    /* background-image: url("/images/order_background.png"); */
     background-repeat: no-repeat;
     background-size: contain;
     margin-bottom: 0.25em;

@@ -10,8 +10,6 @@
 .search-results {
     background-color: khaki;
     opacity: 0.95;
-    border: 1px solid gray;
-    border-radius: 0.5em;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
