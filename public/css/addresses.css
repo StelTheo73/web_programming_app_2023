@@ -7,6 +7,30 @@
     --black: #04030f;
 }
 
+/* .modal {
+    background-color: var(--black);
+    opacity: 0.8;
+    z-index: 2;
+}
+
+.modal-dialog {
+    background-color: var(--black);
+    opacity: 1;
+    z-index: 3;
+    margin: 0 auto;
+    margin-top: 10em;
+    position: sticky;
+}
+
+.modal-content {
+    opacity: 1;
+    z-index: 3;
+}
+*/
+/* .modal-backdrop { */
+    /* z-index: -1; */
+/* } */
+
 .user-items > .row {
     padding: 1em;;
     border: 1px solid lightgray;

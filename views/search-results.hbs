@@ -4,7 +4,7 @@
         <ul>
             {{#each shops}}
                 <li>
-                        <h5><a href="/shop/{{this.shopId}}">{{this.shopName}}</a></h5>
+                        <h5><a href="/shops/{{this.shopId}}">{{this.shopName}}</a></h5>
                         <p>{{this.operatingHours}}</p>
                 </li>
             {{/each}}
@@ -28,7 +28,7 @@
         <ul>
             {{#each products}}
                 <li>
-                    <h5><a href="/shop/{{this.shopId}}">{{this.shopName}}</a></h5>
+                    <h5><a href="/shops/{{this.shopId}}">{{this.shopName}}</a></h5>
                     <ul>
                         {{#search-list-items this.items this.shopId}}
                         {{/search-list-items}}

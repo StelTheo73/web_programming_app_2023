@@ -26,6 +26,13 @@ app.get("/", async (request, response) => {
     response.render("homepage", {});
 });
 
+app.get("/shops/:shop_id", async (request, response) =>{
+    const myUrl = new URL("http://" + request.headers.host + request.url);
+    console.log(request.method, ", ", request.url, request.baseUrl);
+    response.send(myUrl);
+    response.end();
+});
+
 app.use((request, response) => {
     console.log("Redirect from ", request.url);
     console.log(request.method, ", ", request.url);

@@ -9,7 +9,7 @@ Handlebars.registerHelper("search-list-items", function(items, shopId) {
     if (Array.isArray(items) && items.length > 0) {
       items.forEach(function(item) {
         if (item.hasOwnProperty("itemId") && item.hasOwnProperty("itemName")) {
-          let url = `/shops/${shopId}/${item.itemId}`;
+          let url = `/shops/${shopId}#${item.itemId}`;
           let context = `
             <li>
                 <span><a href="${url}">${item.itemName}</a></span>

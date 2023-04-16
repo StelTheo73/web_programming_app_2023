@@ -54,5 +54,4 @@ document.querySelector("#search-input").addEventListener("keydown", (event) => {
             window.location.href = `/search?searchInput=${userInput}&city=${city}`;
         }
     }
-})
-
+});
