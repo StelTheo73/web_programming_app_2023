@@ -48,7 +48,8 @@ document.getElementById("sidebar-link-to-footer").addEventListener("click", clos
 document.querySelector("#search-input").addEventListener("keydown", (event) => {
     // TODO GET ACTIVE CITY
     let city = "Αθήνα"
-    if (event.code == "Enter") {
+    console.log(event.keyCode);
+    if (event.code == "Enter" || event.keyCode == 13) {
         const userInput = event.target.value.trim();
         if (userInput.length > 0){
             window.location.href = `/search?searchInput=${userInput}&city=${city}`;

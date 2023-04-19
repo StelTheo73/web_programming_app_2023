@@ -33,7 +33,11 @@ CWD = os.getcwd()
 
 def create_person_addresses(person):
     addresses_list = []
-    num_of_addresses = random.randint(1, 3)
+    if person["firstname"] == "Foobar":
+        num_of_addresses = 5
+    else:
+        num_of_addresses = random.randint(1, 3)
+
     for _id in range(num_of_addresses):
         address = generate_address(person, _id)
         addresses_list.append(address)
@@ -42,7 +46,11 @@ def create_person_addresses(person):
 
 def create_person_cards(person):
     cards_list = []
-    num_of_cards = random.randint(1, 3)
+    if person["firstname"] == "Foobar":
+        num_of_cards = 5
+    else: 
+        num_of_cards = random.randint(1, 3)
+
     for _id in range(num_of_cards):
         card = generate_card(person, _id)
         cards_list.append(card)
@@ -65,12 +73,15 @@ def create_orders():
     # objInstance = ObjectId("6421bca8abb97dc94d68cc41")
     # persons_ids = persons_doc.find({"_id" : objInstance}, {"_id" : 1, "firstname" : 1})
 
-    persons = persons_doc.find({}, {"_id" : 1, "cards" : 1, "addresses" : 1})
+    persons = persons_doc.find({}, {"_id" : 1, "cards" : 1, "addresses" : 1, "firstname" : 1})
     shops = shops_doc.find({}, {"_id" : 1, "items" : 1, "address" : 1})
     shops = list(shops)
 
     for person in persons:
-        num_of_orders = random.randint(0, 20)
+        if person["firstname"] == "Foobar":
+            num_of_orders = 15
+        else:
+            num_of_orders = random.randint(0, 10)
 
         for _ in range(num_of_orders):
             shop = random.choice(shops)
@@ -117,7 +128,7 @@ def map_shops():
         shops_dict[pointer] = shop_id
         shops_dict[shop_id] = pointer
         pointer+=1
-    
+
     path = os.path.join(CWD, "db", "shops_map.json")
     with open(path, "w") as stream:
         json.dump(shops_dict, stream, indent=2)
@@ -166,4 +177,4 @@ def main(persons_number, shops_number):
     print("Done")
 
 if __name__ == "__main__":
-    main(200, 20)
+    main(700, 300)

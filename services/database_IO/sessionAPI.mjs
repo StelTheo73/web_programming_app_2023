@@ -448,6 +448,94 @@ class SessionAPI extends MongoDBClient {
 
         return productsByTagSplit;
     }
+
+    async getShopData(_shopId) {
+        let shopData = [];
+        if (this.parseUserInput([_shopId])) {
+            let _query = {
+                _id : new ObjectId(_shopId)
+            }
+            let _projection = {
+                _id : 0,
+                type : 1,
+                name : 1,
+                email : 1,
+                phone : 1,
+                categories : 1,
+                operating_hours : 1
+            }
+
+            shopData = await this.find("shops", _query, _projection);
+        }
+        return shopData[0];
+    }
+
+    async fetchItemsByCategory(_shopId, category) {
+        let items = {};
+        let categoryPattern = "";
+        let parsedCategory = "";
+
+        parsedCategory = category.toLowerCase();
+        parsedCategory = replacesTones(parsedCategory);
+        categoryPattern = `.*${parsedCategory}.*`;
+
+        if (this.parseUserInput([_shopId, category])) {
+            let pipeline = [
+                {
+                    $match : {
+                        $and: [
+                            {
+                                "_id" : new ObjectId(_shopId)
+                            },
+                            {
+                                "items.category_name" : {
+                                    $regex : categoryPattern,
+                                    $options : "i"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    $project : {
+                        _id : 0,
+                        items : {
+                            $map : {
+                                input : {
+                                    $filter : {
+                                        input : "$items",
+                                        as    : "item",
+                                        cond  : {
+                                            $and : [
+                                                {
+                                                    $regexMatch : {
+                                                        input : "$$item.category_name",
+                                                        regex : categoryPattern,
+                                                        options : "i"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                as : "item",
+                                in : {
+                                    item_id : "$$item.item_id",
+                                    name: "$$item.name",
+                                    price: "$$item.price"
+                                }
+                            }
+                        }
+                    }
+                }
+            ];
+
+            items.category = category
+            items.products = (await this.aggregate("shops", pipeline))[0].items;
+        }
+
+        return items;
+    }
 }
 
 export { SessionAPI };

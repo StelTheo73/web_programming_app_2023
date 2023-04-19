@@ -13,6 +13,24 @@ from src.db_init.random_generator import (
 EMAILS_LIST = []
 EMAIL_FORMAT = "{firstname}_{lastname}_{number}@{domain}.com"
 
+def generate_test_user():
+    """Generates a test user."""
+    firstname = "Foobar"
+    lastname = "Lorem-Ipsum"
+    birthdate = random_date()
+    phone = "6912345678"
+    password = "Aa123$00"
+    email = "test@user.com"
+    return {
+        "email"     : email,
+        "password"  : password,
+        "firstname" : firstname,
+        "lastname"  : lastname,
+        "phone"     : phone,
+        "birthdate" : birthdate
+    }
+
+
 def generate_person():
     """Generates a random person."""
     sex = random.choice(["male", "female"])
@@ -57,4 +75,5 @@ def generate_persons(number):
         person = generate_person()
         persons_list.append(person)
 
+    persons_list.append(generate_test_user())
     return persons_list

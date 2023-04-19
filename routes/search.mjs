@@ -9,7 +9,7 @@ Handlebars.registerHelper("search-list-items", function(items, shopId) {
     if (Array.isArray(items) && items.length > 0) {
       items.forEach(function(item) {
         if (item.hasOwnProperty("itemId") && item.hasOwnProperty("itemName")) {
-          let url = `/shops/${shopId}#${item.itemId}`;
+          let url = `/shops/${shopId}/products/${item.itemId}`;
           let context = `
             <li>
                 <span><a href="${url}">${item.itemName}</a></span>
@@ -28,6 +28,10 @@ const searchRouter = express.Router();
 const sessionAPI = new SessionAPI();
 
 searchRouter.get("/search", async (request, response) => {
+  if (!request.session.userId) {
+      response.redirect("/login");
+  }
+  else {
     let searchInput = request.query.searchInput;
     let city = request.query.city;
 
@@ -36,6 +40,7 @@ searchRouter.get("/search", async (request, response) => {
     products = searchResultsParser.parseProducts(products);
 
     response.render("search-results", {shops, products});
+  }
 });
 
 export { searchRouter };

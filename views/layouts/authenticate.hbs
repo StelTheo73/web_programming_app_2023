@@ -16,29 +16,13 @@
 
         <!-- CUSTOM STYLESHEETS -->
         <link rel="stylesheet" href="/css/base_stylesheet.css">
-        <link rel="stylesheet" href="/css/navbar.css">
-        <link rel="stylesheet" href="/css/sidebar.css">
-        <link rel="stylesheet" href="/css/addresses.css">
-        <link rel="stylesheet" href="/css/orders.css">
-        <link rel="stylesheet" href="/css/search.css">
-        <link rel="stylesheet" href="/css/shop.css">
-
-        <!-- JS -->
-        <script src="/js/base.js" defer type="module"></script>
-        <script src="/js/sidebar.js" defer type="module"></script>
-        <script src="/js/orders.js" defer type="module"></script>
-        <script src="/js/shop.js" defer type="module"></script>
-
 
     </head>
     <body>
-
-        {{>nav}}
-        <!-- MAIN -->
         <main class="container-fluid">
             {{{body}}}
         </main>
-        <!-- END MAIN -->
+
         {{>footer}}
     </body>
 </html>

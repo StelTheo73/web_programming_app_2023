@@ -7,11 +7,15 @@ const sessionAPI = new SessionAPI();
 
 
 ordersRouter.get("/orders", async (request, response) => {
-    let orders = await sessionAPI.getPersonOrders("643afad69ed6dd38e91f3081");
-    let items = []
-    orders = OrdersParser.parseOrders(orders);
-
-    response.render("orders", { orders });
+    if (!request.session.userId) {
+        response.redirect("/login");
+    }
+    else {
+        let orders = await sessionAPI.getPersonOrders(request.session.userId[0]._id);
+        let items = []
+        orders = OrdersParser.parseOrders(orders);
+        response.render("orders", { orders });
+    }
 });
 
 export {ordersRouter};
