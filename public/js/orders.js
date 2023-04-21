@@ -1,4 +1,4 @@
-"use-strict";
+"use strict";
 
 function flipCardListeners() {
   let flipCardButtons = document.querySelectorAll(".flip-card-btn");

@@ -28,7 +28,7 @@ class SessionAPI extends MongoDBClient {
 
             parsedList.push(userInput);
         }
-        console.log(parsedList);
+
         return parsedList;
     }
 
@@ -560,6 +560,23 @@ class SessionAPI extends MongoDBClient {
 
         return items;
     }
+
+    async addPersonAddress(_person_id, _address) {
+        let addressRecord = {};
+
+        for (let field in _address) {
+            _address[field] = this.parseUserInput([_address[field]])[0];
+
+            if (_address[field] != " ") {
+                addressRecord[field] = _address[field];
+            }
+        }
+
+        console.log(addressRecord);
+
+        // await 
+    }
+
 }
 
 export { SessionAPI };

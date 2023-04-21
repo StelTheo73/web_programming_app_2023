@@ -21,8 +21,11 @@ addressRouter.post("/address/add", async (request, response) => {
         response.redirect("/login");
     }
     else {
-        response.send(request.body);
-        response.end();
+        console.log(request.body);
+
+        await sessionAPI.addPersonAddress(request.session.userId[0]._id, request.body);
+
+        response.redirect("/addresses");
     }
 });
 

@@ -40,7 +40,11 @@ body {
 
 main {
     min-height: 20em;
-    padding: 1em;
+}
+
+main > div {
+    min-height: 100vh;
+    width: 100%;
 }
 
 main > div, #navbar-and-sidebar-wrapper, footer {
@@ -48,8 +52,8 @@ main > div, #navbar-and-sidebar-wrapper, footer {
 }
 
 main > div {
-    border: 1px solid grey;
-    border-radius: 1em;
+    border-left: 1em;
+    border-right: 1em;
 }
 
 main, footer {

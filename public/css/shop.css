@@ -27,12 +27,7 @@
 .shop-items > .shop-categories > ul > li {
   display: inline-block;
   margin-top: 0em;
-  /* margin: 0.5em; */
   padding: 0.5em;
-}
-
-.shop-items > .shop-categories > ul > li > span > a {
-  all : unset;
 }
 
 .shop-items > .shop-categories > ul > li:hover {
@@ -53,4 +48,12 @@
 .shop-items > .shop-categories > ul::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
+}
+
+.shop-items > .category-items {
+  display: none;
+}
+
+.shop-items > .category-items:nth-child(1) {
+  display: block;
 }

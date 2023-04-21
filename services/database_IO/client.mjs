@@ -42,6 +42,7 @@ class MongoDBClient extends MongoClient {
             output = collection.find(_query, _projection);
 
             output = await output.toArray();
+
         }
         catch (err) {
             console.log(err);
@@ -52,7 +53,10 @@ class MongoDBClient extends MongoClient {
         }
     }
 
-    
+    async updateRecord(collectionName, record_id, _record) {
+
+    }
+
 }
 
 // const pipeline = [

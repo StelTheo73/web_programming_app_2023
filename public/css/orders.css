@@ -11,6 +11,10 @@
     padding: 1em;;
 }
 
+.order-items > .row:nth-child(1) {
+    background-color: var(--khaki);
+}
+
 .order-items > .row:nth-child(2) > div {
     background-repeat: no-repeat;
     background-size: contain;
@@ -175,7 +179,6 @@
 
 .flip-card-front {
     display: block;
-    /* transform: rotateY(180deg); */
 }
 
 .flip-card-back {
