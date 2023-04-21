@@ -8,14 +8,28 @@ class SessionAPI extends MongoDBClient {
     }
 
     parseUserInput(userInputList) {
+        let parsedList = [];
+
         for (let userInput of userInputList) {
-            for (let char of ["{", "}"]) {
-                if (userInput.indexOf(char) >= 0) {
-                    return false;
-                }
+            if (userInput === null || userInput === undefined) {
+                userInput = " ";
+                continue;
             }
+
+            userInput = String(userInput);
+
+            for (let char of "{}[]()^-+*/=|/<>~`;:") {
+                userInput = userInput.replace(char, "");
+            }
+            
+            if (userInput == "") {
+                userInput = " ";
+            }
+
+            parsedList.push(userInput);
         }
-        return true;
+        console.log(parsedList);
+        return parsedList;
     }
 
     /**
@@ -32,15 +46,17 @@ class SessionAPI extends MongoDBClient {
      */
     async userLogin(_email, _password) {
         let personId = [];
-        
-        if (this.parseUserInput([_email, _password])) {
-            let _query = {
-                email : _email,
-                password : _password
-            }
 
-            personId = await this.find("persons", _query)
+        [_email, _password] = this.parseUserInput([_email, _password]);
+        console.log("Parsed input ", _email, _password)
+
+        let _query = {
+            email : _email,
+            password : _password
         }
+
+        personId = await this.find("persons", _query)
+
         return personId;
     }
 
@@ -55,22 +71,23 @@ class SessionAPI extends MongoDBClient {
     async getPersonData(_personId) {
         let personData = [];
         
-        if (this.parseUserInput([_personId])) {
-            let _query = {
-                _id : new ObjectId(_personId)
-            }
-            let _projection = {
-                _id : 0,
-                email : 1,
-                firstname : 1,
-                lastname : 1,
-                phone : 1,
-                addresses : 1,
-                cards : 1
-            }
+    _personId = this.parseUserInput([_personId])[0];
 
-            personData = await this.find("persons", _query, _projection);
+        let _query = {
+            _id : new ObjectId(_personId)
         }
+        let _projection = {
+            _id : 0,
+            email : 1,
+            firstname : 1,
+            lastname : 1,
+            phone : 1,
+            addresses : 1,
+            cards : 1
+        }
+
+        personData = await this.find("persons", _query, _projection);
+
         return personData;
     }
 
@@ -85,16 +102,17 @@ class SessionAPI extends MongoDBClient {
     async getPersonIdFromEmail(_email) {
         let personId = [];
         
-        if (this.parseUserInput([_email])) {
-            let _query = {
-                email : _email
-            }
-            let _projection = {
-                _id : 1,
-            }
-
-            personId = await this.find("persons", _query, _projection);
+        _email = this.parseUserInput([_email])[0];
+        
+        let _query = {
+            email : _email
         }
+        let _projection = {
+            _id : 1,
+        }
+
+        personId = await this.find("persons", _query, _projection);
+
         return personId;
     } 
 
@@ -110,30 +128,31 @@ class SessionAPI extends MongoDBClient {
     async getLastAddress(_person_id) {
         let lastAddress = [];
         
-        if (this.parseUserInput([_person_id])) {
-            let pipeline = [
-                {
-                    $match : {
-                        person_id : new ObjectId(_person_id),
-                    }
-                },
-                {
-                    $project : {
-                        _id : 0,
-                        address : 1
-                    }
-                },
-                {
-                    $sort : {
-                        datetime : -1
-                    }
-                },
-                {
-                    $limit : 1
+        _person_id = this.parseUserInput([_person_id])[0];
+
+        let pipeline = [
+            {
+                $match : {
+                    person_id : new ObjectId(_person_id),
                 }
-            ];
-            lastAddress = await this.aggregate("orders", pipeline);
-        }
+            },
+            {
+                $project : {
+                    _id : 0,
+                    address : 1
+                }
+            },
+            {
+                $sort : {
+                    datetime : -1
+                }
+            },
+            {
+                $limit : 1
+            }
+        ];
+        lastAddress = await this.aggregate("orders", pipeline);
+
         return lastAddress;
     }
 
@@ -147,18 +166,18 @@ class SessionAPI extends MongoDBClient {
      */
     async getPersonAddresses(_person_id) {
         let addresses = [];
-        
-        if (this.parseUserInput([_person_id])) {
-            let _query = {
-                _id : new ObjectId(_person_id)
-            }
-            let _projection = {
-                _id : 0,
-                addresses : 1
-            }
 
-            addresses = await this.find("persons", _query, _projection);
+        _person_id = this.parseUserInput([_person_id])[0];
+
+        let _query = {
+            _id : new ObjectId(_person_id)
         }
+        let _projection = {
+            _id : 0,
+            addresses : 1
+        }
+
+        addresses = await this.find("persons", _query, _projection);
 
         if (addresses[0]) {
             return addresses[0].addresses;
@@ -177,17 +196,17 @@ class SessionAPI extends MongoDBClient {
     async getPersonCards(_person_id) {
         let cards = [];
 
-        if (this.parseUserInput([_person_id])) {
-            let _query = {
-                _id : new ObjectId(_person_id)
-            }
-            let _projection = {
-                _id : 1,
-                cards : 1
-            }
-
-            cards = await this.find("persons", _query, _projection);
+        _person_id = this.parseUserInput([_person_id])[0];
+        
+        let _query = {
+            _id : new ObjectId(_person_id)
         }
+        let _projection = {
+            _id : 1,
+            cards : 1
+        }
+            cards = await this.find("persons", _query, _projection);
+
 
         if (cards[0]) {
             return cards[0].cards;
@@ -207,51 +226,52 @@ class SessionAPI extends MongoDBClient {
     async getPersonOrders(_person_id) {
         let orders = [];
 
-        if (this.parseUserInput([_person_id])) {
-            let pipeline = [
-                {
-                    $match : {
-                        person_id : new ObjectId(_person_id)
-                    }
-                },
-                {
-                    $lookup : {
-                        from : "shops",
-                        localField : "shop_id",
-                        foreignField : "_id",
-                        as : "shop"
-                    }
-                },
-                {
-                    $unwind : "$shop"
-                },
-                {
-                    $project : {
-                        shop_id : 1,
-                        shop_name : "$shop.name",
-                        shop_address : "$shop.address",
-                        shop_phone : "$shop.phone",
-                        shop_email : "$shop.email",
-                        _id : 1,
-                        datetime : 1,
-                        status : 1,
-                        order_contains : 1,
-                        address : 1,
-                        payment_mean : 1,
-                        card : 1,
-                        person_id : 1,
-                        rating : 1
-                    }
-                },
-                {
-                    $sort : {
-                        datetime : -1
-                    }
+        _person_id = this.parseUserInput([_person_id])[0];
+
+        let pipeline = [
+            {
+                $match : {
+                    person_id : new ObjectId(_person_id)
                 }
-            ];
+            },
+            {
+                $lookup : {
+                    from : "shops",
+                    localField : "shop_id",
+                    foreignField : "_id",
+                    as : "shop"
+                }
+            },
+            {
+                $unwind : "$shop"
+            },
+            {
+                $project : {
+                    shop_id : 1,
+                    shop_name : "$shop.name",
+                    shop_address : "$shop.address",
+                    shop_phone : "$shop.phone",
+                    shop_email : "$shop.email",
+                    _id : 1,
+                    datetime : 1,
+                    status : 1,
+                    order_contains : 1,
+                    address : 1,
+                    payment_mean : 1,
+                    card : 1,
+                    person_id : 1,
+                    rating : 1
+                }
+            },
+            {
+                $sort : {
+                    datetime : -1
+                }
+            }
+        ];
 
             orders = await this.aggregate("orders", pipeline);
-        }
+
         return orders;
     }
 
@@ -271,6 +291,8 @@ class SessionAPI extends MongoDBClient {
         let parsedText = "";
         let cityPattern = "";
         let parsedCity = "";
+
+        [text, city] = this.parseUserInput([text, city]);
 
         text = text.toLowerCase();
         parsedText = replacesTones(text);
@@ -451,22 +473,24 @@ class SessionAPI extends MongoDBClient {
 
     async getShopData(_shopId) {
         let shopData = [];
-        if (this.parseUserInput([_shopId])) {
-            let _query = {
-                _id : new ObjectId(_shopId)
-            }
-            let _projection = {
-                _id : 0,
-                type : 1,
-                name : 1,
-                email : 1,
-                phone : 1,
-                categories : 1,
-                operating_hours : 1
-            }
 
-            shopData = await this.find("shops", _query, _projection);
+        _shopId = this.parseUserInput([_shopId])[0];
+
+        let _query = {
+            _id : new ObjectId(_shopId)
         }
+        let _projection = {
+            _id : 0,
+            type : 1,
+            name : 1,
+            email : 1,
+            phone : 1,
+            categories : 1,
+            operating_hours : 1
+        }
+
+        shopData = await this.find("shops", _query, _projection);
+
         return shopData[0];
     }
 
@@ -475,64 +499,64 @@ class SessionAPI extends MongoDBClient {
         let categoryPattern = "";
         let parsedCategory = "";
 
+        [_shopId, category] = this.parseUserInput([_shopId, category]);
+
         parsedCategory = category.toLowerCase();
         parsedCategory = replacesTones(parsedCategory);
         categoryPattern = `.*${parsedCategory}.*`;
 
-        if (this.parseUserInput([_shopId, category])) {
-            let pipeline = [
-                {
-                    $match : {
-                        $and: [
-                            {
-                                "_id" : new ObjectId(_shopId)
-                            },
-                            {
-                                "items.category_name" : {
-                                    $regex : categoryPattern,
-                                    $options : "i"
-                                }
+        let pipeline = [
+            {
+                $match : {
+                    $and: [
+                        {
+                            "_id" : new ObjectId(_shopId)
+                        },
+                        {
+                            "items.category_name" : {
+                                $regex : categoryPattern,
+                                $options : "i"
                             }
-                        ]
-                    }
-                },
-                {
-                    $project : {
-                        _id : 0,
-                        items : {
-                            $map : {
-                                input : {
-                                    $filter : {
-                                        input : "$items",
-                                        as    : "item",
-                                        cond  : {
-                                            $and : [
-                                                {
-                                                    $regexMatch : {
-                                                        input : "$$item.category_name",
-                                                        regex : categoryPattern,
-                                                        options : "i"
-                                                    }
+                        }
+                    ]
+                }
+            },
+            {
+                $project : {
+                    _id : 0,
+                    items : {
+                        $map : {
+                            input : {
+                                $filter : {
+                                    input : "$items",
+                                    as    : "item",
+                                    cond  : {
+                                        $and : [
+                                            {
+                                                $regexMatch : {
+                                                    input : "$$item.category_name",
+                                                    regex : categoryPattern,
+                                                    options : "i"
                                                 }
-                                            ]
-                                        }
+                                            }
+                                        ]
                                     }
-                                },
-                                as : "item",
-                                in : {
-                                    item_id : "$$item.item_id",
-                                    name: "$$item.name",
-                                    price: "$$item.price"
                                 }
+                            },
+                            as : "item",
+                            in : {
+                                item_id : "$$item.item_id",
+                                name: "$$item.name",
+                                price: "$$item.price"
                             }
                         }
                     }
                 }
-            ];
+            }
+        ];
 
-            items.category = category
-            items.products = (await this.aggregate("shops", pipeline))[0].items;
-        }
+        items.category = category
+        items.products = (await this.aggregate("shops", pipeline))[0].items;
 
         return items;
     }
