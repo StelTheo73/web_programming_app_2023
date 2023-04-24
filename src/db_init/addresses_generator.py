@@ -34,7 +34,7 @@ def generate_address(person, address_id):
     floor = str(random.randint(1, 7))
 
     address = {
-        "address_id" : address_id,
+        "address_id" : str(address_id),
         "city" : city,
         "street" : street,
         "number" : number,

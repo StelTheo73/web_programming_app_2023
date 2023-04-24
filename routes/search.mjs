@@ -32,14 +32,25 @@ searchRouter.get("/search", async (request, response) => {
       response.redirect("/login");
   }
   else {
+    let userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
+    request.session.userItemsEdited = false;
+    
     let searchInput = request.query.searchInput;
-    let city = request.query.city;
-
+    let city = request.session.lastAddress.city;
     let [shops, products] = await sessionAPI.searchShopsAndItems(searchInput, city);
+  
     shops = searchResultsParser.parseShops(shops);
     products = searchResultsParser.parseProducts(products);
-
-    response.render("search-results", {shops, products});
+  
+    response.render(
+      "search-results",
+        {
+          shops,
+          products,
+          userItemsEdited
+        }
+    );
+    
   }
 });
 

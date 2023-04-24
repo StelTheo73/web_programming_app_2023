@@ -12,9 +12,17 @@ ordersRouter.get("/orders", async (request, response) => {
     }
     else {
         let orders = await sessionAPI.getPersonOrders(request.session.userId[0]._id);
-        let items = []
+        let userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
+        request.session.userItemsEdited = false;
+
         orders = OrdersParser.parseOrders(orders);
-        response.render("orders", { orders });
+        response.render(
+            "orders", 
+            { 
+                orders,
+                userItemsEdited
+            }
+        );
     }
 });
 

@@ -1,6 +1,7 @@
 import { replacesTones } from "../../utils/greekRegex.mjs";
 import { MongoDBClient, ObjectId } from "./client.mjs";
 import { TranslatorAPI } from "../translateAPI/translateAPI.mjs";
+import { response } from "express";
 
 class SessionAPI extends MongoDBClient {
     constructor() {
@@ -18,7 +19,7 @@ class SessionAPI extends MongoDBClient {
 
             userInput = String(userInput);
 
-            for (let char of "{}[]()^-+*/=|/<>~`;:") {
+            for (let char of "{}[]()^+*/=|<>~`;:") {
                 userInput = userInput.replace(char, "");
             }
             
@@ -116,6 +117,27 @@ class SessionAPI extends MongoDBClient {
         return personId;
     } 
 
+    async addressExists(_person_id, address_id) {
+        [_person_id, address_id] = this.parseUserInput([_person_id, address_id]);
+
+        let _query = {
+            _id : new ObjectId(_person_id),
+            addresses : {
+              $elemMatch : {
+                address_id : address_id
+              }
+            }
+        }
+
+        let result = await this.find("persons", _query);
+
+        if (result[0] === null || result[0] === undefined) {
+            return false;
+        }
+
+        return true;
+    }
+
     /**
      * Returns the last used address of a person.
      * The last used address is the address of the last order.
@@ -139,7 +161,8 @@ class SessionAPI extends MongoDBClient {
             {
                 $project : {
                     _id : 0,
-                    address : 1
+                    "address" : 1,
+                    datetime : 1
                 }
             },
             {
@@ -152,8 +175,24 @@ class SessionAPI extends MongoDBClient {
             }
         ];
         lastAddress = await this.aggregate("orders", pipeline);
+        let addressExists = false;
+        if (lastAddress !== []) {
+            addressExists = await this.addressExists(_person_id, lastAddress[0]["address"]["address_id"]);
+        }
 
-        return lastAddress;
+        if (addressExists === true) {
+            return lastAddress[0]["address"];
+        }
+        else {
+            let addresses = await this.getPersonAddresses(_person_id);
+            if (addresses.length === 0) {
+                return {};
+            }
+            else {
+                return addresses[0]
+            }
+        }
+
     }
 
     /**
@@ -169,20 +208,45 @@ class SessionAPI extends MongoDBClient {
 
         _person_id = this.parseUserInput([_person_id])[0];
 
-        let _query = {
-            _id : new ObjectId(_person_id)
-        }
-        let _projection = {
-            _id : 0,
-            addresses : 1
-        }
+        let pipeline = [
+            { 
+                $match: { 
+                    _id: new ObjectId(_person_id) 
+                } 
+            },
+            { 
+                $unwind: "$addresses" 
+            },
+            {
+                 $sort: { 
+                    "addresses.city": 1,
+                    "addresses.street" : 1,
+                    "addresses.number" : 1
+                } 
+            },
+            {
+              $group: {
+                _id: "$_id",
+                addresses: { 
+                    $push: "$addresses" 
+                }
+              }
+            },
+            {
+              $project: {
+                _id: 1,
+                addresses: 1
+              }
+            }
+        ];
 
-        addresses = await this.find("persons", _query, _projection);
-
+        addresses = await this.aggregate("persons", pipeline);
         if (addresses[0]) {
             return addresses[0].addresses;
         }
-        else return [];
+        else {
+            return [];
+        }
     }
 
     /**
@@ -561,22 +625,103 @@ class SessionAPI extends MongoDBClient {
         return items;
     }
 
-    async addPersonAddress(_person_id, _address) {
-        let addressRecord = {};
+    async addPersonItem(_person_id, _item, _type) {
+        _person_id = this.parseUserInput([_person_id])[0];
 
-        for (let field in _address) {
-            _address[field] = this.parseUserInput([_address[field]])[0];
+        let itemRecord = {};
+        for (let field in _item) {
+            _item[field] = this.parseUserInput([_item[field]])[0];
 
-            if (_address[field] != " ") {
-                addressRecord[field] = _address[field];
+            if (_item[field] != " ") {
+                itemRecord[field] = _item[field];
             }
         }
+        
+        const hash = this.createObjectHash(itemRecord);
 
-        console.log(addressRecord);
+        const _filter = {
+            _id : new ObjectId(_person_id)
+        }
 
-        // await 
+        let _update = null;
+        switch (_type) {
+            case "address" : {
+                itemRecord["address_id"] = hash;
+                _update = {
+                    $push : {
+                        addresses : itemRecord
+                    }
+                };
+                break;
+            }
+            case "card" : {
+                itemRecord["card_id"] = hash;
+                _update = {
+                    $push : {
+                        cards : itemRecord
+                    }
+                };
+                break;
+            }
+            default:
+                _update = null;
+
+        }
+        
+        if (_update != null){
+            await this.updateRecord("persons", _filter, _update);
+        }
+
+        return;
     }
 
+    async deletePersonItem(_person_id, _item_id, _type) {
+        [_person_id, _item_id] = this.parseUserInput([_person_id, _item_id]);
+
+        let _filter = null; 
+        let _update = null;
+        switch (_type) {
+            case "address" : {
+                _filter = {
+                    _id : new ObjectId(_person_id),
+                    "addresses.address_id" : _item_id
+                };
+                _update = {
+                    $pull : {
+                        addresses : {
+                            address_id : _item_id
+                        }
+                    }
+                };
+                break;
+            }
+            case "card" : {
+                _filter = {
+                    _id : new ObjectId(_person_id),
+                    "cards.card_id" : _item_id
+                };
+                _update = {
+                    $pull : {
+                        cards : {
+                            card_id : _item_id
+                        }
+                    }
+                };
+                break;
+            }
+            default:
+                _filter = null;
+                _update = null;
+
+        }
+
+        if (_update !== null && _filter !== null){
+            await this.updateRecord("persons", _filter, _update);
+        }
+
+        return;
+
+    }
 }
 
 export { SessionAPI };

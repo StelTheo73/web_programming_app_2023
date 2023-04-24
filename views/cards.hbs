@@ -24,7 +24,7 @@
     {{#if cards}}
         {{#each cards}}
             <div class="col-12 col-md-6 col-xl-4">
-                <div class="address-card-wrapper">
+                <div class="address-card-wrapper {{this._id}}">
                     <div>
                     <label>Αρ. Κάρτας</label>
                     <input type="text" value="{{this.cardNumber}}" readonly>
@@ -55,10 +55,10 @@
     <!-- ROW -->
     <div class="row add-user-item">
         <div class="add-user-item-form-wrapper">
-            <form class="row needs-validation" id="addCardForm" method="post" action="/card/add" novalidate>
+            <form class="row needs-validation" id="addCardForm" method="post" action="/cards/add" novalidate>
                 <div class="form-group col-12 col-sm-6">
                     <label for="card_number" class="form-label required">Αρ. Κάρτας</label>
-                    <input type="text" class="form-control" id="card_number" name="card_number" required pattern="\d{10}">
+                    <input type="text" class="form-control" id="card_number" name="card_number" required pattern="\d{16}">
                     <div class="invalid-feedback">
                         Παρακαλούμε πληκτρολόγησε τον αριθμό της κάρτας σου.
                     </div>

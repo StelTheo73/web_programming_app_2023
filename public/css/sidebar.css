@@ -1,11 +1,20 @@
+/* Earthy color palette */
+:root {
+    --brown: #854d27;
+    --orange: #dd7230;
+    --yellow: #f4c95d;
+    --khaki: #e7e393;
+    --black: #04030f;
+}
+
 .overlay {
     max-width: 420px;
     height: 100%;
     width: 0;
     position: fixed;
     z-index: 1;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0, 0.9);
+    background-color: var(--black);
+    opacity: 0.9;
     overflow-x: hidden;
     transition: 0.5s;
     border-radius: 10px;
@@ -31,8 +40,8 @@
     width: fit-content;
 }
 
-.overlay a:hover, .overlay a:focus {
-    color: #f1f1f1;
+.overlay a:hover {
+    color: var(--khaki);
 }
 
 .overlay #close-main-sidebar-btn {
@@ -61,22 +70,17 @@
     line-height: 0.5em;
 }
 
-/* .sidebar-items-div {
-    border: 1px solid red;
-} */
-
 .sidebar-item-div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    color: aliceblue;
     width: 6.5em;
     height: 3.75em;
     transition: 0.5s;
     font-size: 1em;
-    color:  black;
-    background-color: cornsilk;
+    color:  (var(--black));
+    background-color: var(--khaki)
 }
 
 .sidebar-item-div:hover {
@@ -94,7 +98,6 @@
  /* IMAGES FOR CATEGORIES */
 .sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(1) > span:nth-child(1) {
     background-image: url("/images/hamburger.png");
-
 }
 
 .sidebar-items-div:nth-of-type(1) > .sidebar-item-div:nth-of-type(2) > span:nth-child(1) {

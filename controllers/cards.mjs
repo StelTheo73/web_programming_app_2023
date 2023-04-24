@@ -9,6 +9,7 @@ class CardsParser {
         for (let card of cards) {
             let _card = {};
             
+            _card._id = parseValue(card["card_id"]);
             _card.cardNumber = parseValue(card["card_number"]);
             _card.cvv = parseValue(card["cvv"]);
             _card.expirationDate = parseValue(card["expiration_date"]);

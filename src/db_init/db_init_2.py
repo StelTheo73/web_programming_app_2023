@@ -129,10 +129,6 @@ def map_shops():
         shops_dict[shop_id] = pointer
         pointer+=1
 
-    path = os.path.join(CWD, "db", "shops_map.json")
-    with open(path, "w") as stream:
-        json.dump(shops_dict, stream, indent=2)
-
 def main(persons_number, shops_number):
 
     drop_db()

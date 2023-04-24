@@ -8,6 +8,7 @@ class AddressParser {
         for (let address of addresses) {
             let _address = {};
             
+            _address._id = parseValue(address["address_id"]);
             _address.city = parseValue(address["city"]);
             _address.street = parseValue(address["street"]);
             _address.number = parseValue(address["number"]);

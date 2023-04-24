@@ -17,10 +17,23 @@ loginRouter.post("/login/submit", async (request, response) => {
     const personId = await sessionAPI.userLogin(email, pwd);
     
     console.log("Person Id:", personId);
-    console.log("is? ", personId.length);
 
     if (personId.length) {
         request.session.userId = personId;
+        let lastAddress = await sessionAPI.getLastAddress(request.session.userId[0]._id);
+        let addresses = await sessionAPI.getPersonAddresses(request.session.userId[0]._id);
+
+        request.session.addNewAddress = false;
+        if (Object.keys(lastAddress).length === 0 || addresses.length === 0) {
+          lastAddress = {};
+          addresses = [];
+          request.session.addNewAddress = true;
+        }
+
+        request.session.lastAddress = lastAddress;
+        request.session.addresses = addresses;
+        request.session.userItemsEdited = true;
+
         response.redirect("/");
     }
     else {

@@ -1,0 +1,63 @@
+<div class="add-user-item-form-wrapper">
+    <form class="row needs-validation" id="addAddressForm" method="post" action="/addresses/add" novalidate>
+        <div class="form-group col-12 col-sm-6">
+            <label for="city" class="form-label required">Πόλη:</label>
+            <input type="text" class="form-control" id="city" name="city" required>
+            <div class="invalid-feedback">
+                Παρακαλούμε πληκτρολόγησε την πόλη σου.
+            </div>
+        </div>
+
+        <div class="form-group col-12 col-sm-6 my-1">
+            <label for="street" class="form-label required">Οδός:</label>
+            <input type="text" class="form-control" id="street" name="street" required>
+            <div class="invalid-feedback">
+                Παρακαλούμε πληκτρολόγησε την οδό σου.
+            </div>
+        </div>
+
+        <div class="form-group col-12 col-sm-6 my-1">
+            <label for="number" class="form-label required">Αριθμός:</label>
+            <input type="text" class="form-control" id="number" name="number" required>
+            <div class="invalid-feedback">
+                Παρακαλούμε πληκτρολόγησε τον αριθμό σου.
+            </div>
+        </div>
+
+        <div class="form-group col-12 col-sm-6 my-1">
+            <label for="postcode" class="form-label">Τ.Κ.:</label>
+            <input type="text" class="form-control" id="postcode" name="postcode">
+        </div>
+
+        <div class="form-group col-12 col-sm-6 my-1">
+            <label for="country" class="form-label required">Χώρα</label>
+            <select class="form-select" id="country" required>
+                <option selected value="Ελλάδα">Ελλάδα</option>
+                <option value="Κύπρος">Κύπρος</option>                
+            </select>
+            <div class="invalid-feedback">
+                Παρακαλούμε επέλεξε τη χώρα σου.
+            </div>
+        </div>
+
+        <div class="form-group col-12 col-sm-6 my-1">
+            <label for="floor" class="form-label">Όροφος:</label>
+            <input type="text" class="form-control" id="floor" name="floor">
+        </div>
+
+        <div class="form-group col-12 col-sm-6 my-1">
+            <label for="bell" class="form-label">Κουδούνι:</label>
+            <input type="text" class="form-control" id="bell" name="bell">
+        </div>
+
+        <div class="form-group col-12 col-sm-6 my-1">
+            <label for="note" class="form-label">Σημειώσεις:</label>
+            <input type="text" class="form-control" id="note" name="note">
+        </div>
+
+
+        <div class="col-12 my-1">
+            <input type="submit" class="btn btn-primary bg-success add-item" value="Προσθήκη">
+        </div>
+    </form>
+</div>

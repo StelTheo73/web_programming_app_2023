@@ -1,7 +1,8 @@
 import express from "express";
 import session from "express-session";
-import { Session } from "express-session";
 import { engine } from "express-handlebars";
+import cookieParser from "cookie-parser";
+import { SessionAPI } from "./services/database_IO/sessionAPI.mjs";
 
 import { loginRouter } from "./routes/login.mjs";
 import { ordersRouter } from "./routes/orders.mjs";
@@ -11,9 +12,11 @@ import { shopRouter } from "./routes/shop.mjs";
 import { searchRouter } from "./routes/search.mjs";
 
 const app = express();
+const sessionAPI = new SessionAPI();
 
 app.use(express.static("public"));
 app.use(express.urlencoded({extended : false}));
+app.use(cookieParser());
 app.use(session({
     secret: 'your-secret-key',
     resave: false,
@@ -35,11 +38,23 @@ app.get("/", async (request, response) => {
     const myUrl = new URL("http://" + request.headers.host + request.url);
     console.log(request.method, ", ", request.url);
 
+    
     if (!request.session.userId) {
         response.redirect("/login");
     }
     else {
-        response.render("homepage", {});
+        let lastAddress = request.session.lastAddress;
+        let addresses = request.session.addresses;
+        let addNewAddress = request.session.addNewAddress;
+        let userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
+        request.session.userItemsEdited = false;
+
+        response.render("homepage", { 
+            lastAddress,
+            addresses,
+            addNewAddress,
+            userItemsEdited
+        });
     }
 
 });

@@ -20,7 +20,7 @@ def generate_card(person, card_id):
     cvv = random_choice(NUMBERS, 3)
 
     return {
-        "card_id" : card_id,
+        "card_id" : str(card_id),
         "card_number" : card_number,
         "cvv" : cvv,
         "expiration_date" : expiration_date,

@@ -44,6 +44,10 @@ shopRouter.get("/shops/:shop_id", async (request, response) => {
 
         const shopId = request.url.split("/")[2];
         const shop = await sessionAPI.getShopData(shopId);
+        let lastAddress = request.session.lastAddress;
+        let addresses = request.session.addresses;
+        let userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
+        request.session.userItemsEdited = false;
 
         let itemsPerCategory = [];
 
@@ -51,7 +55,14 @@ shopRouter.get("/shops/:shop_id", async (request, response) => {
             itemsPerCategory.push(await sessionAPI.fetchItemsByCategory(shopId, category));
         }
 
-        response.render("shop", { shop, itemsPerCategory });
+        response.render(
+            "shop",
+            { 
+                shop,
+                itemsPerCategory,
+                userItemsEdited
+            }
+        );
         // response.send(itemsPerCategory);
         // response.end();
     // }
