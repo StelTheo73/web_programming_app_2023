@@ -18,12 +18,13 @@
         <link rel="stylesheet" href="css/base_stylesheet.css">
         <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/sidebar.css">
-        <link rel="stylesheet" href="css/addresses.css">
+        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/profil.css">
 
         <!-- JS -->
         <script src="../javascript/base.js" defer type="module"></script>
         <script src="../javascript/sidebar.js" defer type="module"></script>
-        <script src="../javascript/user_items.js" defer type="module"></script>
+        
 
     </head>
     <body>
@@ -38,7 +39,7 @@
             <a href="/templates/base.html">Home</a>
 
             <!-- FOOD CATEGORIES -->
-            <a href="#" class="sidebar-dropdown-link" id="sidebar-categories-link">Categories</a> <!-- TODO: HIDE CONTENT ON CLICK -->
+            <a href="#" class="sidebar-dropdown-link" id="sidebar-categories-link">Categories</a>
             <div class="d-flex flex-wrap justify-content-start px-sm-1 sidebar-items-div">
               <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Burgers</span></div>
               <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Pizza</span></div>
@@ -94,7 +95,7 @@
                       <i class="fas fa-user-circle"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end shadow mt-1">
-                      <li><a class="dropdown-item" href="/templates/profil.html" type="button">Προβολή Προφίλ</a></li>
+                      <li><a class="dropdown-item" href="#" type="button">Προβολή Προφίλ</a></li>
                       <li><a class="dropdown-item" href="/templates/orders.html" type="button">Παραγγελίες</a></li>
                       <li><a class="dropdown-item" href="/templates/address.html" type="button">Διαχείριση Διευθύνσεων</a></li>
                       <li><a class="dropdown-item" href="/templates/cards.html" type="button">Διαχείριση Καρτών</a></li>
@@ -116,52 +117,103 @@
 
       <!-- MAIN -->
       <main>
-          <div class="container user-items" id="user-items-cards">
-                  <!-- ROW -->
-                  <div class="row">
-                    <div class="col-6">
-                      <h1>Διαχείριση Καρτών</h1>
-                    </div>
-                    
-                    <div class="col-6 d-flex justify-content-end align-items-center">
-                      <button type="button" class="btn btn-primary bg-success add-new-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        Προσθήκη Νέας
-                      </button>
-                    </div>
-                    
-                    <!-- MODAL -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            ...
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Understood</button>
-                          </div>
-                        </div>
+        <div class="container user-items" id="user-items-profile">
+            <!-- ROW -->
+            <div class="row">
+            <div class="col-6">
+                <h1>Το προφίλ μου</h1>
+            </div>
+            
+            <div class="col-6 d-flex justify-content-end align-items-center">
+                <button type="button" class="btn btn-primary bg-success show-profil-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Επεξεργασία προφίλ
+                </button>
+            </div>
+            
+            <!-- MODAL -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Επεξεργασία Προφίλ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email">
                       </div>
-                    </div>                    
-                    <!-- END MODAL -->
+                      <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                      </div>
+                      <div class="mb-3">
+                        <label for="firstname" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname">
+                      </div>
+                      <div class="mb-3">
+                        <label for="lastname" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname">
+                      </div>
+                      <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control" id="phone" name="phone">
+                      </div>
+                      <div class="mb-3">
+                        <label for="birthdate" class="form-label">Birthdate</label>
+                        <input type="date" class="form-control" id="birthdate" name="birthdate">
+                      </div>
+                    </form>
                   </div>
-                  <!-- END ROW -->
-                  
-                  <!-- ROW -->
-                  <div class="row">
-                    <!-- CARDS HERE -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Κλείσιμο</button>
+                    <button type="button" class="btn btn-primary" id="save-btn">Αποθήκευση</button>
                   </div>
-                  <!-- END ROW -->
+                </div>
+              </div>
+            </div>               
+            <!-- END MODAL -->
+            </div>
+            <!-- END ROW -->
+            
+            <!-- ROW -->
+            <div class="row">
+              <!-- PROFILE HERE -->
+              <div class="col-12 col-md-6 col-xl-4">
+                <div class="address-profil-wrapper">
+                <div>
+                    <label>Email</label>
+                    <input type="text" value="testemail@email.com" readonly>
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input type="password" value="123456789" readonly>
+                </div>
+                <div>
+                    <label>Firstname</label>
+                    <input type="text" value="Antony" readonly>
+                </div>   
+                <div>
+                    <label>Lastname</label>
+                    <input type="text" value="Davis" readonly>
+                </div>
+                <div>
+                    <label>Phone</label>
+                    <input type="text" value="69132456789" readonly>
+                </div>
+                <div>
+                    <label>Birthdate</label>
+                    <input type="text" value="01/01/2001" readonly>
+                </div>
+                </div>
+            </div>
+            </div>
+            <!-- END ROW -->
 
-          </div>
-      </main>
+        </div>
+    </main>
       <!-- END MAIN -->
-
-
 
       <!-- FOOTER -->
       <hr>
@@ -170,12 +222,12 @@
         <!-- FOOTER ROW -->
         <div class="row justify-content-start">
           <h5>Contact</h5>
-          <div class="col pt-2">
+          <div class="col-sm-6 pt-2">
             <a href="mailto:" title="mailto" class="mailto-a">Makris Konstantinos</a>
             <br>
             <a href="https://github.com/makket13" target="_blank" title="github.com/makket13"><i class="fab fa-github"></i></a>
           </div>
-          <div class="col pt-2">
+          <div class="col-sm-6 pt-2">
             <a href="mailto:up1072791@upnet.gr" title="mailto:up1072791@upnet.gr"  class="mailto-a">Theofilou Stylianos</a>
             <br>
             <a href="https://github.com/StelTheo73" target="_blank" title="github.com/StelTheo73"><i class="fab fa-github"></i></a>
@@ -190,12 +242,6 @@
         <div class="row">
           <div class="d-flex flex-column flex-sm-row justify-content-between">
             <p>© 2023: makket13 x StelTheo73 - All rights reserved.</p>
-            <ul class="list-unstyled d-flex">
-              <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-twitter"></i></a></li>
-              <li class="ms-3"><a class="link-dark" target="_blank" href="https://www.facebook.com/StelTheo73/"><i class="bi bi-facebook"></i></a></li>
-              <li class="ms-3"><a class="link-dark" target="_blank" href="https://www.instagram.com/steltheo73/"><i class="bi bi-instagram"></i></a></li>
-              <li class="ms-3"><a class="link-dark" target="_blank" href="https://www.youtube.com/channel/UCsTPowewJM8I9pjLwdEOlew"><i class="bi bi-youtube"></i></a></li>
-            </ul>
           </div>
         </div>
         <!-- END FOOTER ROW -->

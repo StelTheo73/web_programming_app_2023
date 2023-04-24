@@ -1,470 +1,549 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- BOOTSTRAP -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <head>
+        <title>El Food </title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--ICONS-->
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.14.0/css/all.css">
+        <!-- BOOTSTRAP -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>        
+        
+        <!--ICONS-->
+        <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.14.0/css/all.css">
 
-    <title>Chicken Nuggets | Online Food Ordering</title>
-    
-    
-    <!-- CUSTOM STYLESHEETS -->
-    <link rel="stylesheet" href="css/shop.css">
-    <link rel="stylesheet" href="css/base_stylesheet.css">   
-    
-  </head>
-  <body>
-    <!-- HEADER -->
-    <header>
-      <img src="../images/elfood.png" alt="Food">
-    </header>
+        <!-- CUSTOM STYLESHEETS -->
+        <link rel="stylesheet" href="css/base_stylesheet.css">
+        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/sidebar.css">
+        <link rel="stylesheet" href="css/shop.css">
 
-    <!-- NAV BAR -->
-    <div class="nav">
-      <h1>Chicken Grill</h1>
-      <ul>
-        <img src="../images/Half-Chicken.jpg" alt="Food" class="logo">
-        <li class="cost">Lower cost: 4 euro</li>
-        <li class="rating">Rating: 4.5 to 5 stars</li>
-      </ul>
-    </div>
+        <!-- JS -->
+        <script src="../javascript/base.js" defer type="module"></script>
+        <script src="../javascript/sidebar.js" defer type="module"></script>
 
-    <!-- MAIN CONTENT -->
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 col-category">
-          <h3>Category</h3>
-          <ul>
-            <li><a href="#" data-category="Burgers">Burgers</a></li>
-            <li><a href="#" data-category="Pizzas">Pizzas</a></li>
-            <li><a href="#" data-category="Αναψυκτικά">Αναψυκτικά</a></li>
-            <li><a href="#" data-category="Γλυκά">Γλυκά</a></li>
-            <li><a href="#" data-category="Ζυμαρικά">Ζυμαρικά</a></li>
-            <li><a href="#" data-category="Θαλασσινά">Θαλασσινά</a></li>
-            <li><a href="#" data-category="Καφέδες">Καφέδες</a></li>
-            <li><a href="#" data-category="Κρέπες">Κρέπες</a></li>
-            <li><a href="#" data-category="Μαγειρευτά">Μαγειρευτά</a></li>
-            <li><a href="#" data-category="Ορεκτικά">Ορεκτικά</a></li>
-            <li><a href="#" data-category="Σαλάτες">Σαλάτες</a></li>
-            <li><a href="#" data-category="Σουβλάκια">Σουβλάκια</a></li>
-            <li><a href="#" data-category="Σφολιάτες">Σφολιάτες</a></li>
-            <li><a href="#" data-category="Ψητά">Ψητά</a></li>
-          </ul>
-        </div>
-        <div class="col-md-8 col-products">
-          <div class="product" data-category="Burgers">
-            <h3>Burgers</h3>
-            <ul>
-              <li>
-                <h4>Chicken Burger</h4>
-                <p>Delicious chicken burger with lettuce, tomato, and mayo</p>
-                <p>Price: 5 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Cheeseburger</h4>
-                <p>Classic cheeseburger with beef patty, cheese, lettuce, tomato, and ketchup</p>
-                <p>Price: 6 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Vegetarian Burger</h4>
-                <p>Vegetarian burger with lettuce, tomato, and mayo</p>
-                <p>Price: 5 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Bacon Burger</h4>
-                <p>Burger with bacon, cheese, lettuce, tomato, and ketchup</p>
-                <p>Price: 7 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
-          </div>
-          <div class="product" data-category="Pizzas">
-            <h3>Pizzas</h3>
-            <ul>
-              <li>
-                <h4>Margherita Pizza</h4>
-                <p>Classic pizza with tomato sauce, mozzarella cheese, and basil</p>
-                <p>Price: 7 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Hawaiian Pizza</h4>
-                <p>Pizza with tomato sauce, mozzarella cheese, ham, and pineapple</p>
-                <p>Price: 8 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-              <h4>Pepperoni Pizza</h4>
-              <p>Pizza with tomato sauce, mozzarella cheese, and pepperoni</p>
-              <p>Price: 9 euro</p>
-              <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-              <h4>Veggie Pizza</h4>
-              <p>Pizza with tomato sauce, mozzarella cheese, onions, peppers, mushrooms, and olives</p>
-              <p>Price: 8 euro</p>
-              <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
-          </div>
-          <div class="product" data-category="Αναψυκτικά">
-            <h3>Αναψυκτικά</h3>
-            <ul>
-              <li>
-                <h4>Νερό 0.5L</h4>
-                <p>Price: 0.5 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Coca-Cola</h4>
-                <p>Price: 2 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-              <h4>Πορτοκαλάδα μπλε</h4>
-              <p>Price: 2 euro</p>
-              <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-              <h4>Πορτοκαλάδα με ανθρακικό</h4>
-              <p>Price: 2 euro</p>
-              <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-              <h4>Σόδα</h4>
-              <p>Price: 2 euro</p>
-              <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
-          </div>
-          <div class="product" data-category="Γλυκά">
-            <h3>Γλυκά</h3>
-            <ul>
-              <li>
-                <h4>Red velvet</h4>
-                <p>Price: 6 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Cheescake</h4>
-                <p>Price: 5.5 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-              <h4>Σοκολατόπιτα</h4>
-              <p>Price: 5 euro</p>
-              <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-              <h4>Προφιτερόλ</h4>
-              <p>Price: 5 euro</p>
-              <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-              <h4>Παγωτό</h4>
-              <p>Price: 5.5 euro</p>
-              <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
-          </div>
-          <div class="product" data-category="Ζυμαρικά">
-            <h3>Ζυμαρικά</h3>
-            <ul>
-              <li>
-                <h4>Καρμπονάρα</h4>
-                <p>Νόστιμα μακαρόνια με bacon,αυγό και παρμεζάνα</p>
-                <p>Price: 5 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Μπολονέζ</h4>
-                <p>Νόστιμα μακαρόνια με φρέσκια ντομάτα και φρέσκο κυμά</p>
-                <p>Price: 6 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Ναπολιτέν</h4>
-                <p>Νόστιμα μακαρόνια με φρέσκια ντομάτα</p>
-                <p>Price: 5 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Αραμπιάτα</h4>
-                <p>Νόστιμα μακαρόνια με φρέσκια ντομάτα και καυτερή πιπεριά</p>
-                <p>Price: 7 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
-          </div>
-          <div class="product" data-category="Θαλασσινά">
-            <h3>Θαλασσινά</h3>
-            <ul>
-              <li>
-                <h4>Χταπόδι ψητό</h4>
-                <p>Χταπόδι ψητό στα κάρβουνα</p>
-                <p>Price: 10 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Χταπόδι βραστό</h4>
-                <p>Χταπόδι βραστό με μπόλικο ξυδι</p>
-                <p>Price: 10 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Καλαμαράκια τηγανητά</h4>
-                <p>Καλαμαράκια φρέσκα με λεμόνι</p>
-                <p>Price: 7 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Τσιπούρα ψητή</h4>
-                <p>Τσιπούρα πελαγίσια ψητή στα κάρβουνα</p>
-                <p>Price: 7 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
-          </div>
-          <div class="product" data-category="Καφέδες">
-            <h3>Καφέδες</h3>
-            <ul>
-              <li>
-                <h4>Fredo Espresso</h4>
-                <p>Γλυκοός,μέτριος και σκέτος</p>
-                <p>Price: 2 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Capuccino</h4>
-                <p>Γλυκοός,μέτριος και σκέτος</p>
-                <p>Price: 2 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Ελληνικός</h4>
-                <p>Γλυκοός,μέτριος και σκέτος</p>
-                <p>Price: 1.5 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Latte</h4>
-                <p>Γλυκοός,μέτριος και σκέτος</p>
-                <p>Price: 3 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
-          </div>
-          <div class="product" data-category="Κρέπες">
-            <h3>Κρέπες</h3>
-            <ul>
-              <li>
-                <h4>Κρέπα γλυκία</h4>
-                <p>Κρέπα με σοκολάτα πραλίνα και τριμμένο μπισκότο</p>
-                <p>Price: 5 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Κρέπα κοτομπουκιές</h4>
-                <p>Κρέπα με κοτομπουκιές πατάτες και κίτρινη σος</p>
-                <p>Price: 6 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Κρέπα αλαντικών</h4>
-                <p>Κρέπα με αλαντικά και τυρί</p>
-                <p>Price: 5 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
-          </div>
-          <div class="product" data-category="Μαγειρευτά">
-            <h3>Μαγειρευτά</h3>
-            <ul>
-              <li>
-                <h4>Ντολμαδάκια</h4>
-                <p>Φρέσκα μαγειρεμένα ντολμαδάκια</p>
-                <p>Price: 4 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Φακές</h4>
-                <p>Φρέσκιες μαγειρεμένες φακιές</p>
-                <p>Price: 4 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Κοτόπουλο ψητό</h4>
-                <p>Κοτόπουλο ψητό στο φούρνο με πατάτες</p>
-                <p>Price: 1.5 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
-          </div>
-          <div class="product" data-category="Ορεκτικά">
-            <h3>Ορεκτικά</h3>
-            <ul>
-              <li>
-                <h4>Πατάτες τηγανητές</h4>
-                <p>Πατάτες τηγανισμένες σε φρέσκο ελαιόλαδο</p>
-                <p>Price: 3 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Τζατζίκι</h4>
-                <p>Φρέσκο τζατζίκι με λάδι</p>
-                <p>Price: 2 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Κολοκυθοκεφτέδες</h4>
-                <p>Φρέσκοι χειροποίητοι κολοκυθοκεφτέδες</p>
-                <p>Price: 4 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
-          </div>
-          <div class="product" data-category="Σαλάτες">
-            <h3>Salads</h3>
-            <ul>
-              <li>
-                <h4>Greek Salad</h4>
-                <p>Salad with lettuce, tomato, cucumber, feta cheese, and olives</p>
-                <p>Price: 5 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Caesar Salad</h4>
-                <p>Salad with romaine lettuce, croutons, Parmesan cheese, and Caesar dressing</p>
-                <p>Price: 6 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Cobb Salad</h4>
-                <p>Salad with lettuce, tomato, bacon, chicken, avocado, and blue cheese dressing</p>
-                <p>Price: 8 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
-          </div>
-          <div class="product" data-category="Σουβλάκια">
-            <h3>Σουβλάκια</h3>
-            <ul>
-              <li>
-                <h4>Σουβλάκι κοτόπουλο</h4>
-                <p>Χειροποίητο σουβλάκι απο φρέσκο κοτόπουλο</p>
-                <p>Price: 2 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Σουβλάκι χοιρινό</h4>
-                <p>Χειροποίητο σουβλάκι απο φρέσκο χοιρινό</p>
-                <p>Price: 2 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Σουβλάκι κεμπάπ</h4>
-                <p>Χειροποίητο σουβλάκι απο φρέσκο κεμπάπ</p>
-                <p>Price: 2 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
-          </div>
-          <div class="product" data-category="Σφολιάτες">
-            <h3>Σφολιάτες</h3>
-            <ul>
-              <li>
-                <h4>Τυρόπιτα</h4>
-                <p>Τυρόπιτα απο δικό μας φύλλο και τυρί</p>
-                <p>Price: 2 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Λουκανόπιτα</h4>
-                <p>Λουκανόπιτα με φρέσκο λουκάνικο</p>
-                <p>Price: 2 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Κρουασάν σοκολάτα</h4>
-                <p>Κρουασάν σοκολάτα από φρέσκια ζύμη</p>
-                <p>Price: 2 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
-          </div>
-          <div class="product" data-category="Ψητά">
-            <h3>Ψητά</h3>
-            <ul>
-              <li>
-                <h4>Φιλέτο κοτόπουλο</h4>
-                <p>Φρέσκο ψητό φιλέτο κοτόπουλο συνοδεύεται απο πατάτες τηγανητές</p>
-                <p>Price: 2 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Μπριζόλα χοιρινή</h4>
-                <p>Φρέσκια ψητή μπριζόλα χοιρινή συνοδεύεται απο πατάτες τηγανητές</p>
-                <p>Price: 2 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-              <li>
-                <h4>Μπριζόλα μοσχαρίσια</h4>
-                <p>Φρέσκια ψητή μπριζόλα μοσχαρίσια συνοδεύεται απο πατάτες τηγανητές</p>
-                <p>Price: 2 euro</p>
-                <button class="add-to-basket">Προσθήκη στο καλάθι</button>
-              </li>
-            </ul>
+    </head>
+    <body>
+
+      <!-- NAV AND SIDENAV-->
+      <div id="navbar-and-sidebar-wrapper">
+
+        <!-- SIDEBAR -->
+        <div id="main-sidebar" class="overlay">
+          <a href="#" id="close-main-sidebar-btn">×</a>
+          <div class="overlay-content">
+            <a href="/templates/base.html">Home</a>
+
+            <!-- FOOD CATEGORIES -->
+            <a href="#" class="sidebar-dropdown-link" id="sidebar-categories-link">Categories</a>
+            <div class="d-flex flex-wrap justify-content-start px-sm-1 sidebar-items-div">
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Burgers</span></div>
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Pizza</span></div>
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Αναψυκτικά</span></div>
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Γλυκά</span></div>
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Ζυμαρικά</span></div>
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Θαλασσινά</span></div>
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Καφέδες</span></div>
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Κρέπες</span></div>
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Μαγειρευτά</span></div>
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Ορεκτικά</span></div>
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Σαλάτες</span></div>
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Σουβλάκια</span></div>
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Σφολιάτες</span></div>
+              <div class="m-1 px-2 sidebar-item-div hide"><span></span><span>Ψητά</span></div>
+            </div>
+            <!-- END FOOD CATEGORIES -->
+
+            <a href="#footer" id="sidebar-link-to-footer">Contact Us</a>
           </div>
         </div>
+        <!-- END SIDEBAR -->
+  
+        <div id="main-navbar">
+          <header class="py-3 mb-3 border-bottom" id="main-header">
+            <div class="container-fluid d-grid gap-3 align-items-start px-0" style="grid-template-columns: 1fr 2fr;">
+  
+                <div class="d-flex align-items-start">
+                    
+                    <div id="sidenav-toggler-icon" class="nav-link py-0 ps-2 ps-sm-4">
+                        <button class="btn btn-secondary" id="open-main-sidebar-btn">
+                          <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
+  
+                    <div>
+                        <a href="/templates/base.html">Home</a>
+                    </div>
+                </div>
+              
+              <div class="d-flex align-items-center pe-2 pe-sm-4">
+
+                <!-- SEARCH FORM -->
+                <form class="w-100 me-3">
+                  <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+                <!-- END SEARCH FORM -->
+
+                <!-- USER ICON & DROPDOWN -->
+                <div class="flex-shrink-0 dropdown">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fas fa-user-circle"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow mt-1">
+                      <li><a class="dropdown-item" href="/templates/profil.html" type="button">Προβολή Προφίλ</a></li>
+                      <li><a class="dropdown-item" href="/templates/orders.html" type="button">Παραγγελίες</a></li>
+                      <li><a class="dropdown-item" href="/templates/address.html" type="button">Διαχείριση Διευθύνσεων</a></li>
+                      <li><a class="dropdown-item" href="/templates/cards.html" type="button">Διαχείριση Καρτών</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#" type="button">Εγγραφή</a></li>
+                      <li><a class="dropdown-item" href="#" type="button">Αποσύνδεση</a></li>
+                    </ul>
+                  </div>
+                  <!-- END USER ICON & DROPDOWN -->
+
+                </div>
+              </div>
+            </div>
+          </header>
+        </div>
+      
       </div>
-    </div>
-    <!-- FOOTER -->
-    <hr>
-    <footer class="container" id="footer">
+      <!-- END NAV AND SIDENAV -->
 
-      <!-- FOOTER ROW -->
-      <div class="row justify-content-start">
-        <h5>Contact</h5>
-        <div class="col-sm-6 pt-2">
-          <a href="mailto:up1080591@upnet.gr" title="mailto:up1080591@upnet.gr" class="mailto-a">Makris Konstantinos</a>
-          <br>
-          <a href="https://github.com/makket13" target="_blank" title="github.com/makket13"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/konstantinos-makris-bba475252/" target="_blank" title="www.linkedin.com/in/stylianos-theofilou"><i class="fab fa-linkedin footer-icons"></i></a>
-        </div>
-        <div class="col-sm-6 pt-2">
-          <a href="mailto:up1072791@upnet.gr" title="mailto:up1072791@upnet.gr"  class="mailto-a">Theofilou Stylianos</a>
-          <br>
-          <a href="https://github.com/StelTheo73" target="_blank" title="github.com/StelTheo73"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/stylianos-theofilou-976ab923b" target="_blank" title="www.linkedin.com/in/stylianos-theofilou"><i class="fab fa-linkedin footer-icons"></i></a>
-        </div>
-      </div>
-      <!-- END FOOTER ROW -->
+      <!-- MAIN -->
+      <main>
+        <div class="container">
+            <div class="row">
+              <div class="col-md-4 col-category">
+                <h3>Category</h3>
+                <ul>
+                  <li><a href="#" data-category="Burgers">Burgers</a></li>
+                  <li><a href="#" data-category="Pizzas">Pizzas</a></li>
+                  <li><a href="#" data-category="Αναψυκτικά">Αναψυκτικά</a></li>
+                  <li><a href="#" data-category="Γλυκά">Γλυκά</a></li>
+                  <li><a href="#" data-category="Ζυμαρικά">Ζυμαρικά</a></li>
+                  <li><a href="#" data-category="Θαλασσινά">Θαλασσινά</a></li>
+                  <li><a href="#" data-category="Καφέδες">Καφέδες</a></li>
+                  <li><a href="#" data-category="Κρέπες">Κρέπες</a></li>
+                  <li><a href="#" data-category="Μαγειρευτά">Μαγειρευτά</a></li>
+                  <li><a href="#" data-category="Ορεκτικά">Ορεκτικά</a></li>
+                  <li><a href="#" data-category="Σαλάτες">Σαλάτες</a></li>
+                  <li><a href="#" data-category="Σουβλάκια">Σουβλάκια</a></li>
+                  <li><a href="#" data-category="Σφολιάτες">Σφολιάτες</a></li>
+                  <li><a href="#" data-category="Ψητά">Ψητά</a></li>
+                </ul>
+              </div>
+              <div class="col-md-8 col-products">
+                <div class="product" data-category="Burgers">
+                  <h3>Burgers</h3>
+                  <ul>
+                    <li>
+                      <h4>Chicken Burger</h4>
+                      <p>Delicious chicken burger with lettuce, tomato, and mayo</p>
+                      <p>Price: 5 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Cheeseburger</h4>
+                      <p>Classic cheeseburger with beef patty, cheese, lettuce, tomato, and ketchup</p>
+                      <p>Price: 6 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Vegetarian Burger</h4>
+                      <p>Vegetarian burger with lettuce, tomato, and mayo</p>
+                      <p>Price: 5 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Bacon Burger</h4>
+                      <p>Burger with bacon, cheese, lettuce, tomato, and ketchup</p>
+                      <p>Price: 7 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product" data-category="Pizzas">
+                  <h3>Pizzas</h3>
+                  <ul>
+                    <li>
+                      <h4>Margherita Pizza</h4>
+                      <p>Classic pizza with tomato sauce, mozzarella cheese, and basil</p>
+                      <p>Price: 7 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Hawaiian Pizza</h4>
+                      <p>Pizza with tomato sauce, mozzarella cheese, ham, and pineapple</p>
+                      <p>Price: 8 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                    <h4>Pepperoni Pizza</h4>
+                    <p>Pizza with tomato sauce, mozzarella cheese, and pepperoni</p>
+                    <p>Price: 9 euro</p>
+                    <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                    <h4>Veggie Pizza</h4>
+                    <p>Pizza with tomato sauce, mozzarella cheese, onions, peppers, mushrooms, and olives</p>
+                    <p>Price: 8 euro</p>
+                    <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product" data-category="Αναψυκτικά">
+                  <h3>Αναψυκτικά</h3>
+                  <ul>
+                    <li>
+                      <h4>Νερό 0.5L</h4>
+                      <p>Price: 0.5 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Coca-Cola</h4>
+                      <p>Price: 2 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                    <h4>Πορτοκαλάδα μπλε</h4>
+                    <p>Price: 2 euro</p>
+                    <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                    <h4>Πορτοκαλάδα με ανθρακικό</h4>
+                    <p>Price: 2 euro</p>
+                    <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                    <h4>Σόδα</h4>
+                    <p>Price: 2 euro</p>
+                    <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product" data-category="Γλυκά">
+                  <h3>Γλυκά</h3>
+                  <ul>
+                    <li>
+                      <h4>Red velvet</h4>
+                      <p>Price: 6 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Cheescake</h4>
+                      <p>Price: 5.5 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                    <h4>Σοκολατόπιτα</h4>
+                    <p>Price: 5 euro</p>
+                    <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                    <h4>Προφιτερόλ</h4>
+                    <p>Price: 5 euro</p>
+                    <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                    <h4>Παγωτό</h4>
+                    <p>Price: 5.5 euro</p>
+                    <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product" data-category="Ζυμαρικά">
+                  <h3>Ζυμαρικά</h3>
+                  <ul>
+                    <li>
+                      <h4>Καρμπονάρα</h4>
+                      <p>Νόστιμα μακαρόνια με bacon,αυγό και παρμεζάνα</p>
+                      <p>Price: 5 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Μπολονέζ</h4>
+                      <p>Νόστιμα μακαρόνια με φρέσκια ντομάτα και φρέσκο κυμά</p>
+                      <p>Price: 6 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Ναπολιτέν</h4>
+                      <p>Νόστιμα μακαρόνια με φρέσκια ντομάτα</p>
+                      <p>Price: 5 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Αραμπιάτα</h4>
+                      <p>Νόστιμα μακαρόνια με φρέσκια ντομάτα και καυτερή πιπεριά</p>
+                      <p>Price: 7 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product" data-category="Θαλασσινά">
+                  <h3>Θαλασσινά</h3>
+                  <ul>
+                    <li>
+                      <h4>Χταπόδι ψητό</h4>
+                      <p>Χταπόδι ψητό στα κάρβουνα</p>
+                      <p>Price: 10 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Χταπόδι βραστό</h4>
+                      <p>Χταπόδι βραστό με μπόλικο ξυδι</p>
+                      <p>Price: 10 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Καλαμαράκια τηγανητά</h4>
+                      <p>Καλαμαράκια φρέσκα με λεμόνι</p>
+                      <p>Price: 7 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Τσιπούρα ψητή</h4>
+                      <p>Τσιπούρα πελαγίσια ψητή στα κάρβουνα</p>
+                      <p>Price: 7 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product" data-category="Καφέδες">
+                  <h3>Καφέδες</h3>
+                  <ul>
+                    <li>
+                      <h4>Fredo Espresso</h4>
+                      <p>Γλυκοός,μέτριος και σκέτος</p>
+                      <p>Price: 2 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Capuccino</h4>
+                      <p>Γλυκοός,μέτριος και σκέτος</p>
+                      <p>Price: 2 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Ελληνικός</h4>
+                      <p>Γλυκοός,μέτριος και σκέτος</p>
+                      <p>Price: 1.5 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Latte</h4>
+                      <p>Γλυκοός,μέτριος και σκέτος</p>
+                      <p>Price: 3 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product" data-category="Κρέπες">
+                  <h3>Κρέπες</h3>
+                  <ul>
+                    <li>
+                      <h4>Κρέπα γλυκία</h4>
+                      <p>Κρέπα με σοκολάτα πραλίνα και τριμμένο μπισκότο</p>
+                      <p>Price: 5 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Κρέπα κοτομπουκιές</h4>
+                      <p>Κρέπα με κοτομπουκιές πατάτες και κίτρινη σος</p>
+                      <p>Price: 6 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Κρέπα αλαντικών</h4>
+                      <p>Κρέπα με αλαντικά και τυρί</p>
+                      <p>Price: 5 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product" data-category="Μαγειρευτά">
+                  <h3>Μαγειρευτά</h3>
+                  <ul>
+                    <li>
+                      <h4>Ντολμαδάκια</h4>
+                      <p>Φρέσκα μαγειρεμένα ντολμαδάκια</p>
+                      <p>Price: 4 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Φακές</h4>
+                      <p>Φρέσκιες μαγειρεμένες φακιές</p>
+                      <p>Price: 4 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Κοτόπουλο ψητό</h4>
+                      <p>Κοτόπουλο ψητό στο φούρνο με πατάτες</p>
+                      <p>Price: 1.5 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product" data-category="Ορεκτικά">
+                  <h3>Ορεκτικά</h3>
+                  <ul>
+                    <li>
+                      <h4>Πατάτες τηγανητές</h4>
+                      <p>Πατάτες τηγανισμένες σε φρέσκο ελαιόλαδο</p>
+                      <p>Price: 3 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Τζατζίκι</h4>
+                      <p>Φρέσκο τζατζίκι με λάδι</p>
+                      <p>Price: 2 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Κολοκυθοκεφτέδες</h4>
+                      <p>Φρέσκοι χειροποίητοι κολοκυθοκεφτέδες</p>
+                      <p>Price: 4 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product" data-category="Σαλάτες">
+                  <h3>Salads</h3>
+                  <ul>
+                    <li>
+                      <h4>Greek Salad</h4>
+                      <p>Salad with lettuce, tomato, cucumber, feta cheese, and olives</p>
+                      <p>Price: 5 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Caesar Salad</h4>
+                      <p>Salad with romaine lettuce, croutons, Parmesan cheese, and Caesar dressing</p>
+                      <p>Price: 6 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Cobb Salad</h4>
+                      <p>Salad with lettuce, tomato, bacon, chicken, avocado, and blue cheese dressing</p>
+                      <p>Price: 8 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product" data-category="Σουβλάκια">
+                  <h3>Σουβλάκια</h3>
+                  <ul>
+                    <li>
+                      <h4>Σουβλάκι κοτόπουλο</h4>
+                      <p>Χειροποίητο σουβλάκι απο φρέσκο κοτόπουλο</p>
+                      <p>Price: 2 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Σουβλάκι χοιρινό</h4>
+                      <p>Χειροποίητο σουβλάκι απο φρέσκο χοιρινό</p>
+                      <p>Price: 2 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Σουβλάκι κεμπάπ</h4>
+                      <p>Χειροποίητο σουβλάκι απο φρέσκο κεμπάπ</p>
+                      <p>Price: 2 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product" data-category="Σφολιάτες">
+                  <h3>Σφολιάτες</h3>
+                  <ul>
+                    <li>
+                      <h4>Τυρόπιτα</h4>
+                      <p>Τυρόπιτα απο δικό μας φύλλο και τυρί</p>
+                      <p>Price: 2 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Λουκανόπιτα</h4>
+                      <p>Λουκανόπιτα με φρέσκο λουκάνικο</p>
+                      <p>Price: 2 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Κρουασάν σοκολάτα</h4>
+                      <p>Κρουασάν σοκολάτα από φρέσκια ζύμη</p>
+                      <p>Price: 2 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product" data-category="Ψητά">
+                  <h3>Ψητά</h3>
+                  <ul>
+                    <li>
+                      <h4>Φιλέτο κοτόπουλο</h4>
+                      <p>Φρέσκο ψητό φιλέτο κοτόπουλο συνοδεύεται απο πατάτες τηγανητές</p>
+                      <p>Price: 2 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Μπριζόλα χοιρινή</h4>
+                      <p>Φρέσκια ψητή μπριζόλα χοιρινή συνοδεύεται απο πατάτες τηγανητές</p>
+                      <p>Price: 2 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                    <li>
+                      <h4>Μπριζόλα μοσχαρίσια</h4>
+                      <p>Φρέσκια ψητή μπριζόλα μοσχαρίσια συνοδεύεται απο πατάτες τηγανητές</p>
+                      <p>Price: 2 euro</p>
+                      <button class="add-to-basket">Προσθήκη στο καλάθι</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
 
+        
+      </main>
+      <!-- END MAIN -->
+
+      <!-- FOOTER -->
       <hr>
+      <footer class="container" id="footer">
 
-      <!-- FOOTER ROW -->        
-      <div class="row">
-        <div class="d-flex flex-column flex-sm-row justify-content-between">
-          <p>© 2023: makket13 x StelTheo73 - All rights reserved.</p>
-          <ul class="list-unstyled d-flex">
-            <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-twitter"></i></a></li>
-            <li class="ms-3"><a class="link-dark" target="_blank" href="https://www.facebook.com/StelTheo73/"><i class="bi bi-facebook"></i></a></li>
-            <li class="ms-3"><a class="link-dark" target="_blank" href="https://www.instagram.com/steltheo73/"><i class="bi bi-instagram"></i></a></li>
-            <li class="ms-3"><a class="link-dark" target="_blank" href="https://www.youtube.com/channel/UCsTPowewJM8I9pjLwdEOlew"><i class="bi bi-youtube"></i></a></li>
-          </ul>
+        <!-- FOOTER ROW -->
+        <div class="row justify-content-start">
+          <h5>Contact</h5>
+          <div class="col-sm-6 pt-2">
+            <a href="mailto:" title="mailto" class="mailto-a">Makris Konstantinos</a>
+            <br>
+            <a href="https://github.com/makket13" target="_blank" title="github.com/makket13"><i class="fab fa-github"></i></a>
+          </div>
+          <div class="col-sm-6 pt-2">
+            <a href="mailto:up1072791@upnet.gr" title="mailto:up1072791@upnet.gr"  class="mailto-a">Theofilou Stylianos</a>
+            <br>
+            <a href="https://github.com/StelTheo73" target="_blank" title="github.com/StelTheo73"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/stylianos-theofilou-976ab923b" target="_blank" title="www.linkedin.com/in/stylianos-theofilou"><i class="fab fa-linkedin footer-icons"></i></a>
+            </div>
+          </div>
+        <!-- END FOOTER ROW -->
+        
+        <hr>
+        
+        <!-- FOOTER ROW -->        
+        <div class="row">
+          <div class="d-flex flex-column flex-sm-row justify-content-between">
+            <p>© 2023: makket13 x StelTheo73 - All rights reserved.</p>
+          </div>
         </div>
-      </div>
-      <!-- END FOOTER ROW -->
+        <!-- END FOOTER ROW -->
 
-    </footer>
-    <!-- END FOOTER -->
-    <script src="../javascript/shop.js"></script>
-  </body>
+      </footer>
+      <!-- END FOOTER -->
+      <script src="../javascript/shop.js"></script>
+    </body>
 </html>
