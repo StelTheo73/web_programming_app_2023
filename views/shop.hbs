@@ -1,0 +1,38 @@
+<div class="container-fluid shop-items">
+    <!-- ROW -->
+    <div class="row my-0 pt-1 pb-0">
+        <div class="col-12">
+            {{#if shop}}
+                <h1>{{shop.name}}</h1>
+            {{/if}}
+        </div>
+    </div>
+
+    <!-- ROW -->
+    <div class="row shop-categories my-0 pt-1 pb-0">
+        {{#if itemsPerCategory}}
+            <ul class="categories-scroll-menu">
+                {{#each itemsPerCategory}}
+                    <li><span>{{this.category}}</span></li>
+                {{/each}}
+            </ul>
+        {{/if}}
+    </div>
+
+    <div class="row shop-items my-0 pt-1 pb-0">
+        {{#if itemsPerCategory}}
+            {{#each itemsPerCategory}}
+                <div class="category-items" id="{{this.category}}">
+                    {{#if this.products}}
+                        <ul>
+                            {{#each this.products}}
+                                <li><span>{{this.item_id}}, {{this.name}}, {{this.price}}</span></li>
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                </div>
+            {{/each}}
+        {{/if}}
+    </div>
+
+</div>

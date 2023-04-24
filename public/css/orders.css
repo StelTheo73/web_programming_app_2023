@@ -1,22 +1,32 @@
+/* Earthy color palette */
+:root {
+    --brown: #854d27;
+    --orange: #dd7230;
+    --yellow: #f4c95d;
+    --khaki: #e7e393;
+    --black: #04030f;
+}
+
 .order-items > .row {
     padding: 1em;;
-    border: 1px solid lightgray;
-    border-radius: 10px;
+}
+
+.order-items > .row:nth-child(1) {
+    background-color: var(--khaki);
 }
 
 .order-items > .row:nth-child(2) > div {
-    background-image: url("../../images/order_background.png");
     background-repeat: no-repeat;
     background-size: contain;
-
     margin-bottom: 0.25em;
     max-width: max-content;
     min-width: max-content;
 }
 
 /* FLIP CARD INNER */
-.order-wrapper {
+.order-items .order-wrapper {
     border: 1px solid lightgray;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
     border-radius: 10px;
     padding: 0.5em;
     max-width: 20em;
@@ -25,20 +35,20 @@
     min-height: 23em;
     opacity: 0.95;
     height: 100%;
-    background-color: cornsilk;
+    background-color: var(--khaki);
     overflow: auto;
 }
 
-.order-wrapper::-webkit-scrollbar {
+.order-items .order-wrapper::-webkit-scrollbar {
     width: 0.5em;
 }
 
-.order-wrapper::-webkit-scrollbar-track {
+.order-items .order-wrapper::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     border-radius: 10px;
 }
 
-.order-wrapper::-webkit-scrollbar-thumb {
+.order-items .order-wrapper::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
   border-radius: 10px;
@@ -46,7 +56,7 @@
 /* END FLIP CARD INNER */
 
 /* FRONT AND BACK FLIP CARDS */
-.order-wrapper > div > div {
+.order-items .order-wrapper > div > div {
     margin-right: 0em;
     margin-bottom: 0.5em;
     display: grid;
@@ -57,14 +67,14 @@
 /* =============================================================== */
 
 /* SPANS */
-.order-wrapper > div > div > span {
+.order-items .order-wrapper > div > div > span {
     display: flex;
     align-items: center;
     font-size: small;
     font-weight: normal;
 }
 
-.order-wrapper > div > div > span > i {
+.order-items .order-wrapper > div > div > span > i {
     font-size: 20px;
     color: black;
 }
@@ -74,17 +84,17 @@
 
 /* CHILDREN OF ORDER INFO FLIP CARD (FRONT) */
 /* DATE, COST & PAYMENT MEAN */
-.order-wrapper > .flip-card-front > div > span:nth-child(1) {
+.order-items .order-wrapper > .flip-card-front > div > span:nth-child(1) {
     grid-column: 1 / span 2;
 }
 
-.order-wrapper > .flip-card-front > div > span:nth-child(2) {
+.order-items .order-wrapper > .flip-card-front > div > span:nth-child(2) {
     grid-column: 3 / span 2;
 }
 /* END DATE, COST & PAYMENT MEAN */
 
 /* SHOP NAME */
-.order-wrapper > .flip-card-front > div:nth-child(1) > span:nth-child(1) {
+.order-items .order-wrapper > .flip-card-front > div:nth-child(1) > span:nth-child(1) {
     grid-column: 1 / span 4;
     font-weight: bolder;
     font-size: large;
@@ -92,11 +102,11 @@
 /* END SHOP NAME */
 
 /* CUSTOMER ADDRESS */
-.order-wrapper > .flip-card-front > div:nth-last-child(4) > span:nth-child(1) {
+.order-items .order-wrapper > .flip-card-front > div:nth-last-child(4) > span:nth-child(1) {
     grid-column: 1 / span 4;
 }
 
-.order-wrapper > .flip-card-front > div:nth-last-child(5) > span:nth-child(1) {
+.order-items .order-wrapper > .flip-card-front > div:nth-last-child(5) > span:nth-child(1) {
     grid-column: 1 / span 4;
 }
 /* END CUSTOMER ADDRESS */
@@ -106,31 +116,31 @@
 
 /* CHILDREN OF ITEMS & SHOP FLIP CARD (BACK) */
 /* ITEM NAME */
-.order-wrapper > .item-info-flip-card > div > span:nth-child(1) {
+.order-items .order-wrapper > .item-info-flip-card > div > span:nth-child(1) {
     grid-column: 1 / span 2;
 }
 /* END ITEM NAME */
 
 /* ITEM QUANTITY */
-.order-wrapper > .item-info-flip-card > div > span:nth-child(2) {
+.order-items .order-wrapper > .item-info-flip-card > div > span:nth-child(2) {
     grid-column: 3 / span 1;
 }
 /* END ITEM NAME */
 
 /* ITEM PRICE */
-.order-wrapper > .item-info-flip-card > div > span:nth-child(3) {
+.order-items .order-wrapper > .item-info-flip-card > div > span:nth-child(3) {
     grid-column: 4 / span 1;
 }
 /* END ITEM PRICE */
 
 /* SHOP NAME, EMAIL AND PHONE */
-.order-wrapper > .shop-info-flip-card > div > span {
+.order-items .order-wrapper > .shop-info-flip-card > div > span {
     grid-column: 1 / span 4;
 }
 /* END SHOP NAME, EMAIL AND PHONE */
 
 /* SHOP NAME (BACK) */
-.order-wrapper > .flip-card-back > div:nth-child(1) > span {
+.order-items .order-wrapper > .flip-card-back > div:nth-child(1) > span {
     grid-column: 1 / span 4;
     font-weight: bolder;
     font-size: large;
@@ -141,12 +151,12 @@
 /* =============================================================== */
 
 /* BUTTONS */
-.order-wrapper > .flip-card-front > div > span.button-span {
+.order-items .order-wrapper > .flip-card-front > div > span.button-span {
     grid-column: 1 / span 4;
     width: 100%;
 }
 
-.order-wrapper > .flip-card-back > div > span.button-span {
+.order-items .order-wrapper > .flip-card-back > div > span.button-span {
     grid-column: 1 / span 4;
     width: 100%;
 }
@@ -155,12 +165,12 @@
 /* =============================================================== */
 
 /* FLIP CARD STYLING */
-.flip-card {
+.order-items .flip-card {
     background-color: transparent;
     perspective: 1000px;
 }
 
-.flip-card-inner {
+.order-items .flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
@@ -168,12 +178,11 @@
     transform-style: preserve-3d;
 }
 
-.flip-card-front {
+.order-items .flip-card-front {
     display: block;
-    /* transform: rotateY(180deg); */
 }
 
-.flip-card-back {
+.order-items .flip-card-back {
     display: none;
     transform: rotateY(180deg);
 }

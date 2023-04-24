@@ -1,0 +1,76 @@
+<div class="container-fluid user-items" id="user-items-addresses">
+    <!-- ROW -->
+    <div class="row">
+        <div class="col-6">
+            <h1 class="show-user-item">Διαχείριση Διευθύνσεων</h1>
+            <h1 class="add-user-item">Προσθήκη Διεύθυνσης</h1>
+        </div>
+    
+        <div class="col-6 d-flex justify-content-end align-items-center">
+            <button type="button" class="btn btn-primary bg-secondary add-new-user-item-btn show-user-item">
+                Προσθήκη
+            </button>
+            <button type="button" class="btn btn-primary bg-danger close-new-user-item-btn add-user-item">
+                Ακύρωση
+            </button>
+        </div>
+
+    </div>
+    <!-- END ROW -->
+        
+    <!-- ROW -->
+    <div class="row show-user-item">
+        <!-- ADDRESSES HERE -->
+        {{#if addresses}}
+            {{#each addresses}}
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="address-card-wrapper {{this.address_id}}">
+                    <div>
+                        <label>Πόλη</label>
+                        <input type="text" value="{{this.city}}" readonly>
+                    </div>
+                    <div>
+                        <label>Οδός</label>
+                        <input type="text" value="{{this.street}}" readonly>
+                    </div>
+                    <div>
+                        <label>Αριθμός</label>
+                        <input type="text" value="{{this.number}}" readonly>
+                    </div>   
+                    <div>
+                        <label>Όροφος</label>
+                        <input type="text" value="{{this.floor}}" readonly>
+                    </div>
+                    <div>
+                        <label>Κουδούνι</label>
+                        <input type="text" value="{{this.bell}}" readonly>
+                    </div>
+                    <div>
+                        <label>Τ. Κ.</label>
+                        <input type="text" value="{{this.postcode}}" readonly>
+                    </div>
+                    <div>
+                        <label>Χώρα</label>
+                        <input type="text" value="{{this.country}}" readonly>
+                    </div>
+                    <div>
+                        <label>Σημειώσεις</label>
+                        <textarea rows="5" cols="22" readonly>{{this.notes}}</textarea>
+                    </div>
+                    <div>
+                        <span><i class="far fa-edit text-primary"></i></span>
+                        <span><i class="fas fa-trash-alt text-danger"></i></span>
+                    </div>
+                    </div>
+                </div>
+            {{/each}}
+        {{/if}}
+    </div>
+    <!-- END ROW -->
+
+    <div class="row add-user-item">
+        {{>add-address-form}}
+    </div>
+
+
+</div>

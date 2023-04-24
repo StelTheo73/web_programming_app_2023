@@ -133,3 +133,6 @@ dmypy.json
 
 # VS Code Settings
 .vscode
+
+# Node JS
+/node_modules/

@@ -1,0 +1,29 @@
+import express from "express";
+import { SessionAPI } from "../services/database_IO/sessionAPI.mjs";
+import { OrdersParser } from "../controllers/orders.mjs";
+
+const ordersRouter = express.Router();
+const sessionAPI = new SessionAPI(); 
+
+
+ordersRouter.get("/orders", async (request, response) => {
+    if (!request.session.userId) {
+        response.redirect("/login");
+    }
+    else {
+        let orders = await sessionAPI.getPersonOrders(request.session.userId[0]._id);
+        let userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
+        request.session.userItemsEdited = false;
+
+        orders = OrdersParser.parseOrders(orders);
+        response.render(
+            "orders", 
+            { 
+                orders,
+                userItemsEdited
+            }
+        );
+    }
+});
+
+export {ordersRouter};

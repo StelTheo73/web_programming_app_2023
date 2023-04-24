@@ -1,0 +1,41 @@
+<div class="container-fluid search-results">
+    {{#if shops}}
+        <h4>Καταστήματα</h4>
+        <ul>
+            {{#each shops}}
+                <li>
+                        <h5><a href="/shops/{{this.shopId}}">{{this.shopName}}</a></h5>
+                        <p>{{this.operatingHours}}</p>
+                </li>
+            {{/each}}
+        </ul>
+    {{/if}}
+
+    {{#if shops}}
+        {{#if products}}
+            <hr>
+        {{/if}}
+    {{/if}}
+    {{#unless shops}}
+        {{#unless products}}
+            <p>Δυστυχώς δε βρήκαμε κάποιο προϊόν ή κατάστημα που να ταιριάζει με την αναζήτησή σου &#x1F62A;</p>
+        {{/unless}}
+    {{/unless}}
+
+
+    {{#if products}}
+        <h4>Προϊόντα</h4>
+        <ul>
+            {{#each products}}
+                <li>
+                    <h5><a href="/shops/{{this.shopId}}">{{this.shopName}}</a></h5>
+                    <ul>
+                        {{#search-list-items this.items this.shopId}}
+                        {{/search-list-items}}
+                    </ul>
+                </li>
+                <hr>
+            {{/each}}
+        </ul>
+    {{/if}}
+</div>

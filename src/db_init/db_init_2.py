@@ -29,20 +29,30 @@ from src.db_init.shops_generator import (
     generate_shops
 )
 
+CWD = os.getcwd()
+
 def create_person_addresses(person):
     addresses_list = []
-    num_of_addresses = random.randint(1, 3)
-    for _ in range(num_of_addresses):
-        address = generate_address(person)
+    if person["firstname"] == "Foobar":
+        num_of_addresses = 5
+    else:
+        num_of_addresses = random.randint(1, 3)
+
+    for _id in range(num_of_addresses):
+        address = generate_address(person, _id)
         addresses_list.append(address)
 
     return addresses_list
 
 def create_person_cards(person):
     cards_list = []
-    num_of_cards = random.randint(1, 3)
-    for _ in range(num_of_cards):
-        card = generate_card(person)
+    if person["firstname"] == "Foobar":
+        num_of_cards = 5
+    else: 
+        num_of_cards = random.randint(1, 3)
+
+    for _id in range(num_of_cards):
+        card = generate_card(person, _id)
         cards_list.append(card)
 
     return cards_list
@@ -63,12 +73,15 @@ def create_orders():
     # objInstance = ObjectId("6421bca8abb97dc94d68cc41")
     # persons_ids = persons_doc.find({"_id" : objInstance}, {"_id" : 1, "firstname" : 1})
 
-    persons = persons_doc.find({}, {"_id" : 1, "cards" : 1, "addresses" : 1})
+    persons = persons_doc.find({}, {"_id" : 1, "cards" : 1, "addresses" : 1, "firstname" : 1})
     shops = shops_doc.find({}, {"_id" : 1, "items" : 1, "address" : 1})
     shops = list(shops)
 
     for person in persons:
-        num_of_orders = random.randint(0, 20)
+        if person["firstname"] == "Foobar":
+            num_of_orders = 15
+        else:
+            num_of_orders = random.randint(0, 10)
 
         for _ in range(num_of_orders):
             shop = random.choice(shops)
@@ -102,6 +115,19 @@ def drop_db():
 
     client.close()
 
+def map_shops():
+    client = pymongo.MongoClient(CLIENT_URI)
+    db = client[DATABASE_NAME]
+    shops_doc = db["shops"]
+    shops_dict = {}
+    pointer = 0
+
+    shops_cursor = shops_doc.find({}, {"_id" : 1})
+    for shop in shops_cursor:
+        shop_id = str(shop["_id"])
+        shops_dict[pointer] = shop_id
+        shops_dict[shop_id] = pointer
+        pointer+=1
 
 def main(persons_number, shops_number):
 
@@ -141,7 +167,10 @@ def main(persons_number, shops_number):
     print("Generating orders...")
     create_orders()
 
+    print("Mapping shops...")
+    map_shops()
+
     print("Done")
 
 if __name__ == "__main__":
-    main(200, 20)
+    main(700, 300)

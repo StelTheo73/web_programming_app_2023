@@ -1,0 +1,59 @@
+/* Earthy color palette */
+:root {
+  --brown: #854d27;
+  --orange: #dd7230;
+  --yellow: #f4c95d;
+  --khaki: #e7e393;
+  --black: #04030f;
+}
+
+.shop-items > .row {
+  padding: 1em;
+}
+
+.shop-items > .shop-categories {
+  max-width: fit-content;
+}
+
+.shop-items > .shop-categories > ul {
+  overflow-x: auto;
+  white-space: nowrap;
+  background-color: var(--khaki);
+  padding: 0em;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+}
+
+.shop-items > .shop-categories > ul > li {
+  display: inline-block;
+  margin-top: 0em;
+  padding: 0.5em;
+}
+
+.shop-items > .shop-categories > ul > li:hover {
+  background-color: gray;
+  box-shadow: 0 0.5em 0.5em 0 var(--black);
+  color: var(--khaki);
+  cursor: pointer;
+}
+
+.shop-items > .shop-categories > ul::-webkit-scrollbar {
+  height: 0.5em;
+}
+
+.shop-items > .shop-categories > ul::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.shop-items > .shop-categories > ul::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+.shop-items > .category-items {
+  display: none;
+}
+
+.shop-items > .category-items:nth-child(1) {
+  display: block;
+}

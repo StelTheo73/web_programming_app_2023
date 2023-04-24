@@ -1,23 +1,5 @@
 "use strict";
 
-import {Categories} from "./categories.js";
-
-// Category DIV Element
-// class CategoryDIVElement {
-//     constructor(parent_id) {
-//         this.parent = document.getElementById(parent_id);
-//         this.element = document.createElement("div");
-//     }
-
-//     showCategories() {
-//         const categories = this.parent.childNodes;
-//         categories.forEach(category => {
-//             console.log(category);
-//         });
-//     }
-// }
-
-// Items DIV Elements
 class ItemDIVs {
     constructor() {
         this.parents = document.querySelectorAll("#sidebar-items-div");
@@ -50,17 +32,9 @@ class ItemDIVs {
             }
         }
     }
-
-
 }
 
-// Initialize Objects
-const categoriesObj = new Categories();
-let categories = categoriesObj.getCategories();
-
 const itemDIVsObj = new ItemDIVs();
-// console.log(categories);
-
 
 // EVENT LISTENERS
 const sidebarDropdownLinks = document.querySelectorAll(".sidebar-dropdown-link");
@@ -73,4 +47,4 @@ sidebarDropdownLinks.forEach(element => {
 const sidebarCloseButton = document.querySelector("#close-main-sidebar-btn");
 sidebarCloseButton.addEventListener("click", function() {
     itemDIVsObj.forceHide();
-})
+});

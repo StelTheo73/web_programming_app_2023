@@ -1,0 +1,190 @@
+/* Earthy color palette */
+:root {
+    --brown: #854d27;
+    --orange: #dd7230;
+    --yellow: #f4c95d;
+    --khaki: #e7e393;
+    --black: #04030f;
+    --white: white;
+}
+
+body {
+    max-width: 1500px;
+    min-width: 10em;
+    min-height: fit-content;
+    max-height: fit-content;
+    margin: 0 auto;
+    position: sticky;
+    border: 1px solid grey;
+    background-image: url("/images/body_background.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20em;
+    background-attachment: fixed;
+    background-color: var(--brown);
+}
+
+.modal-overlay {
+    display: none;
+    background-color: var(--black);
+    z-index: 3;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    min-height: 20em;
+}
+
+main > div {
+    min-height: 100vh;
+    width: 100%;
+}
+
+main > div, #navbar-and-sidebar-wrapper, footer {
+    background-color: var(--orange);
+}
+
+main > div {
+    border-left: 1em;
+    border-right: 1em;
+}
+
+main, footer {
+    opacity: 0.95;
+    border-top: 1px solid grey;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+}
+
+#navbar-and-sidebar-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown {
+    /* float */
+    float: left;
+    position: relative;
+}
+
+/* ADDRESS DROPDOWN */
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-span > button {
+    font-size: 0.7em;
+    height: 2.5rem;
+    max-width: 8rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content {
+    /* float */
+    display: none;
+    position: absolute;
+
+    background-color: var(--white);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 0.5em;
+    margin-top: 0.5em;
+    font-size: 0.7em;
+
+    /* float */
+    min-width: 12rem;
+    left: 0;
+    z-index: 1;
+}
+
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content.show {
+  display: block;
+}
+
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content > ul {
+    list-style-type: none;
+    padding: 1em;
+    margin: 0em;
+}
+
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content > ul > li:hover {
+    cursor: pointer;
+}
+
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content > ul > li.active-address:hover {
+    cursor: text;
+}
+/* END ADDRESS DROPDOWN */
+
+/* ICONS */
+.fa, .fab, .fas, .far, .fal {
+    font-size: 2em;
+    text-decoration: none;
+}
+
+header .fa, header .fas {
+    font-size: 1em;
+}
+
+.fa-github {
+    color:rgba(0,0,0, 0.9);
+    line-height: 2em;
+}
+
+.fa-linkedin {
+    color: blue;
+    line-height: 2em;
+}
+
+.footer-icons {
+    margin-left: 0.5em;
+}
+
+.mailto-a {
+    line-height: 1em;
+}
+/* END ICONS */
+
+
+label.required::after {
+    content: " *";
+    color: red;
+}
+
+.add-address-overlay-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background-color: var(--black);
+    opacity: 0.95;
+}
+
+.add-address-overlay-container.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-address-overlay-container.show > .add-address-overlay-content {
+    position: absolute;
+    background-color: var(--khaki);
+    padding: 1em;
+    border-radius: 1em;
+    max-width: 50em;
+}

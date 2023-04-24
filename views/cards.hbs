@@ -1,0 +1,115 @@
+<div class="container-fluid user-items" id="user-items-cards">
+    <!-- ROW -->
+    <div class="row">
+    <div class="col-6">
+        <h1>Διαχείριση Καρτών</h1>
+    </div>
+    
+    <div class="col-6 d-flex justify-content-end align-items-center">
+        <button type="button" class="btn btn-primary bg-secondary add-new-user-item-btn show-user-item">
+            Προσθήκη
+        </button>
+        <button type="button" class="btn btn-primary bg-danger close-new-user-item-btn add-user-item">
+            Ακύρωση
+        </button>
+    </div>
+    
+
+    </div>
+    <!-- END ROW -->
+    
+    <!-- ROW -->
+    <div class="row show-user-item">
+    <!-- CARDS HERE -->
+    {{#if cards}}
+        {{#each cards}}
+            <div class="col-12 col-md-6 col-xl-4">
+                <div class="card-card-wrapper {{this._id}}">
+                    <div>
+                    <label>Αρ. Κάρτας</label>
+                    <input type="text" value="{{this.cardNumber}}" readonly>
+                    </div>
+                    <div>
+                    <label>CVV</label>
+                    <input type="text" value="{{this.cvv}}" readonly>
+                    </div>
+                    <div>
+                    <label>Ημερ. Λήξης</label>
+                    <input type="text" value="{{this.expirationDate}}" readonly>
+                    </div>   
+                    <div>
+                    <label>Όνομα Κατόχου</label>
+                    <input type="text" value="{{this.cardholder}}" readonly>
+                    </div>
+                    <div>
+                    
+                    <span><i class="fas fa-trash-alt text-danger"></i></span>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
+    </div>
+    <!-- END ROW -->
+
+    <!-- ROW -->
+    <div class="row add-user-item">
+        <div class="add-user-item-form-wrapper">
+            <form class="row needs-validation" id="addCardForm" method="post" action="/cards/add" novalidate>
+                <div class="form-group col-12 col-sm-6">
+                    <label for="card_number" class="form-label required">Αρ. Κάρτας</label>
+                    <input type="text" class="form-control" id="card_number" name="card_number" required pattern="\d{16}">
+                    <div class="invalid-feedback">
+                        Παρακαλούμε πληκτρολόγησε τον αριθμό της κάρτας σου.
+                    </div>
+                </div>
+
+                <div class="form-group col-12 col-sm-6 my-1">
+                    <label for="cvv" class="form-label required">CVV</label>
+                    <input type="text" class="form-control" id="cvv" name="cvv" required pattern="\d{3}">
+                    <div class="invalid-feedback">
+                        Παρακαλούμε πληκτρολόγησε το CVV της κάρτας σου.
+                    </div>
+                </div>
+
+                <div class="form-group col-12 col-sm-6 my-1">
+                    <label for="cardholder" class="form-label required">Όνομα Κατόχου</label>
+                    <input type="text" class="form-control" id="cardholder" name="cardholder" required>
+                    <div class="invalid-feedback">
+                        Παρακαλούμε πληκτρολόγησε τo ονοματεπώνυμο του κατόχου της κάρτας.
+                    </div>
+                </div>
+
+                <div class="form-group col-12 col-sm-6 my-1">
+                    <label for="expiration_date" class="form-label required">Ημερομηνία Λήξης</label>
+                    <input type="month" class="form-control" id="expiration_date" name="expiration_date" required>
+                    <div class="invalid-feedback">
+                        Παρακαλούμε επέλεξε την ημερομηνία λήξης της κάρτας σου.
+                    </div>
+                </div>
+
+                <div class="col-12 my-1">
+                    <input type="submit" class="btn btn-primary bg-success add-item" value="Προσθήκη">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- END ROW -->
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
