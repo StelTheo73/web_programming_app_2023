@@ -58,6 +58,7 @@ addressRouter.get("/addresses/delete/:addressId", async (request, response) => {
     }
     else {
         const addressId = request.url.split("/")[3];
+        console.log("DELETE ADDR", addressId)
         await sessionAPI.deletePersonItem(request.session.userId[0]._id, addressId, "address");
         request.session.userItemsEdited = true;
         response.redirect("/addresses");

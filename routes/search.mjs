@@ -36,7 +36,7 @@ searchRouter.get("/search", async (request, response) => {
     request.session.userItemsEdited = false;
     
     let searchInput = request.query.searchInput;
-    let city = request.session.lastAddress.city;
+    let city = request.query.city;
     let [shops, products] = await sessionAPI.searchShopsAndItems(searchInput, city);
   
     shops = searchResultsParser.parseShops(shops);

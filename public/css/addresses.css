@@ -32,7 +32,7 @@
     max-height: 3em;
 }
 
-.user-items .address-card-wrapper {
+.user-items .address-card-wrapper, .user-items .card-card-wrapper {
     background-color: var(--khaki);
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
     border: 1px solid lightgray;
@@ -43,27 +43,27 @@
     height: 100%;
 }
 
-.user-items .address-card-wrapper > div {
+.user-items .address-card-wrapper > div, .user-items .card-card-wrapper > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.25em;
 }
 
-.user-items .address-card-wrapper > div:nth-last-child(1) {
+.user-items .address-card-wrapper > div:nth-last-child(1), .user-items .card-card-wrapper > div:nth-last-child(1) {
     margin-top: 1em;
     justify-content: end;
 }
 
-.user-items .address-card-wrapper > div:nth-last-child(1) > span {
+.user-items .address-card-wrapper > div:nth-last-child(1) > span, .user-items .card-card-wrapper > div:nth-last-child(1) > span {
     margin-left: 1em;
 }
 
-.user-items .address-card-wrapper > div:nth-last-child(1) > span:hover {
+.user-items .address-card-wrapper > div:nth-last-child(1) > span:hover, .user-items .card-card-wrapper > div:nth-last-child(1) > span:hover {
     cursor: pointer;
 }
 
-.user-items .address-card-wrapper > div > input {
+.user-items .address-card-wrapper > div > input, .user-items .card-card-wrapper > div > input {
     background-color: lightgray;
     border-radius: 8px;
     border: 2px solid black;

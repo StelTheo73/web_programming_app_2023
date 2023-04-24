@@ -2,35 +2,6 @@
 
 console.log("Hello");
 
-function getCookie(name) {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.startsWith(name + '=')) {
-        let decodedURIComponent = decodeURIComponent(cookie.substring(name.length + 1));
-        if (decodedURIComponent.startsWith("j:")) {
-            decodedURIComponent = decodedURIComponent.substring(2);
-        }
-        console.log("decoded cookie ", decodedURIComponent)
-        return decodedURIComponent;
-      }
-    }
-    return null;
-}
-
-function getAddressFromCookie(_addressId) {
-    const addresses = JSON.parse(getCookie("addresses").substring(2));
-
-    for (let _address of addresses) {
-        console.log("_address" , _address)
-        if (_address.address_id === _addressId) {
-            return _address;
-        }
-    }
-
-    return {};
-}
-
 function updateLocalStorage() {
     const addressDropdown = document.querySelector("#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown");
     const context = addressDropdown.innerHTML.trim();
@@ -64,29 +35,26 @@ function updateLocalStorage() {
 
 /* ADDRESS DROPDOWN */
 function fillAddressDropdown(addresses) {
+    console.log("fill addresses ", addresses)
+    const addressDropdown = document.querySelector("#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown");
     let lastAddress = addresses[0];
     addresses = addresses.slice(1);
-    console.log(addresses)
 
-    const addressDropdown = document.querySelector("#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown")
     let dropdownContent = `
         <h6>Ενεργή διεύθυνση</h6>
         <li class="active-address address-dropdown-element" data-address-id=${lastAddress.addressId}>${lastAddress.addressText}</li>
         <hr class="my-1">
         <h6>Επιλογή διεύθυνσης</h6>`;
 
-    console.log("localStorage", localStorage.getItem("addresses"))
 
     addresses.forEach(address => {
         dropdownContent += `<li class="address-dropdown-element my-1" data-address-id=${address.addressId}>${address.addressText}</li>`
     });
 
-    console.log(dropdownContent)
-
     addressDropdown.innerHTML = `
     <span class="address-dropdown-span">
         <button class="btn btn-outline-secondary">
-            <i class="fa fa-caret-down"></i>${lastAddress.addressText}
+            <i class="fa fa-caret-down"></i>&nbsp;${lastAddress.addressText}
         </button></span>
         <div class="address-dropdown-content">
             <ul class="address-dropdown-element-wrapper">
@@ -103,7 +71,6 @@ function updateLastAddress(newAddressId) {
 
     let addresses = Object(JSON.parse(localStorage.getItem("addresses")));
     console.log("fetched", addresses)
-    // localStorage.removeItem("addresses");
     const addressDropdown = document.querySelector("#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown");
     
     addresses.forEach(_address => {
@@ -123,12 +90,11 @@ function updateLastAddress(newAddressId) {
     });
 
 
+    fillAddressDropdown(addresses);
     localStorage.setItem("addresses", JSON.stringify(addresses));
     console.log(localStorage.getItem("addresses"))
     console.log("======================")
 }
-
-// fillAddressDropdown();
 
 /* END ADDRESS DROPDOWN */
 
@@ -190,8 +156,10 @@ document.querySelector("#search-input").addEventListener("keydown", (event) => {
     console.log(event.keyCode);
     if (event.code == "Enter" || event.keyCode == 13) {
         const userInput = event.target.value.trim();
+        const city = JSON.parse(localStorage.getItem("addresses"))[0].addressText.split(",")[0].trim();
+        console.log(city)
         if (userInput.length > 0){
-            window.location.href = `/search?searchInput=${userInput}`;
+            window.location.href = `/search?searchInput=${userInput}&city=${city}`;
         }
     }
 });
@@ -290,15 +258,28 @@ if (addCardForm != null) {
 
 /* DELETE USER ITEM */
 function deleteUserItem(event) {
+    const itemType = event.target.parentNode.parentNode.parentNode.classList[0];
     const itemId = event.target.parentNode.parentNode.parentNode.classList[1];
-    window.location.href += `/delete/${itemId}`
+    let path = null;
+    
+    if (itemType.indexOf("address") >= 0) {
+        path = "addresses";
+    }
+    else if (itemType.indexOf("card") >= 0) {
+        path = "cards";
+    }
+
+    if (itemType !== null) {
+        console.log(`/${itemType}/delete/${itemId}`)
+        window.location.href = `/${path}/delete/${itemId}`
+    }
 }
 
 showUserItems.forEach(item => {
     item.addEventListener("click", (event) => {
         if (event.target.className.indexOf("fa-trash-alt") >= 0) {
             if (confirm("Are you sure?")) {
-                deleteUserItem(event);            
+                deleteUserItem(event);      
             }
         }
     

@@ -1,0 +1,98 @@
+/* Earthy color palette */
+:root {
+    --brown: #854d27;
+    --orange: #dd7230;
+    --yellow: #f4c95d;
+    --khaki: #e7e393;
+    --black: #04030f;
+}
+
+.home-items > .row {
+    padding: 1em;
+}
+
+.home-items > .row:nth-child(1) {
+    background-color: var(--khaki);
+}
+
+.home-items > .row:nth-child(2) > div {
+    background-color: var(--khaki);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
+    border-radius: 1em;
+    max-width: 7rem;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.home-items > .row:nth-child(2) > div:hover {
+    cursor: pointer;
+}
+
+.home-items > .row:nth-child(2) > div > span:nth-child(1) {
+    display: flex;
+    background-position: top;
+    background-clip: border-box;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(1) > span:nth-child(1) {
+    background-image: url("/images/hamburger.png");
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(2) > span:nth-child(1) {
+    background-image: url("/images/pizza.png");
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(3) > span:nth-child(1) {
+    background-image: url("/images/cola.png");
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(4) > span:nth-child(1) {
+    background-image: url("/images/cake-slice.png");
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(5) > span:nth-child(1) {
+    background-image: url("/images/spaguetti.png");
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(6) > span:nth-child(1) {
+    background-image: url("/images/fish.png");
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(7) > span:nth-child(1) {
+    background-image: url("/images/coffee-cup.png");
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(8) > span:nth-child(1) {
+    background-image: url("/images/crepe.png");
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(9) > span:nth-child(1) {
+    background-image: url("/images/boil.png");
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(10) > span:nth-child(1) {
+    background-image: url("/images/appetizer.png");
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(11) > span:nth-child(1) {
+    background-image: url("/images/salad.png");
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(12) > span:nth-child(1) {
+    background-image: url("/images/skewer.png");
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(13) > span:nth-child(1) {
+    background-image: url("/images/curry-puff.png");
+}
+
+.home-items > .row:nth-child(2) > div:nth-child(14) > span:nth-child(1) {
+    background-image: url("/images/barbeque.png");
+}

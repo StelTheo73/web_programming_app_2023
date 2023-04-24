@@ -150,9 +150,9 @@ FOOD_MAP = {
         ["Παγωτό", 2, 3, ["sweet", "ice", "cream"]]
     ),
     "Ζυμαρικά" : (
-        ["Καρμπονάρα", 7, 10, ["spaghetti", "carbonara", "pasta"]],
-        ["Πέννες", 7, 10, ["spaghetti", "penne", "pasta"]],
-        ["Σπαγγέτι", 7, 10, ["spaghetti", "pasta"]]
+        ["Καρμπονάρα", 7, 10, ["spaghetti", "carbonara", "pasta", "macaroni"]],
+        ["Πέννες", 7, 10, ["spaghetti", "penne", "pasta", "macaroni"]],
+        ["Σπαγγέτι", 7, 10, ["spaghetti", "pasta", "macaroni"]]
     ),
     "Θαλασσινά" : (
         ["Τσιπούρα", 11, 13, ["bream", "flock", "fish", "seafood"]],
