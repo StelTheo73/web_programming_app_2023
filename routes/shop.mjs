@@ -42,7 +42,8 @@ shopRouter.get("/shops/:shop_id", async (request, response) => {
     // }
     // else {
 
-        const shopId = request.url.split("/")[2];
+        // const shopId = request.url.split("/")[2];
+        const shopId = decodeURIComponent(request.params.shop_id);
         const shop = await sessionAPI.getShopData(shopId);
         let lastAddress = request.session.lastAddress;
         let addresses = request.session.addresses;

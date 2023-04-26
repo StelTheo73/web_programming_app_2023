@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request, response } from "express";
 import { SessionAPI } from "../services/database_IO/sessionAPI.mjs";
 import { searchResultsParser } from "../controllers/search.mjs";
 import Handlebars from "handlebars";
@@ -32,11 +32,11 @@ searchRouter.get("/search", async (request, response) => {
       response.redirect("/login");
   }
   else {
-    let userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
+    const userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
     request.session.userItemsEdited = false;
     
-    let searchInput = request.query.searchInput;
-    let city = request.query.city;
+    const searchInput = request.query.searchInput;
+    const city = request.query.city;
     let [shops, products] = await sessionAPI.searchShopsAndItems(searchInput, city);
   
     shops = searchResultsParser.parseShops(shops);
@@ -51,6 +51,33 @@ searchRouter.get("/search", async (request, response) => {
         }
     );
     
+  }
+});
+
+searchRouter.get("/search/categories/:category_name", async (request, response) => {
+  if (!request.session.userId) {
+    response.redirect("/login");
+  }
+  else {
+    const userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
+    request.session.userItemsEdited = false;
+
+    const category = decodeURIComponent(request.params.category_name);
+    const city = request.query.city;
+    console.log(category, city)
+    let shops = await sessionAPI.searchShopsByCategory(category, city);
+
+    shops = searchResultsParser.parseShops(shops);
+
+
+    response.render(
+      "search-results",
+        {
+          shops,
+          userItemsEdited
+        }
+    );
+
   }
 });
 

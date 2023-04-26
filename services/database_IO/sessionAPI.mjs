@@ -535,6 +535,51 @@ class SessionAPI extends MongoDBClient {
         return productsByTagSplit;
     }
 
+    async searchShopsByCategory(category, city) {
+        let cityPattern = "";
+        let parsedCity = "";
+        let categoryPattern = "";
+        let parsedCategory = "";
+
+        [category, city] = this.parseUserInput([category, city]);
+        
+        category = category.toLowerCase();
+        parsedCategory = replacesTones(category);
+        categoryPattern = `.*${parsedCategory}.*`;
+        city = city.toLowerCase();
+        parsedCity = replacesTones(city);
+        cityPattern = `.*${parsedCity}.*`;
+        console.log(categoryPattern)
+
+        let shops = [];
+
+        let _query = {
+            $and : [
+                {
+                    "address.city" : {
+                        $regex : cityPattern,
+                        $options : "i"
+                    }
+                },
+                {
+                    "categories" : {
+                        $regex : categoryPattern,
+                        $options : "i"
+                    }
+                }
+            ]
+        };
+        let _projection = {
+            _id : 1,
+            name : 1,
+            operating_hours : 1
+        };
+
+        shops = await this.find("shops", _query, _projection);
+
+        return shops;
+    }
+
     async getShopData(_shopId) {
         let shopData = [];
 

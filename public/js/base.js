@@ -152,17 +152,20 @@ document.getElementById("sidebar-link-to-footer").addEventListener("click", clos
 
 /* SEARCH */
 document.querySelector("#search-input").addEventListener("keydown", (event) => {
-    // TODO GET ACTIVE CITY
     console.log(event.keyCode);
     if (event.code == "Enter" || event.keyCode == 13) {
         const userInput = event.target.value.trim();
         const city = JSON.parse(localStorage.getItem("addresses"))[0].addressText.split(",")[0].trim();
-        console.log(city)
         if (userInput.length > 0){
             window.location.href = `/search?searchInput=${userInput}&city=${city}`;
         }
     }
 });
+
+function fetchShopsByCategory(category) {
+    const city = JSON.parse(localStorage.getItem("addresses"))[0].addressText.split(",")[0].trim();
+    window.location.href = `/search/categories/${category}?city=${city}`;
+}
 /* END SEARCH */
 
 /* ======================================== */
@@ -295,7 +298,27 @@ showUserItems.forEach(item => {
 /* GLOBAL CLICK LISTENER */
 window.onclick = function(event) {
     // Address Dropdown Listener
-    try{
+    // console.log(event.target)
+    addressDropdownListener(event);
+    fetchShopsByCategoryListener(event);
+
+    // User Dropdown Listener
+}
+
+/* END GLOBAL CLICK LISTENER */
+
+/* ======================================== */
+
+/* ON LOAD EVENTS */
+updateLocalStorage();
+
+/* END ON LOAD EVENTS */
+
+/* ======================================== */
+
+/* LISTENERS */
+function addressDropdownListener(event) {
+        try{
         if (!event.target.parentElement.matches(".address-dropdown-span") &&
              !event.target.matches(".address-dropdown-element-wrapper") &&
              !event.target.matches(".address-dropdown-element")
@@ -324,12 +347,30 @@ window.onclick = function(event) {
     catch (err) {
         console.log(err)
     }
-    // User Dropdown Listener
 }
 
-/* END GLOBAL CLICK LISTENER */
+function fetchShopsByCategoryListener(event) {
+    let category = undefined;
 
-/* ON LOAD EVENTS */
-updateLocalStorage();
+    try {
+        if (event.target.matches(".fetch-category-link")) {
+            category = event.target.innerHTML;
+        }
+        else if (event.target.matches(".fetch-category-img")) {
+            category = event.target.nextSibling.innerHTML;
+        }
+        else if (event.target.matches(".fetch-category-wrapper")) {
+            category = event.target.childNodes[1].innerHTML;
+        }
 
-/* END ON LOAD EVENTS */
+        if (category !== undefined) {
+            fetchShopsByCategory(category);
+        }
+    }
+    catch(err) {
+        console.log(console.log(err));
+    }
+}
+
+
+/* END LISTENERS */

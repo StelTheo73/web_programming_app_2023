@@ -8,12 +8,12 @@
 }
 
 .search-results {
-    background-color: khaki;
     opacity: 0.95;
 }
 
 .search-results > ul {
     list-style-type: none;
+    margin-bottom: 0em;
 }
 
 .search-results > ul > li > ul {

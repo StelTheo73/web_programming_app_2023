@@ -24,7 +24,7 @@ function showProductsOfCategory(categoryName) {
     }
 }
 
-let shopCategoriesParent = document.querySelectorAll(".shop-items > .shop-categories > ul");
+let shopCategoriesParent = document.querySelectorAll(".shop-items > .shop-categories > .shop-categories-wrapper > ul");
 shopCategoriesParent.forEach(element => {
     element.addEventListener("click", (event) => {
         let innerHTML = String(event.target.innerHTML);
