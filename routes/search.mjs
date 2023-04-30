@@ -64,11 +64,9 @@ searchRouter.get("/search/categories/:category_name", async (request, response) 
 
     const category = decodeURIComponent(request.params.category_name);
     const city = request.query.city;
-    console.log(category, city)
     let shops = await sessionAPI.searchShopsByCategory(category, city);
 
     shops = searchResultsParser.parseShops(shops);
-
 
     response.render(
       "search-results",

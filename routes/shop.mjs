@@ -1,5 +1,6 @@
 import express from "express";
 import { SessionAPI } from "../services/database_IO/sessionAPI.mjs";
+import { shopParser } from "../controllers/shop.mjs";
 
 const shopRouter = express.Router();
 const sessionAPI = new SessionAPI();
@@ -37,12 +38,11 @@ shopRouter.get("/shops/:shop_id/products/:product_id", async (request, response)
 });
 
 shopRouter.get("/shops/:shop_id", async (request, response) => {
-    // if (!request.session.userId) {
-    //     response.redirect("/login");
-    // }
-    // else {
+    if (!request.session.userId) {
+        response.redirect("/login");
+    }
+    else {
 
-        // const shopId = request.url.split("/")[2];
         const shopId = decodeURIComponent(request.params.shop_id);
         const shop = await sessionAPI.getShopData(shopId);
         let lastAddress = request.session.lastAddress;
@@ -51,9 +51,13 @@ shopRouter.get("/shops/:shop_id", async (request, response) => {
         request.session.userItemsEdited = false;
 
         let itemsPerCategory = [];
+        let index = 0;
 
         for (let category of shop.categories) {
             itemsPerCategory.push(await sessionAPI.fetchItemsByCategory(shopId, category));
+            // console.log(itemsPerCategory[0].products)
+            itemsPerCategory[index].products = shopParser.parseItems(itemsPerCategory[index].products);
+            index++;
         }
 
         response.render(
@@ -66,7 +70,7 @@ shopRouter.get("/shops/:shop_id", async (request, response) => {
         );
         // response.send(itemsPerCategory);
         // response.end();
-    // }
+    }
 
 });
 

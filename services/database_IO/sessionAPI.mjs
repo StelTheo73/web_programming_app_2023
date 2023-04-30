@@ -595,7 +595,8 @@ class SessionAPI extends MongoDBClient {
             email : 1,
             phone : 1,
             categories : 1,
-            operating_hours : 1
+            operating_hours : 1,
+            address : 1
         }
 
         shopData = await this.find("shops", _query, _projection);

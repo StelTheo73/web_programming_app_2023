@@ -1,6 +1,6 @@
 "use strict";
 
-console.log("Hello");
+import { cartButtonListener } from "./cart.mjs";
 
 function updateLocalStorage() {
     const addressDropdown = document.querySelector("#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown");
@@ -35,7 +35,6 @@ function updateLocalStorage() {
 
 /* ADDRESS DROPDOWN */
 function fillAddressDropdown(addresses) {
-    console.log("fill addresses ", addresses)
     const addressDropdown = document.querySelector("#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown");
     let lastAddress = addresses[0];
     addresses = addresses.slice(1);
@@ -53,7 +52,7 @@ function fillAddressDropdown(addresses) {
 
     addressDropdown.innerHTML = `
     <span class="address-dropdown-span">
-        <button class="btn btn-outline-secondary">
+        <button class="btn btn-secondary">
             <i class="fa fa-caret-down"></i>&nbsp;${lastAddress.addressText}
         </button></span>
         <div class="address-dropdown-content">
@@ -61,39 +60,25 @@ function fillAddressDropdown(addresses) {
                 ${dropdownContent}
             </ul>
         </div>
-    `
-
-
+    `;
 }
 
 function updateLastAddress(newAddressId) {
-    console.log("new address id", newAddressId);
-
     let addresses = Object(JSON.parse(localStorage.getItem("addresses")));
-    console.log("fetched", addresses)
     const addressDropdown = document.querySelector("#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown");
     
     addresses.forEach(_address => {
-        console.log(_address)
-        console.log(_address.addressId, newAddressId)
-        console.log(_address.addressId == newAddressId)
         if (_address.addressId == newAddressId) {
-            console.log("match")
-            console.log(_address.addressId, _address.addressText)
             addresses[0] = {
                 addressId : _address.addressId,
                 addressText : _address.addressText
             }
-            console.log("new active ", addresses[0])
         }
-        console.log("NEXT")
     });
 
 
     fillAddressDropdown(addresses);
     localStorage.setItem("addresses", JSON.stringify(addresses));
-    console.log(localStorage.getItem("addresses"))
-    console.log("======================")
 }
 
 /* END ADDRESS DROPDOWN */
@@ -152,7 +137,6 @@ document.getElementById("sidebar-link-to-footer").addEventListener("click", clos
 
 /* SEARCH */
 document.querySelector("#search-input").addEventListener("keydown", (event) => {
-    console.log(event.keyCode);
     if (event.code == "Enter" || event.keyCode == 13) {
         const userInput = event.target.value.trim();
         const city = JSON.parse(localStorage.getItem("addresses"))[0].addressText.split(",")[0].trim();
@@ -273,7 +257,6 @@ function deleteUserItem(event) {
     }
 
     if (itemType !== null) {
-        console.log(`/${itemType}/delete/${itemId}`)
         window.location.href = `/${path}/delete/${itemId}`
     }
 }
@@ -297,12 +280,9 @@ showUserItems.forEach(item => {
 
 /* GLOBAL CLICK LISTENER */
 window.onclick = function(event) {
-    // Address Dropdown Listener
-    // console.log(event.target)
     addressDropdownListener(event);
     fetchShopsByCategoryListener(event);
-
-    // User Dropdown Listener
+    userDropdownListener(event);
 }
 
 /* END GLOBAL CLICK LISTENER */
@@ -311,25 +291,23 @@ window.onclick = function(event) {
 
 /* ON LOAD EVENTS */
 updateLocalStorage();
-
+cartButtonListener();
 /* END ON LOAD EVENTS */
 
 /* ======================================== */
 
 /* LISTENERS */
 function addressDropdownListener(event) {
-        try{
+    try{
         if (!event.target.parentElement.matches(".address-dropdown-span") &&
              !event.target.matches(".address-dropdown-element-wrapper") &&
              !event.target.matches(".address-dropdown-element")
-            ) 
+        ) 
         {
             const addressDropdownContent = document.querySelector(
                 "#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content"
             );
-            if (addressDropdownContent.classList.contains("show")) {
-                addressDropdownContent.classList.remove("show");
-            }
+            addressDropdownContent.classList.remove("show");
         }
         else if (event.target.parentElement.matches(".address-dropdown-span")) {
             const addressDropdownContent = document.querySelector(
@@ -343,6 +321,36 @@ function addressDropdownListener(event) {
                 const newAddressId = event.target.dataset.addressId
                 updateLastAddress(newAddressId);
             }
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+
+function userDropdownListener(event) {
+    try{
+        if (!event.target.parentElement.matches(".user-dropdown-span") &&
+             !event.target.matches(".user-dropdown-element-wrapper") &&
+             !event.target.matches(".user-dropdown-element") &&
+             !event.target.matches(".user-dropdown-button-icon")
+        ) {
+            const userDropdownContent = document.querySelector(
+                "#navbar-and-sidebar-wrapper > #main-navbar > header .user-dropdown > .user-dropdown-content"
+            );
+            userDropdownContent.classList.remove("show");
+        }
+        else if (event.target.matches(".user-dropdown-button-icon")) {
+            const userDropdownContent = document.querySelector(
+                "#navbar-and-sidebar-wrapper > #main-navbar > header .user-dropdown > .user-dropdown-content"
+            );
+            userDropdownContent.classList.toggle("show");
+        }
+        else if (event.target.parentElement.matches(".user-dropdown-span")) {
+            const userDropdownContent = document.querySelector(
+                "#navbar-and-sidebar-wrapper > #main-navbar > header .user-dropdown > .user-dropdown-content"
+            );
+            userDropdownContent.classList.toggle("show");
+        }
     }
     catch (err) {
         console.log(err)
@@ -371,6 +379,4 @@ function fetchShopsByCategoryListener(event) {
         console.log(console.log(err));
     }
 }
-
-
 /* END LISTENERS */

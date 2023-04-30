@@ -13,7 +13,6 @@ function mapShopsWithCategories() {
 const SHOP_CATEGORIES_MAP = mapShopsWithCategories();
 
 function showProductsOfCategory(categoryName) {
-    // console.log(SHOP_CATEGORIES_MAP[category_name]);
     for (let shopCategory in SHOP_CATEGORIES_MAP) {
         if (shopCategory === categoryName) {
             SHOP_CATEGORIES_MAP[shopCategory].style.display = "block";

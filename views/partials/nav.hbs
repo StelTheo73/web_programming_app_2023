@@ -47,7 +47,7 @@
                     <div class="address-dropdown px-0">
                         {{#if userItemsEdited}}
                             <span class="address-dropdown-span">
-                                <button class="btn btn-outline-secondary">
+                                <button class="btn btn-secondary">
                                     {{#if addNewAddress}}
                                     {{/if}}
                                     {{#unless addNewAddress}}
@@ -85,24 +85,24 @@
                     <input id="search-input" class="form-control" placeholder="Search..." aria-label="Search">
                 </form>
                 <!-- END SEARCH FORM -->
-
                 <!-- USER ICON & DROPDOWN -->
-                <div class="flex-shrink-0 dropdown">
-                    <div class="btn-group">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-user-circle"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end shadow mt-1">
-                        <li><a class="dropdown-item" href="#" type="button">Προβολή Προφίλ</a></li>
-                        <li><a class="dropdown-item" href="/orders" type="button">Παραγγελίες</a></li>
-                        <li><a class="dropdown-item" href="/addresses" type="button">Διαχείριση Διευθύνσεων</a></li>
-                        <li><a class="dropdown-item" href="/cards" type="button">Διαχείριση Καρτών</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#" type="button">Εγγραφή</a></li>
-                        <li><a class="dropdown-item" href="/logout" type="button">Αποσύνδεση</a></li>
-                    </ul>
+                <div class="user-dropdown px-0">
+                    <span class="user-dropdown-span">
+                        <button class="btn btn-outline-secondary"><i class="fas fa-user-circle user-dropdown-button-icon"></i></button>
+                    </span>
+                    <div class="user-dropdown-content">
+                        <ul class="user-dropdown-element-wrapper">
+                            <li class="my-0"><a class="dropdown-item" href="#" type="button">Προβολή Προφίλ</a></li>
+                            <li class="my-0"><a class="dropdown-item" href="/orders" type="button">Παραγγελίες</a></li>
+                            <li class="my-0"><a class="dropdown-item" href="/addresses" type="button">Διαχείριση Διευθύνσεων</a></li>
+                            <li class="my-0"><a class="dropdown-item" href="/cards" type="button">Διαχείριση Καρτών</a></li>
+                            <hr class="my-1">
+                            <li class="my-0"><a class="dropdown-item" href="#" type="button">Εγγραφή</a></li>
+                            <li class="my-0"><a class="dropdown-item" href="/logout" type="button">Αποσύνδεση</a></li>
+                        </ul>
                     </div>
-                    <!-- END USER ICON & DROPDOWN -->
+
+                </div>
 
                 </div>
                 </div>

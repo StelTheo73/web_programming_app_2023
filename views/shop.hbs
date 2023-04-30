@@ -1,10 +1,14 @@
 <div class="container-fluid shop-items">
     <!-- ROW -->
     <div class="row my-0 pt-1 pb-0">
-        <div class="col-12">
+        <div class="col-6 d-flex justify-content-start align-items-center">
             {{#if shop}}
                 <h1>{{shop.name}}</h1>
+                <span class="ms-2"></span>{{shop.address.city}}</span>
             {{/if}}
+        </div>  
+        <div class="col-6 d-flex justify-content-end align-items-center">
+            <span class="cart-wrapper"><button class="btn btn-outline-secondary show-cart"><i class="fas fa-shopping-cart"></i></button></span>
         </div>
     </div>
 
@@ -28,7 +32,7 @@
                     {{#if this.products}}
                         <ul class="px-1">
                             {{#each this.products}}
-                                <li class="px-2"><span id="{{this.item_id}}">{{this.name}}, {{this.price}} <button class="btn btn-outline-secondary">+</button></span></li>
+                                <li class="px-2"><span data-item-id="{{this.item_id}}" class="d-flex justify-content-between"><span>{{this.name}}</span><span>{{this.price}} &euro;</span><button class="btn btn-outline-secondary add-to-cart">+</button></span></li>
                             {{/each}}
                         </ul>
                     {{/if}}

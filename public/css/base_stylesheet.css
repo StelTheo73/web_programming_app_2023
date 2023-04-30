@@ -79,15 +79,23 @@ main, footer {
     position: relative;
 }
 
-/* ADDRESS DROPDOWN */
-#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-span {
+#navbar-and-sidebar-wrapper > #main-navbar > header .user-dropdown {
+    float: left;
+    position: relative;
+}
+
+/* DROPDOWNS */
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-span,
+#navbar-and-sidebar-wrapper > #main-navbar > header .user-dropdown > .user-dropdown-span
+{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-span > button {
-    font-size: 0.7em;
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-span > button,
+#navbar-and-sidebar-wrapper > #main-navbar > header .user-dropdown > .user-dropdown-span > button
+{
     height: 2.5rem;
     max-width: 8rem;
     overflow: hidden;
@@ -95,41 +103,57 @@ main, footer {
     text-overflow: ellipsis;
 }
 
-#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content {
-    /* float */
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-span > button {
+    font-size: 0.7em;
+
+}
+
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content,
+#navbar-and-sidebar-wrapper > #main-navbar > header .user-dropdown > .user-dropdown-content
+{
     display: none;
     position: absolute;
-
+    min-width: 12rem;
+    z-index: 1;
     background-color: var(--white);
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 0.5em;
     margin-top: 0.5em;
-    font-size: 0.7em;
-
-    /* float */
-    min-width: 12rem;
-    left: 0;
-    z-index: 1;
 }
 
-#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content.show {
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content {
+    font-size: 0.7em;
+    left: 0;
+}
+
+#navbar-and-sidebar-wrapper > #main-navbar > header .user-dropdown > .user-dropdown-content {
+    right: 0;
+}
+
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content.show,
+#navbar-and-sidebar-wrapper > #main-navbar > header .user-dropdown > .user-dropdown-content.show
+{
   display: block;
 }
 
-#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content > ul {
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content > ul,
+#navbar-and-sidebar-wrapper > #main-navbar > header .user-dropdown > .user-dropdown-content > ul
+{
     list-style-type: none;
     padding: 1em;
     margin: 0em;
 }
 
-#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content > ul > li:hover {
+#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content > ul > li:hover,
+#navbar-and-sidebar-wrapper > #main-navbar > header .user-dropdown > .user-dropdown-content > ul > li:hover
+{
     cursor: pointer;
 }
 
 #navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown > .address-dropdown-content > ul > li.active-address:hover {
     cursor: text;
 }
-/* END ADDRESS DROPDOWN */
+/* END DROPDOWNS */
 
 /* ICONS */
 .fa, .fab, .fas, .far, .fal {
@@ -166,28 +190,39 @@ label.required::after {
     color: red;
 }
 
-.add-address-overlay-container {
+/* OVERLAYS */
+.add-address-overlay-container,
+.cart-overlay-container
+{
     display: none;
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 5;
     width: 100%;
     height: 100%;
-    z-index: 5;
     background-color: var(--black);
     opacity: 0.95;
 }
 
-.add-address-overlay-container.show {
+.add-address-overlay-container.show,
+.cart-overlay-container.show
+{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.add-address-overlay-container.show > .add-address-overlay-content {
+.add-address-overlay-container.show > .add-address-overlay-content,
+.cart-overlay-container.show > .cart-overlay-content
+{
     position: absolute;
     background-color: var(--khaki);
     padding: 1em;
     border-radius: 1em;
     max-width: 50em;
+    min-height: 90vh;
+    max-height: 90vh;
+    overflow: auto;
 }
+/* END OVERLAYS */
