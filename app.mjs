@@ -5,11 +5,13 @@ import cookieParser from "cookie-parser";
 import { SessionAPI } from "./services/database_IO/sessionAPI.mjs";
 
 import { loginRouter } from "./routes/login.mjs";
+import { fetchRouter } from "./routes/fetch.mjs";
 import { ordersRouter } from "./routes/orders.mjs";
 import { addressRouter } from "./routes/addresses.mjs";
 import { cardsRouter } from "./routes/cards.mjs";
 import { shopRouter } from "./routes/shop.mjs";
 import { searchRouter } from "./routes/search.mjs";
+import { orderRouter } from "./routes/order.mjs";
 
 const app = express();
 const sessionAPI = new SessionAPI();
@@ -28,11 +30,13 @@ app.set("view engine", ".hbs");
 
 // Routers
 app.use("/", loginRouter);
+app.use("/", fetchRouter);
 app.use("/", ordersRouter);
 app.use("/", addressRouter);
 app.use("/", cardsRouter);
 app.use("/", shopRouter);
 app.use("/", searchRouter);
+app.use("/", orderRouter);
 
 app.get("/", async (request, response) => {
     const myUrl = new URL("http://" + request.headers.host + request.url);

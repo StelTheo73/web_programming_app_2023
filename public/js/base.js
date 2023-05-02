@@ -1,6 +1,7 @@
 "use strict";
 
 import { cartButtonListener } from "./cart.mjs";
+import { orderButtonListener } from "./order.mjs";
 
 function updateLocalStorage() {
     const addressDropdown = document.querySelector("#navbar-and-sidebar-wrapper > #main-navbar > header .address-dropdown");
@@ -292,6 +293,7 @@ window.onclick = function(event) {
 /* ON LOAD EVENTS */
 updateLocalStorage();
 cartButtonListener();
+orderButtonListener();
 /* END ON LOAD EVENTS */
 
 /* ======================================== */

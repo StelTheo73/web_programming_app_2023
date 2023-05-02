@@ -1,4 +1,7 @@
-<div class="container-fluid shop-items">
+<div class="popup" id="itemAddedPopup" style="display: none;"></div> 
+{{!-- Add display: none to html to prevent showing when page loads. Remove it with JS --}}
+
+<div class="container-fluid shop-items-container">
     <!-- ROW -->
     <div class="row my-0 pt-1 pb-0">
         <div class="col-6 d-flex justify-content-start align-items-center">
@@ -32,7 +35,7 @@
                     {{#if this.products}}
                         <ul class="px-1">
                             {{#each this.products}}
-                                <li class="px-2"><span data-item-id="{{this.item_id}}" class="d-flex justify-content-between"><span>{{this.name}}</span><span>{{this.price}} &euro;</span><button class="btn btn-outline-secondary add-to-cart">+</button></span></li>
+                                <li class="px-2 mb-3 mt-0"><span data-item-id="{{this.item_id}}" class="d-flex justify-content-between"><span>{{this.name}}</span><span>{{this.price}} &euro;</span><button class="btn btn-outline-secondary add-to-cart">+</button></span></li>
                             {{/each}}
                         </ul>
                     {{/if}}

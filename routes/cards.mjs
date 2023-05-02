@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request } from "express";
 import { SessionAPI } from "../services/database_IO/sessionAPI.mjs";
 import { CardsParser } from "../controllers/cards.mjs";
 
@@ -45,6 +45,5 @@ cardsRouter.get("/cards/delete/:cardId", async (request, response) => {
         response.redirect("/cards");
     }
 });
-
 
 export { cardsRouter };

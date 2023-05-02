@@ -72,7 +72,7 @@ class SessionAPI extends MongoDBClient {
     async getPersonData(_personId) {
         let personData = [];
         
-    _personId = this.parseUserInput([_personId])[0];
+        _personId = this.parseUserInput([_personId])[0];
 
         let _query = {
             _id : new ObjectId(_personId)
@@ -89,7 +89,11 @@ class SessionAPI extends MongoDBClient {
 
         personData = await this.find("persons", _query, _projection);
 
-        return personData;
+        if (personData.length === 0) {
+            return [];
+        }
+
+        return personData[0];
     }
 
     /**
@@ -247,6 +251,54 @@ class SessionAPI extends MongoDBClient {
         else {
             return [];
         }
+    }
+
+    async getPersonAddressById(_person_id, _address_id) {
+        let address = [];
+
+        [_person_id, _address_id] = this.parseUserInput([_person_id, _address_id]);
+        console.log(_person_id, _address_id)
+        let _query = {
+            _id: new ObjectId(_person_id),
+            "addresses.address_id": _address_id
+        }
+
+        let _projection = {
+            _id: 0,
+            "addresses.$": 1
+        }
+
+        address = await this.find("persons", _query, _projection);
+
+        if (address.length === 0) {
+            return [];
+        }
+
+        return address[0].addresses[0];
+    }
+
+    async getPersonCardById(_person_id, _card_id) {
+        let card = [];
+
+        [_person_id, _card_id] = this.parseUserInput([_person_id, _card_id]);
+        console.log(_person_id, _card_id)
+        let _query = {
+            _id: new ObjectId(_person_id),
+            "cards.card_id": _card_id
+        }
+
+        let _projection = {
+            _id: 0,
+            "cards.$": 1
+        }
+
+        card = await this.find("persons", _query, _projection);
+
+        if (card.length === 0) {
+            return [];
+        }
+
+        return card[0].cards[0];
     }
 
     /**
@@ -771,18 +823,3 @@ class SessionAPI extends MongoDBClient {
 }
 
 export { SessionAPI };
-
-// let ses = new SessionAPI();
-// let data1 = await ses.getPersonCards("Dias_Pappas_908@hotmail.com")
-// let data2 = await ses.getPersonOrders("642d12fd9f0c2c52ba5b81f6", 2021);
-// console.log(data1);
-// console.log(data2);
-// console.log(data2[0].cards)
-
-// let data3 = await ses.searchShopsAndItems("κοτοπλ", "θην");
-// // console.log(data3)
-// console.log("Result")
-// for (let match of data3[1]) {
-//     console.log(match.name);
-//     console.log(match.items);
-// }

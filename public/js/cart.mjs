@@ -1,21 +1,30 @@
+"use strict";
+
+import { showOrder } from "./order.mjs";
+
 let BLOCK_SESSION_STORAGE = false;
 
-const CART_ITEMS_WRAPPER = document.querySelector(".cart-overlay-container > .cart-overlay-content .cart-items-wrapper");
+const CART_OVERLAY = document.querySelector("#cart-overlay-container")
+const CART_ITEMS_WRAPPER = document.querySelector("#cart-overlay-container > .custom-overlay-content .cart-items-wrapper");
 const TITLE_DIV = CART_ITEMS_WRAPPER.querySelector(".cart-item-title");
 
-const CONTINUE_TO_ORDER_BTN = document.querySelector(".cart-overlay-container > .cart-overlay-content .continue-to-order");
-const CLEAR_CART_BTN = document.querySelector(".cart-overlay-container > .cart-overlay-content .clear-cart");
+const CONTINUE_TO_ORDER_BTN = document.querySelector("#cart-overlay-container > .custom-overlay-content .continue-to-order");
+const CLEAR_CART_BTN = document.querySelector("#cart-overlay-container > .custom-overlay-content .clear-cart");
+const POPUP = document.querySelector("#itemAddedPopup");
+
+function showPopup(text) {
+    POPUP.innerHTML = text;
+    POPUP.removeAttribute("style")
+    POPUP.classList.add("show");
+    setTimeout(function() {
+        POPUP.classList.remove("show")
+    }, 1200);
+}
 
 function cartButtonListener() {
     document.querySelectorAll(".show-cart").forEach(button => {
         button.addEventListener("click", function () {
-            document.querySelector(".cart-overlay-container").classList.add("show");
             showItemsInCart();
-        });
-    });
-    document.querySelectorAll(".close-cart").forEach(button => {
-        button.addEventListener("click", function () {
-            document.querySelector(".cart-overlay-container").classList.remove("show");
         });
     });
     document.querySelectorAll(".add-to-cart").forEach(button => {
@@ -27,16 +36,37 @@ function cartButtonListener() {
             addItemToCart(itemId, itemName, itemPrice);
         });
     });
-    document.querySelectorAll(".continue-to-order").forEach(button => {
+    CART_OVERLAY.querySelectorAll(".close-cart").forEach(button => {
         button.addEventListener("click", function () {
-            console.log("continue-to-order");
+            document.querySelector("#cart-overlay-container").classList.remove("show");
         });
     });
-    document.querySelectorAll(".clear-cart").forEach(button => {
+    CART_OVERLAY.querySelectorAll(".continue-to-order").forEach(button => {
         button.addEventListener("click", function () {
-            console.log("clear-cart");
+            CART_OVERLAY.classList.remove("show")
+            showOrder();
         });
     });
+    CART_OVERLAY.querySelectorAll(".clear-cart").forEach(button => {
+        button.addEventListener("click", function () {
+            clearCart();
+        });
+    });
+}
+
+function showEmptyCart() {
+    const div = document.createElement("div");
+    const span = document.createElement("span");
+    const textNode = document.createTextNode("Το καλάθι σου είναι άδειο!");
+
+    span.appendChild(textNode);
+    div.appendChild(span);
+
+    CART_ITEMS_WRAPPER.appendChild(TITLE_DIV);
+    CART_ITEMS_WRAPPER.appendChild(div);
+
+    CONTINUE_TO_ORDER_BTN.setAttribute("disabled", "true");
+    CLEAR_CART_BTN.setAttribute("disabled", "true");
 }
 
 function showItemsInCart() {
@@ -44,24 +74,19 @@ function showItemsInCart() {
     let cartItems = sessionStorage.getItem(shopId);
 
     CART_ITEMS_WRAPPER.innerHTML = "";
+    CART_OVERLAY.classList.add("show");
     
-    if (cartItems === null || cartItems === undefined) {
-        const div = document.createElement("div");
-        const span = document.createElement("span");
-        const textNode = document.createTextNode("Το καλάθι σου είναι άδειο!");
-
-        span.appendChild(textNode);
-        div.appendChild(span);
-
-        CART_ITEMS_WRAPPER.appendChild(TITLE_DIV);
-        CART_ITEMS_WRAPPER.appendChild(div);
-
-        CONTINUE_TO_ORDER_BTN.setAttribute("disabled", "true");
-        CLEAR_CART_BTN.setAttribute("disabled", "true");
+    if (cartItems === null || cartItems === undefined) { // Not defined cart
+        showEmptyCart();
+        return;
     }
     else {
         cartItems = JSON.parse(cartItems)
-        console.log(cartItems)
+
+        if (cartItems.length === 0) { // Empty cart
+            showEmptyCart();
+            return;
+        }
 
         CART_ITEMS_WRAPPER.appendChild(TITLE_DIV);
         
@@ -77,8 +102,11 @@ function showItemsInCart() {
             const decreaseQuantityBtn = document.createElement("button");
             const increaseQuantityBtn = document.createElement("button");
 
+
             const nameNode = document.createTextNode(item.itemName);
-            const priceNode = document.createTextNode(item.itemPrice + "\u20AC");
+            let finalPrice = (item.itemPrice * item.quantity);
+            finalPrice = finalPrice.toFixed(2);
+            const priceNode = document.createTextNode(finalPrice + " " + "\u20AC");
             const quantityNode = document.createTextNode(item.quantity);
 
             div.setAttribute("class", "d-flex justify-content-between align-items-center cart-item my-2");
@@ -116,10 +144,33 @@ async function changeQuantity(type, event) {
     }
     BLOCK_SESSION_STORAGE = true; // Block changes
 
-    console.log(type, event)
+    const shopId = window.location.href.split("/")[4];
+    const itemId = event.target.parentNode.parentNode.getAttribute("data-item-id");
+    let storedCart = sessionStorage.getItem(shopId);
+    let shopCart = [];
+
+    if (storedCart === undefined || storedCart === null) {
+        return;
+    }
+
+    shopCart = JSON.parse(storedCart);
+    const index = findIndexOfItemInCart(itemId, shopCart);
+
+    if(type === "increase") {
+        shopCart[index]["quantity"]++;
+    }
+    else if (type === "decrease") {
+        if (--shopCart[index]["quantity"] === 0) {
+            shopCart.splice(index, 1);
+        };
+    }
+
+    shopCart = JSON.stringify(shopCart);
+    sessionStorage.setItem(shopId, shopCart);
 
     BLOCK_SESSION_STORAGE = false;
 
+    showItemsInCart();
 }
 
 async function addItemToCart(itemId, itemName, itemPrice) {
@@ -134,7 +185,7 @@ async function addItemToCart(itemId, itemName, itemPrice) {
         "itemId" : itemId,
         "itemName" : itemName,
         "quantity" : 1,
-        "itemPrice" : itemPrice
+        "itemPrice" : Number(itemPrice)
     }
     let shopCart = [];
     let storedCart = sessionStorage.getItem(shopId);
@@ -144,7 +195,7 @@ async function addItemToCart(itemId, itemName, itemPrice) {
     }
     else { // shop cart exists
         shopCart = JSON.parse(storedCart);
-        const index = findIndexOfItemInCart(item, shopCart);
+        const index = findIndexOfItemInCart(item.itemId, shopCart);
         
         if (index >= 0) { // item already in cart
             shopCart[index]["quantity"] +=1;
@@ -158,17 +209,29 @@ async function addItemToCart(itemId, itemName, itemPrice) {
     sessionStorage.setItem(shopId, shopCart);
     
     BLOCK_SESSION_STORAGE = false;
+
+    showPopup("Το προϊόν προστέθηκε στο καλάθι");
 }
 
 async function clearCart() {
+    while (BLOCK_SESSION_STORAGE === true) { // Wait for previous change to finish
+        await new Promise(resolve => setTimeout(resolve, 200));
+    }
+    BLOCK_SESSION_STORAGE = true; // Block changes
 
+    const shopId = window.location.href.split("/")[4];
+    sessionStorage.removeItem(shopId);
+
+    BLOCK_SESSION_STORAGE = false;
+
+    showItemsInCart();
 }
 
-function findIndexOfItemInCart(item, cart) {
+function findIndexOfItemInCart(itemId, cart) {
     let counter = 0;
 
     for (let _item of cart) {
-        if (_item.itemId === item.itemId) {
+        if (_item.itemId === itemId) {
             return counter;
         }
         counter++;
@@ -177,4 +240,4 @@ function findIndexOfItemInCart(item, cart) {
     return -1;
 }
 
-export { cartButtonListener };
+export { showItemsInCart, cartButtonListener };

@@ -7,7 +7,7 @@ class AddressParser {
         let _addresses = [];
         for (let address of addresses) {
             let _address = {};
-            
+
             _address.address_id = parseValue(address["address_id"]);
             _address.city = parseValue(address["city"]);
             _address.street = parseValue(address["street"]);
@@ -16,7 +16,7 @@ class AddressParser {
             _address.bell = parseValue(address["bell"]);
             _address.postcode = parseValue(address["postcode"]);
             _address.country = parseValue(address["country"]);
-            _address.notes = parseValue(address["notes"]);
+            _address.notes = parseValue(address["note"]);
 
             _addresses.push(_address);
         }

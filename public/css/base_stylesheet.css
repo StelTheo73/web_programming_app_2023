@@ -24,7 +24,11 @@ body {
     background-color: var(--brown);
 }
 
-.modal-overlay {
+.hidden {
+    display: none;
+}
+
+/* .modal-overlay {
     display: none;
     background-color: var(--black);
     z-index: 3;
@@ -37,7 +41,7 @@ body {
     bottom: 0;
     justify-content: center;
     align-items: center;
-}
+} */
 
 main {
     min-height: fit-content;
@@ -184,20 +188,22 @@ header .fa, header .fas {
 }
 /* END ICONS */
 
-
+/* FORMS */
 label.required::after {
     content: " *";
     color: red;
 }
+/* END FORMS */
 
 /* OVERLAYS */
 .add-address-overlay-container,
-.cart-overlay-container
+.custom-overlay-container
 {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
+    padding-top: 1em;
     z-index: 5;
     width: 100%;
     height: 100%;
@@ -206,23 +212,57 @@ label.required::after {
 }
 
 .add-address-overlay-container.show,
-.cart-overlay-container.show
+.custom-overlay-container.show
 {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
 }
 
 .add-address-overlay-container.show > .add-address-overlay-content,
-.cart-overlay-container.show > .cart-overlay-content
+.custom-overlay-container.show > .custom-overlay-content
 {
     position: absolute;
     background-color: var(--khaki);
     padding: 1em;
     border-radius: 1em;
     max-width: 50em;
-    min-height: 90vh;
+    min-height: 70vh;
     max-height: 90vh;
     overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
 }
 /* END OVERLAYS */
+
+/* POP UP */
+.popup {
+    visibility: hidden;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    width: 20em;
+    min-height: 10em;
+    max-height: 10em;
+    transform: translateX(-50%);
+    background-color: var(--yellow);
+    border: 1px solid var(--black);
+    border-radius: 2em;
+    box-shadow: 4px 4px 4px var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-wrap: break-word;
+    opacity: 0;
+    transition: opacity 0.5s, visibility 0s linear 0.5s;
+  }
+  
+  .popup.show {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+  }
+/* END POP UP */
+
