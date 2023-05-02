@@ -21,35 +21,35 @@ class MongoDBClient extends MongoClient {
     }
 
     async aggregate(collectionName, pipeline) {
-        let output = [];
+        let response = [];
         try {
             await this.connect();
             const database = this.db();
             const collection = database.collection(collectionName);
 
-            output = collection.aggregate(pipeline);
-            output = await output.toArray();
+            response = collection.aggregate(pipeline);
+            response = await response.toArray();
         }
         catch (err) {
             console.log(err);
         }
         finally {
             await this.close();
-            return output;
+            return response;
         }
     }
 
     async find(collectionName, _query, _projection = {_id : 1}, _sort = {} ) {
-        let output = [];
+        let response = [];
         try {
             await this.connect();
             const database = this.db();
             const collection = database.collection(collectionName);
 
             _projection = {projection : _projection}
-            output = collection.find(_query, _projection).sort(_sort);
+            response = collection.find(_query, _projection).sort(_sort);
 
-            output = await output.toArray();
+            response = await response.toArray();
 
         }
         catch (err) {
@@ -57,7 +57,7 @@ class MongoDBClient extends MongoClient {
         }
         finally {
             await this.close();
-            return output;
+            return response;
         }
     }
 
@@ -68,13 +68,10 @@ class MongoDBClient extends MongoClient {
             const database = this.db();
             const collection = database.collection(collectionName);
             
-            await collection.updateOne(_filter, _update);
-            response["status"] = "successful";
-
+             response = await collection.updateOne(_filter, _update);
         }
         catch (err) {
-            response["status"] = "failed";
-            response["error"] = err;
+            response.error = err;
             console(err);
         }
         finally{
@@ -84,55 +81,25 @@ class MongoDBClient extends MongoClient {
 
     }
 
+    async insertOne(collectionName, object) {
+        let response = {};
+        try{
+            await this.connect();
+            const database = this.db();
+            const collection = database.collection(collectionName);
+
+            response = await collection.insertOne(object);
+        
+        }
+        catch (err) {
+            response.error = err;
+            console(err);
+        }
+        finally{
+            await this.close();
+            return response;
+        }
+    }
 }
-
-// const pipeline = [
-//     {
-//         $match : {
-//             person_id : new ObjectId("642d12fd9f0c2c52ba5b81f6")
-//         }
-//     },
-//     {
-//         $lookup : {
-//             from : "shops",
-//             localField : "shop_id",
-//             foreignField : "_id",
-//             as : "shop"
-//         }
-//     },
-//     {
-//         $unwind : "$shop"
-//     },
-//     {
-//         $project : {
-//             shop_id : 1,
-//             shop_name : "$shop.name",
-//             shop_address : "$shop.address",
-//             shop_phone : "$shop.phone",
-//             shop_email : "$shop.email",
-//             _id : 1,
-//             datetime : 1,
-//             status : 1,
-//             order_contains : 1,
-//             address : 1,
-//             payment_mean : 1,
-//             card : 1,
-//             person_id : 1,
-//             rating : 1
-//         }
-//     },
-//     {
-//         $sort : {
-//             datetime : -1
-//         }
-//     }
-// ];
-// const collectionName = "orders";
-
-// for (let i = 0; i < 10; i ++) {
-//     let client = new MongoDBClient();
-//     let o = await client.aggregate(collectionName, pipeline);
-//     console.log(o[i]);
-// }
 
 export {MongoDBClient, ObjectId};

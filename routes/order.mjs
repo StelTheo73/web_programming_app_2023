@@ -12,8 +12,9 @@ orderRouter.post("/order/submit", async (request, response) => {
     else {
         // console.log(request.body);
 
-        console.log(await OrderParser.parseOrder(request.body, request.session.userId[0]._id));
-
+        const order = await OrderParser.parseOrder(request.body, request.session.userId[0]._id);
+        const _response = await sessionAPI.saveOrder(order);
+        console.log(_response);
         // for (let field in request.body) {
             // console.log(field)
         // }

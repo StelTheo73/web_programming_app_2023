@@ -1,7 +1,6 @@
 import { replacesTones } from "../../utils/greekRegex.mjs";
 import { MongoDBClient, ObjectId } from "./client.mjs";
 import { TranslatorAPI } from "../translateAPI/translateAPI.mjs";
-import { response } from "express";
 
 class SessionAPI extends MongoDBClient {
     constructor() {
@@ -819,6 +818,15 @@ class SessionAPI extends MongoDBClient {
 
         return;
 
+    }
+
+    async saveOrder(_order) {
+
+        _order.person_id = new ObjectId(_order.person_id);
+        _order.shop_id = new ObjectId(_order.shop_id);
+
+        const response = await this.insertOne("orders", _order);
+        return response;
     }
 }
 

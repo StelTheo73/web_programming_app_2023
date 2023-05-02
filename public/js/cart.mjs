@@ -4,7 +4,7 @@ import { showOrder } from "./order.mjs";
 
 let BLOCK_SESSION_STORAGE = false;
 
-const CART_OVERLAY = document.querySelector("#cart-overlay-container")
+const CART_OVERLAY = document.querySelector("#cart-overlay-container");
 const CART_ITEMS_WRAPPER = document.querySelector("#cart-overlay-container > .custom-overlay-content .cart-items-wrapper");
 const TITLE_DIV = CART_ITEMS_WRAPPER.querySelector(".cart-item-title");
 
@@ -240,4 +240,4 @@ function findIndexOfItemInCart(itemId, cart) {
     return -1;
 }
 
-export { showItemsInCart, cartButtonListener };
+export { showItemsInCart, cartButtonListener, clearCart };

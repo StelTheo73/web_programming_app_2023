@@ -12,7 +12,7 @@ Handlebars.registerHelper("search-list-items", function(items, shopId) {
           let url = `/shops/${shopId}/products/${item.itemId}`;
           let context = `
             <li>
-                <span><a href="${url}">${item.itemName}</a></span>
+                <span>${item.itemName}</span>
                 <span>${item.itemPrice} &euro;</span>
             </li>
             `;

@@ -1,12 +1,9 @@
 <div class="container-fluid search-results">
     {{#if shops}}
-        <h4>Καταστήματα</h4>
-        <ul>
+        <h3>Καταστήματα</h3>
+        <ul class="shop-result">
             {{#each shops}}
-                <li>
-                        <h5><a href="/shops/{{this.shopId}}">{{this.shopName}}</a></h5>
-                        <p>{{this.operatingHours}}</p>
-                </li>
+                <li><h5><a href="/shops/{{this.shopId}}">{{this.shopName}}</a></h5><p>{{this.operatingHours}}</p></li>
             {{/each}}
         </ul>
     {{/if}}
@@ -24,8 +21,8 @@
 
 
     {{#if products}}
-        <h4>Προϊόντα</h4>
-        <ul>
+        <h3>Προϊόντα</h3>
+        <ul class="item-result">
             {{#each products}}
                 <li>
                     <h5><a href="/shops/{{this.shopId}}">{{this.shopName}}</a></h5>

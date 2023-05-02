@@ -1,6 +1,6 @@
 "use strict";
 
-import { showItemsInCart } from "./cart.mjs";
+import { showItemsInCart, clearCart } from "./cart.mjs";
 
 const ORDER_OVERLAY = document.querySelector("#order-overlay-container");
 const EMPTY_ORDER_FEEDBACK = ORDER_OVERLAY.querySelector("#empty-order-feedback");
@@ -158,6 +158,7 @@ function validateOrder(event) {
 
     ORDER_FORM.classList.add("was-validated");
 
+    clearCart();
 }
 
 export { showOrder, orderButtonListener };
