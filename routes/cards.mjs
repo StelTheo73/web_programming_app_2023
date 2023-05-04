@@ -11,14 +11,18 @@ cardsRouter.get("/cards", async (request, response) => {
     }
     else {
         let cards = await sessionAPI.getPersonCards(request.session.userId[0]._id);
+        let addNewAddress = false; // If true, user must provide one address from the UI
         let userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
         request.session.userItemsEdited = false;
 
         cards = CardsParser.parseCards(cards);
+
+        addNewAddress = request.session.addNewAddress;
         response.render(
             "cards",
             {
                 cards,
+                addNewAddress,
                 userItemsEdited
             }
         );

@@ -1,7 +1,7 @@
-<div class="container-fluid search-results">
+<div class="container-fluid search-results pb-5">
     {{#if shops}}
         <h3>Καταστήματα</h3>
-        <ul class="shop-result">
+        <ul class="shop-result p-0">
             {{#each shops}}
                 <li><h5><a href="/shops/{{this.shopId}}">{{this.shopName}}</a></h5><p>{{this.operatingHours}}</p></li>
             {{/each}}
@@ -22,7 +22,7 @@
 
     {{#if products}}
         <h3>Προϊόντα</h3>
-        <ul class="item-result">
+        <ul class="item-result p-0">
             {{#each products}}
                 <li>
                     <h5><a href="/shops/{{this.shopId}}">{{this.shopName}}</a></h5>
@@ -31,7 +31,6 @@
                         {{/search-list-items}}
                     </ul>
                 </li>
-                <hr>
             {{/each}}
         </ul>
     {{/if}}

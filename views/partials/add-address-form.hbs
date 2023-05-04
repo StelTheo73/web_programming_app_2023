@@ -1,5 +1,15 @@
 <div class="add-user-item-form-wrapper">
-    <form class="row needs-validation" id="addAddressForm" method="post" action="/addresses/add" novalidate>
+    <form class="row needs-validation" id="add-address-form" method="post" action="/addresses/add" novalidate>
+        <div class="form-group col-12 hidden">
+            <label for="action-type" class="form-label required"></label>
+            <input type="text" class="form-control" id="action-type" name="action-type" value="add" disabled required>
+        </div>
+
+        <div class="form-group col-12 hidden">
+            <label for="address-id" class="form-label required"></label>
+            <input type="text" class="form-control" id="address-id" name="address-id" disabled required>
+        </div>
+
         <div class="form-group col-12 col-sm-6">
             <label for="city" class="form-label required">Πόλη:</label>
             <input type="text" class="form-control" id="city" name="city" required>
@@ -55,9 +65,8 @@
             <input type="text" class="form-control" id="note" name="note">
         </div>
 
-
         <div class="col-12 my-1">
-            <input type="submit" class="btn btn-primary bg-success add-item" value="Προσθήκη">
+            <button class="btn btn-primary bg-success" id="save-user-address">Αποθήκευση</button>
         </div>
     </form>
 </div>

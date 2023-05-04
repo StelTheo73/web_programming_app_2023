@@ -5,10 +5,7 @@
     <!-- ROW -->
     <div class="row my-0 pt-1 pb-0">
         <div class="col-6 d-flex justify-content-start align-items-center">
-            {{#if shop}}
-                <h1>{{shop.name}}</h1>
-                <span class="ms-2"></span>{{shop.address.city}}</span>
-            {{/if}}
+            {{#if shop}}<h1>{{shop.name}}</h1><span class="ms-2">{{shop.address.city}}</span>{{/if}}
         </div>  
         <div class="col-6 d-flex justify-content-end align-items-center">
             <span class="cart-wrapper"><button class="btn btn-outline-secondary show-cart"><i class="fas fa-shopping-cart"></i></button></span>

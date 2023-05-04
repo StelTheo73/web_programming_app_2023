@@ -1,11 +1,12 @@
 "use strict";
 
 import { showItemsInCart, clearCart } from "./cart.mjs";
+import { removeTones } from "./greekRegex.mjs";
 
 const ORDER_OVERLAY = document.querySelector("#order-overlay-container");
+const SHOP_ADDRESS_SPAN = document.querySelector(".shop-items-container > div > div > span");
 const EMPTY_ORDER_FEEDBACK = ORDER_OVERLAY.querySelector("#empty-order-feedback");
 const NO_ADDRESS_FEEDBACK = ORDER_OVERLAY.querySelector("#no-address-feedback");
-
 
 const ORDER_FORM = ORDER_OVERLAY.querySelector("form");
 const SHOP_ID_INPUT = ORDER_FORM.querySelector("#order-shop-id");
@@ -45,6 +46,7 @@ async function fillFormWithUserData() {
     const phone = userItems.phone;
     const addresses = userItems.addresses;
     const cards = userItems.cards;
+    let addressMatch = false;
     
     if (addresses === undefined || addresses === null || addresses.length === 0) {
         ORDER_FORM.classList.add("hidden");
@@ -53,7 +55,12 @@ async function fillFormWithUserData() {
     else {
         for (let address of addresses) {
             const option = document.createElement("option");
-            
+
+            if (removeTones(address.city.toLowerCase()) !== removeTones(SHOP_ADDRESS_SPAN.innerHTML.toLowerCase())) {
+                continue;
+            }
+            addressMatch = true;
+
             let addressText = `${address.city}, ${address.street} ${address.number}, ${address.floor}, ${address.bell}`
             if (addressText.length > 50) {
                 addressText = addressText.slice(0, 50) + "...";
@@ -64,7 +71,10 @@ async function fillFormWithUserData() {
             option.appendChild(addressInfo);
             ADDRESS_SELECT.appendChild(option);
         }
+    }
 
+    if (addressMatch === false) {
+        ADDRESS_SELECT.querySelector("option").classList.remove("hidden");
     }
 
     if (cards === undefined || cards === null || cards.length === 0) {
@@ -146,7 +156,7 @@ function validateOrder(event) {
     }
     
     if (PAYMENT_MEAN_SELECT.value === "CARD") {
-        if (CARD_SELECT.checkValidity === false) {
+        if (CARD_SELECT.checkValidity() === false) {
             event.preventDefault();
             ORDER_FORM.classList.add("was-validated");
             return;

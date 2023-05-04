@@ -24,38 +24,38 @@
         {{#if addresses}}
             {{#each addresses}}
                 <div class="col-12 col-md-6 col-xl-4">
-                    <div class="address-card-wrapper {{this.address_id}}">
+                    <div class="address-card-wrapper" id="{{this.address_id}}">
                     <div>
                         <label>Πόλη</label>
-                        <input type="text" value="{{this.city}}" readonly>
+                        <input type="text" class="user-item-city" value="{{this.city}}" readonly>
                     </div>
                     <div>
                         <label>Οδός</label>
-                        <input type="text" value="{{this.street}}" readonly>
+                        <input type="text" class="user-item-street" value="{{this.street}}" readonly>
                     </div>
                     <div>
                         <label>Αριθμός</label>
-                        <input type="text" value="{{this.number}}" readonly>
+                        <input type="text" class="user-item-number" value="{{this.number}}" readonly>
                     </div>   
                     <div>
                         <label>Όροφος</label>
-                        <input type="text" value="{{this.floor}}" readonly>
+                        <input type="text" class="user-item-floor" value="{{this.floor}}" readonly>
                     </div>
                     <div>
                         <label>Κουδούνι</label>
-                        <input type="text" value="{{this.bell}}" readonly>
+                        <input type="text" class="user-item-bell" value="{{this.bell}}" readonly>
                     </div>
                     <div>
                         <label>Τ. Κ.</label>
-                        <input type="text" value="{{this.postcode}}" readonly>
+                        <input type="text" class="user-item-postcode" value="{{this.postcode}}" readonly>
                     </div>
                     <div>
                         <label>Χώρα</label>
-                        <input type="text" value="{{this.country}}" readonly>
+                        <input type="text" class="user-item-country" value="{{this.country}}" readonly>
                     </div>
                     <div>
                         <label>Σημειώσεις</label>
-                        <textarea rows="5" cols="22" readonly>{{this.notes}}</textarea>
+                        <textarea rows="5" cols="22" class="user-item-note" readonly>{{this.notes}}</textarea>
                     </div>
                     <div>
                         <span><i class="far fa-edit text-primary"></i></span>
@@ -71,6 +71,4 @@
     <div class="row add-user-item">
         {{>add-address-form}}
     </div>
-
-
 </div>

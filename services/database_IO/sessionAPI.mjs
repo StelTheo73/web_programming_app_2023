@@ -772,6 +772,53 @@ class SessionAPI extends MongoDBClient {
         return;
     }
 
+    async editPersonItem(_person_id, _item, _item_id, _type) {
+        [_person_id, _item_id]= this.parseUserInput([_person_id, _item_id]);
+        console.log(_person_id, _item_id)
+
+        let itemRecord = {};
+        for (let field in _item) {
+            _item[field] = this.parseUserInput([_item[field]])[0];
+
+            if (_item[field] != " ") {
+                itemRecord[field] = _item[field];
+            }
+        }
+
+        let _filter = null;
+        let _update = null;
+
+        switch(_type) {
+            case "address" : {
+                _filter = {
+                    _id : new ObjectId(_person_id),
+                    "addresses.address_id" : _item_id
+                }
+
+                _update = {
+                    $set : {
+                        "addresses.$.city" : itemRecord["city"],
+                        "addresses.$.street" : itemRecord["street"],
+                        "addresses.$.number" : itemRecord["number"],
+                        "addresses.$.postcode" : itemRecord["postcode"],
+                        "addresses.$.country" : itemRecord["country"],
+                        "addresses.$.floor" : itemRecord["floor"],
+                        "addresses.$.bell" : itemRecord["bell"],
+                        "addresses.$.note" : itemRecord["note"]
+                    }
+                }
+
+
+            }
+        }
+
+        if (_update !== null && _filter !== null) {
+            await this.updateRecord("persons", _filter, _update);
+        }
+
+        return
+    }
+
     async deletePersonItem(_person_id, _item_id, _type) {
         [_person_id, _item_id] = this.parseUserInput([_person_id, _item_id]);
 

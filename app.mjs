@@ -2,7 +2,6 @@ import express from "express";
 import session from "express-session";
 import { engine } from "express-handlebars";
 import cookieParser from "cookie-parser";
-import { SessionAPI } from "./services/database_IO/sessionAPI.mjs";
 
 import { loginRouter } from "./routes/login.mjs";
 import { fetchRouter } from "./routes/fetch.mjs";
@@ -14,7 +13,6 @@ import { searchRouter } from "./routes/search.mjs";
 import { orderRouter } from "./routes/order.mjs";
 
 const app = express();
-const sessionAPI = new SessionAPI();
 
 app.use(express.static("public"));
 app.use(express.urlencoded({extended : false}));
@@ -42,25 +40,25 @@ app.get("/", async (request, response) => {
     const myUrl = new URL("http://" + request.headers.host + request.url);
     console.log(request.method, ", ", request.url);
 
-    
     if (!request.session.userId) {
         response.redirect("/login");
     }
     else {
-        let lastAddress = request.session.lastAddress;
-        let addresses = request.session.addresses;
-        let addNewAddress = request.session.addNewAddress;
-        let userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
+        const lastAddress = request.session.lastAddress;
+        const addresses = request.session.addresses;
+        const addNewAddress = request.session.addNewAddress;
+        const userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
+        const homepage = true;
         request.session.userItemsEdited = false;
 
-        response.render("homepage", { 
+        response.render("homepage", {
+            homepage,
             lastAddress,
             addresses,
             addNewAddress,
             userItemsEdited
         });
     }
-
 });
 
 app.use((request, response) => {

@@ -131,7 +131,7 @@ def map_shops():
 
 def main(persons_number, shops_number):
 
-    #drop_db()
+    drop_db()
 
     print("Connecting to database...")
     client = pymongo.MongoClient(CLIENT_URI)

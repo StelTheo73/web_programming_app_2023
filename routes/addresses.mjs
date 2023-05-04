@@ -46,7 +46,15 @@ addressRouter.post("/addresses/add", async (request, response) => {
         response.redirect("/login");
     }
     else {
-        await sessionAPI.addPersonItem(request.session.userId[0]._id, request.body, "address");
+        console.log(request.body)
+        if (request.body["action-type"] === "add") {
+            await sessionAPI.addPersonItem(request.session.userId[0]._id, request.body, "address");
+        }
+        else if (request.body["action-type"] === "edit") {
+            const addressId = request.body["address-id"];
+            await sessionAPI.editPersonItem(request.session.userId[0]._id, request.body, addressId, "address");
+        }
+
         request.session.userItemsEdited = true;
         response.redirect("/addresses");
     }
@@ -58,7 +66,6 @@ addressRouter.get("/addresses/delete/:addressId", async (request, response) => {
     }
     else {
         const addressId = request.url.split("/")[3];
-        console.log("DELETE ADDR", addressId)
         await sessionAPI.deletePersonItem(request.session.userId[0]._id, addressId, "address");
         request.session.userItemsEdited = true;
         response.redirect("/addresses");

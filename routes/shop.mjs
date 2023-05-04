@@ -45,8 +45,7 @@ shopRouter.get("/shops/:shop_id", async (request, response) => {
 
         const shopId = decodeURIComponent(request.params.shop_id);
         const shop = await sessionAPI.getShopData(shopId);
-        let lastAddress = request.session.lastAddress;
-        let addresses = request.session.addresses;
+        let addNewAddress = false; // If true, user must provide one address from the UI
         let userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
         request.session.userItemsEdited = false;
 
@@ -55,16 +54,17 @@ shopRouter.get("/shops/:shop_id", async (request, response) => {
 
         for (let category of shop.categories) {
             itemsPerCategory.push(await sessionAPI.fetchItemsByCategory(shopId, category));
-            // console.log(itemsPerCategory[0].products)
             itemsPerCategory[index].products = shopParser.parseItems(itemsPerCategory[index].products);
             index++;
         }
 
+        addNewAddress = request.session.addNewAddress;
         response.render(
             "shop",
             { 
                 shop,
                 itemsPerCategory,
+                addNewAddress,
                 userItemsEdited
             }
         );

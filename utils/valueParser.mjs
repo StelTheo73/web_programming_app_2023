@@ -1,9 +1,4 @@
-function parseValue(value, defaultValue="")  {
-    let typeMap = {
-      "string" : "",
-      "number" : 0
-    }
-    
+function parseValue(value, defaultValue="")  {    
     if ((value != undefined) & (value != null)) return value;
     else {
       return defaultValue;

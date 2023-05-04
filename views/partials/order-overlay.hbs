@@ -3,7 +3,6 @@
         <div id="empty-order-feedback" class="hidden">Πρόσθεσε προϊόντα στο καλάθι σου!</div>
         <div id="no-address-feedback" class="hidden">Πρόσθεσε μία διεύθυνση για να συνεχίσεις!</div>
     
-
         <div class="add-user-item-form-wrapper">
             <form class="row needs-validation" id="submitOrderForm" method="post" action="/order/submit" novalidate>
 
@@ -20,6 +19,7 @@
                 <div class="form-group col-6 my-1">
                     <label for="order-address" class="form-label required">Διεύθυνση</label>
                     <select class="form-select" id="order-address" name="order-address" required>
+                        <option disabled class="hidden" value="no-address">Καταχωρήστε μία διεύθυνση για να συνεχίσετε.</option>
                     </select>
                     <div class="invalid-feedback">Παρακαλούμε επέλεξε τη διεύθυνση σου.</div>
                 </div>
@@ -54,8 +54,8 @@
                 </div>
 
                 <div class="col-12 my-1 d-flex justify-content-end">
-                    <input type="submit" class="btn btn-primary bg-success submit-order mx-1" id="order-submit-button" value="Αποστολή παραγγελίας">
                     <button class="btn btn-outline-secondary mx-1" id="order-return-button">Επιστροφή</button>
+                    <input type="submit" class="btn btn-outline-success submit-order mx-1" id="order-submit-button" value="Αποστολή παραγγελίας">
                 </div>
             </form>
         </div>
