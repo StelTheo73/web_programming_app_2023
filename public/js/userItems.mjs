@@ -82,9 +82,8 @@ function changePanel(showUserItems, showAddUserItem) {
 
 function deleteUserItem(event) {
     const itemType = event.target.parentNode.parentNode.parentNode.classList[0];
-    const itemId = event.target.parentNode.parentNode.parentNode.classList[1];
+    const itemId = event.target.parentNode.parentNode.parentNode.id;
     let path = null;
-    
     if (itemType.indexOf("address") >= 0) {
         path = "addresses";
     }

@@ -7,7 +7,6 @@ const PORT = DATABASE_CONFIG.port;
 const PATH = DATABASE_CONFIG.path;
 const CLIENT_URI = `mongodb://${HOST}:${PORT}/${PATH}`;
 
-
 class MongoDBClient extends MongoClient {
     constructor () {
         super(CLIENT_URI);
@@ -32,6 +31,7 @@ class MongoDBClient extends MongoClient {
         }
         catch (err) {
             console.log(err);
+            response = [];
         }
         finally {
             await this.close();
@@ -54,6 +54,7 @@ class MongoDBClient extends MongoClient {
         }
         catch (err) {
             console.log(err);
+            response = [];
         }
         finally {
             await this.close();
@@ -71,8 +72,8 @@ class MongoDBClient extends MongoClient {
              response = await collection.updateOne(_filter, _update);
         }
         catch (err) {
-            response.error = err;
             console(err);
+            response = [];
         }
         finally{
             await this.close();
@@ -92,8 +93,8 @@ class MongoDBClient extends MongoClient {
         
         }
         catch (err) {
-            response.error = err;
             console(err);
+            response = [];
         }
         finally{
             await this.close();

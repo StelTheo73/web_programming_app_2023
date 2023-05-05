@@ -46,8 +46,8 @@ class OrderParser {
 
         parsedOrder.address = await sessionAPI.getPersonAddressById(personId, order["order-address"]);
 
-        parsedOrder.paymentMean = parseValue(order["payment-mean"]);
-        if (parsedOrder.paymentMean === "CARD") {
+        parsedOrder.payment_mean = parseValue(order["payment-mean"]);
+        if (parsedOrder.payment_mean === "CARD") {
             parsedOrder.card = await sessionAPI.getPersonCardById(personId, order["order-card"]);
         }
 

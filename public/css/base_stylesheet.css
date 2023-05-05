@@ -38,6 +38,7 @@ main > div {
     background-color: var(--white);
     min-height: 110vh;
     width: 100%;
+    padding: 1em;
 }
 
 footer {
@@ -251,4 +252,3 @@ label.required::after {
     transition-delay: 0s;
   }
 /* END POP UP */
-

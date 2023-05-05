@@ -18,7 +18,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({extended : false}));
 app.use(cookieParser());
 app.use(session({
-    secret: 'your-secret-key',
+    secret: '$467314FA#$VRMR',
     resave: false,
     saveUninitialized: true
 }));
@@ -37,41 +37,43 @@ app.use("/", searchRouter);
 app.use("/", orderRouter);
 
 app.get("/", async (request, response) => {
-    const myUrl = new URL("http://" + request.headers.host + request.url);
-    console.log(request.method, ", ", request.url);
-
-    if (!request.session.userId) {
-        response.redirect("/login");
+    try {
+        if (!request.session.userId) {
+            response.redirect("/login");
+        }
+        else {
+            const lastAddress = request.session.lastAddress;
+            const addresses = request.session.addresses;
+            const addNewAddress = request.session.addNewAddress;
+            const userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
+            const homepage = true;
+            request.session.userItemsEdited = false;
+    
+            response.render("homepage", {
+                homepage,
+                lastAddress,
+                addresses,
+                addNewAddress,
+                userItemsEdited
+            });
+        }
     }
-    else {
-        const lastAddress = request.session.lastAddress;
-        const addresses = request.session.addresses;
-        const addNewAddress = request.session.addNewAddress;
-        const userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
-        const homepage = true;
-        request.session.userItemsEdited = false;
-
-        response.render("homepage", {
-            homepage,
-            lastAddress,
-            addresses,
-            addNewAddress,
-            userItemsEdited
-        });
+    catch(error) {
+        console.log(error);
+        response.render("internal-error",
+            {
+                layout : "error"    
+            }
+        );
     }
 });
 
 app.use((request, response) => {
-    console.log("Redirect from ", request.url);
-    console.log(request.method, ", ", request.url);
-
-    if (!request.session.userId) {
-        response.redirect("/login");
-    }
-    else {
-        response.redirect("/");
-    }
-
+    response.render("page-not-found",
+        {
+            layout : "error"
+        }
+    );
 });
 
 app.listen(3000, "0.0.0.0", () => console.log("Listening on localhost:3000..."))

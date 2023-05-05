@@ -6,14 +6,24 @@ const orderRouter = express.Router();
 const sessionAPI = new SessionAPI();
 
 orderRouter.post("/order/submit", async (request, response) => {
-    if (!request.session.userId) {
-        response.redirect("/login");
+    try{
+        if (!request.session.userId) {
+            response.redirect("/login");
+        }
+        else {
+            const order = await OrderParser.parseOrder(request.body, request.session.userId[0]._id);
+            const _response = await sessionAPI.saveOrder(order);
+            console.log(_response);
+            response.redirect("/orders");
+        }
     }
-    else {
-        const order = await OrderParser.parseOrder(request.body, request.session.userId[0]._id);
-        const _response = await sessionAPI.saveOrder(order);
-        console.log(_response);
-        response.redirect("/orders");
+    catch(error) {
+        console.log(error);
+        response.render("internal-error",
+            {
+                layout : "error"    
+            }
+        );
     }
 });
 

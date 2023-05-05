@@ -28,54 +28,74 @@ const searchRouter = express.Router();
 const sessionAPI = new SessionAPI();
 
 searchRouter.get("/search", async (request, response) => {
-  if (!request.session.userId) {
-      response.redirect("/login");
-  }
-  else {
-    const userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
-    request.session.userItemsEdited = false;
+  try {
+    if (!request.session.userId) {
+        response.redirect("/login");
+    }
+    else {
+      const userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
+      request.session.userItemsEdited = false;
+      
+      const searchInput = request.query.searchInput;
+      const city = request.query.city;
+      let [shops, products] = await sessionAPI.searchShopsAndItems(searchInput, city);
     
-    const searchInput = request.query.searchInput;
-    const city = request.query.city;
-    let [shops, products] = await sessionAPI.searchShopsAndItems(searchInput, city);
-  
-    shops = searchResultsParser.parseShops(shops);
-    products = searchResultsParser.parseProducts(products);
-  
-    response.render(
-      "search-results",
+      shops = searchResultsParser.parseShops(shops);
+      products = searchResultsParser.parseProducts(products);
+    
+      response.render(
+        "search-results",
+          {
+            shops,
+            products,
+            userItemsEdited
+          }
+      );
+      
+    }
+  }
+  catch (error) {
+    console.log(error)
+    response.render("internal-error",
         {
-          shops,
-          products,
-          userItemsEdited
+            layout : "error"    
         }
     );
-    
   }
 });
 
 searchRouter.get("/search/categories/:category_name", async (request, response) => {
-  if (!request.session.userId) {
-    response.redirect("/login");
+  try {
+    if (!request.session.userId) {
+      response.redirect("/login");
+    }
+    else {
+      const userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
+      request.session.userItemsEdited = false;
+  
+      const category = decodeURIComponent(request.params.category_name);
+      const city = request.query.city;
+      let shops = await sessionAPI.searchShopsByCategory(category, city);
+  
+      shops = searchResultsParser.parseShops(shops);
+  
+      response.render(
+        "search-results",
+          {
+            shops,
+            userItemsEdited
+          }
+      );
+  
+    }
   }
-  else {
-    const userItemsEdited = request.session.userItemsEdited; // If true, front-end JS must update local storage with the new values
-    request.session.userItemsEdited = false;
-
-    const category = decodeURIComponent(request.params.category_name);
-    const city = request.query.city;
-    let shops = await sessionAPI.searchShopsByCategory(category, city);
-
-    shops = searchResultsParser.parseShops(shops);
-
-    response.render(
-      "search-results",
+  catch (error) {
+    console.log(error)
+    response.render("internal-error",
         {
-          shops,
-          userItemsEdited
+            layout : "error"    
         }
     );
-
   }
 });
 

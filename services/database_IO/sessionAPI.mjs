@@ -7,6 +7,13 @@ class SessionAPI extends MongoDBClient {
         super();
     }
 
+    /**
+     * Parses and cleans user input to prevent injection.
+     * 
+     * @function parseUserInput
+     * @param {Array} userInputList - A list containing user input.
+     * @returns {Array} The parsed user input.
+     */
     parseUserInput(userInputList) {
         let parsedList = [];
 
@@ -208,48 +215,60 @@ class SessionAPI extends MongoDBClient {
      */
     async getPersonAddresses(_person_id) {
         let addresses = [];
+        let pipeline = {};
 
         _person_id = this.parseUserInput([_person_id])[0];
 
-        let pipeline = [
-            { 
-                $match: { 
-                    _id: new ObjectId(_person_id) 
-                } 
-            },
-            { 
-                $unwind: "$addresses" 
-            },
-            {
-                 $sort: { 
-                    "addresses.city": 1,
-                    "addresses.street" : 1,
-                    "addresses.number" : 1
-                } 
-            },
-            {
-              $group: {
-                _id: "$_id",
-                addresses: { 
-                    $push: "$addresses" 
+        try {
+            pipeline = [
+                { 
+                    $match: { 
+                        _id: new ObjectId(_person_id) 
+                    } 
+                },
+                { 
+                    $unwind: "$addresses" 
+                },
+                {
+                     $sort: { 
+                        "addresses.city": 1,
+                        "addresses.street" : 1,
+                        "addresses.number" : 1
+                    } 
+                },
+                {
+                  $group: {
+                    _id: "$_id",
+                    addresses: { 
+                        $push: "$addresses" 
+                    }
+                  }
+                },
+                {
+                  $project: {
+                    _id: 1,
+                    addresses: 1
+                  }
                 }
-              }
-            },
-            {
-              $project: {
-                _id: 1,
-                addresses: 1
-              }
-            }
-        ];
+            ];
+        }
+        catch (error) {
+            console.log(error);
+            return "ERROR";
+        }
 
         addresses = await this.aggregate("persons", pipeline);
-        if (addresses[0]) {
-            return addresses[0].addresses;
-        }
-        else {
+
+        if (addresses === null || addresses === undefined || addresses.length === 0) {
             return [];
         }
+        else if (addresses[0].addresses === null || addresses[0].addresses === undefined || 
+            addresses[0].length === 0
+        ) {
+            return [];
+        }
+        
+        return addresses[0].addresses;
     }
 
     async getPersonAddressById(_person_id, _address_id) {
@@ -310,23 +329,38 @@ class SessionAPI extends MongoDBClient {
      */
     async getPersonCards(_person_id) {
         let cards = [];
+        let _query = {};
+        let _projection = {}
 
         _person_id = this.parseUserInput([_person_id])[0];
         
-        let _query = {
-            _id : new ObjectId(_person_id)
+        try {
+            _query = {
+                _id : new ObjectId(_person_id)
+            }
         }
-        let _projection = {
+        catch(error) {
+            console.log(error);
+            return "ERROR";
+        }
+        
+        _projection = {
             _id : 1,
             cards : 1
         }
-            cards = await this.find("persons", _query, _projection);
+        
+        cards = await this.find("persons", _query, _projection);
 
-
-        if (cards[0]) {
-            return cards[0].cards;
+        if (cards === null || cards === undefined || cards.length === 0) {
+            return [];
         }
-        else return [];
+        else if (cards[0].cards === null || cards[0].cards === undefined || 
+            cards[0].length === 0    
+        ) {
+            return [];
+        }
+        
+        return cards[0].cards;
     }
 
     /**
@@ -633,13 +667,22 @@ class SessionAPI extends MongoDBClient {
 
     async getShopData(_shopId) {
         let shopData = [];
+        let _query = {};
+        let _projection = {};
 
         _shopId = this.parseUserInput([_shopId])[0];
 
-        let _query = {
-            _id : new ObjectId(_shopId)
+        try {
+            _query = {
+                _id : new ObjectId(_shopId)
+            }
         }
-        let _projection = {
+        catch (error) {
+            console.log(error);
+            return [];
+        }
+
+        _projection = {
             _id : 0,
             type : 1,
             name : 1,
@@ -651,6 +694,10 @@ class SessionAPI extends MongoDBClient {
         }
 
         shopData = await this.find("shops", _query, _projection);
+
+        if (shopData === null || shopData === undefined || shopData.length === 0) {
+            return [];
+        }
 
         return shopData[0];
     }
