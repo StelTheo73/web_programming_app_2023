@@ -17,15 +17,16 @@ DATABASE_FOLDER = os.path.join(PWD, DB_FOLDER)
 DATABASE_FILE = os.path.join(PWD, DATABASE_PATH)
 
 def print_help(argv):
-    arg_help = "{0} -i <initialize database>".format(argv[0])
+    arg_help = "{0} -i <initialize database>, -d <deploy translate API>".format(argv[0])
     print(arg_help)
 
 def parse_arguments(argv):
     """Parses the provided arguments."""
     arg_init_db = False
+    arg_deploy_translate_server = False
 
     try:
-        opts, _ = getopt.getopt(argv[1:], "h:i:", ["help", "init="])
+        opts, _ = getopt.getopt(argv[1:], "h:i:d:", ["help", "init=", "deploy="])
     except Exception:
         print_help(argv)
         sys.exit(1)
@@ -34,22 +35,26 @@ def parse_arguments(argv):
         if opt in ("-h", "--help"):
             print_help(argv)
             sys.exit(0)
-        elif opt in ["-i", "--init-db"]:
+        elif opt in ["-i", "--init"]:
             if (not isinstance(arg, str)) or (arg.capitalize() not in ("True", "False", "1", "0")):
                 print_help(argv)
                 sys.exit(1)
             if arg.capitalize() in ("True", "1"):
                 arg_init_db = True
                 # default is False
+        elif opt in ["-d", "--deploy"]:
+            if (not isinstance(arg, str)) or (arg.capitalize() not in ("True", "False", "1", "0")):
+                print_help(argv)
+                sys.exit(1)
+            if arg.capitalize() in ("True", "1"):
+                arg_deploy_translate_server = True
+                # default is False
 
-    return arg_init_db
+    return arg_init_db, arg_deploy_translate_server
 
 def create_folders():
     if not os.path.exists(TMP):
         os.mkdir(TMP)
-
-    if not os.path.exists(DATABASE_FOLDER):
-        os.mkdir(DATABASE_FOLDER)
 
 def clear_tmp_after_db_initialization():
     for element in os.listdir(TMP):
@@ -65,22 +70,16 @@ def create_translate_API_server():
     server_thread = threading.Thread(target=server.serve_forever)
     server_thread.start()
 
-    # time.sleep(5)
-
-    # import requests
-    # response = requests.get('http://127.0.0.1:5000/shutdown', verify=False, timeout=10)
-    # print(response.text)
-
-def setup(init_db):
+def setup(init_db, deploy_translate_server):
     create_folders()
     if init_db:
         initialize_db(1000, 100)
         clear_tmp_after_db_initialization()
-    
-    create_translate_API_server()
+    if deploy_translate_server:
+        create_translate_API_server()
 
 if __name__ == "__main__":
-    init_db = parse_arguments(sys.argv)
-    setup(init_db)
+    init_db, deploy_translate_server = parse_arguments(sys.argv)
+    setup(init_db, deploy_translate_server)
 
 # python -m setup

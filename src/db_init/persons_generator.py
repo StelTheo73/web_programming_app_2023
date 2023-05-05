@@ -54,7 +54,10 @@ def generate_person():
     while email in EMAILS_LIST:
         email_number = random_choice(NUMBERS, 3)
         email = EMAIL_FORMAT.format(
-            firstname, lastname, email_number, random.choice(DOMAINS)
+            firstname = latin_firstname,
+            lastname = latin_lastname, 
+            number = email_number,
+            domain = random.choice(DOMAINS)
     )
     EMAILS_LIST.append(email)
 
