@@ -5,7 +5,8 @@ import { createHash } from "crypto";
 const HOST = DATABASE_CONFIG.host;
 const PORT = DATABASE_CONFIG.port;
 const PATH = DATABASE_CONFIG.path;
-const CLIENT_URI = `mongodb://${HOST}:${PORT}/${PATH}`;
+const CLIENT_URI = "mongodb+srv://StelTheo73:Z0Pdy4ipKtGN3bZM@webprogrammingapp2023.jlbvfq6.mongodb.net/"
+// const CLIENT_URI = `mongodb://${HOST}:${PORT}/${PATH}`;
 
 class MongoDBClient extends MongoClient {
     constructor () {

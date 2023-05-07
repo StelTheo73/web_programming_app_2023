@@ -18,7 +18,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({extended : false}));
 app.use(cookieParser());
 app.use(session({
-    secret: '$467314FA#$VRMR',
+    secret: '$467314FA#$VRMR11FA#0310*wpa',
     resave: false,
     saveUninitialized: true
 }));
@@ -76,4 +76,4 @@ app.use((request, response) => {
     );
 });
 
-app.listen(3000, "0.0.0.0", () => console.log("Listening on localhost:3000..."))
+app.listen(8080, "0.0.0.0", () => console.log("Listening on port 8080..."))
