@@ -1,8 +1,9 @@
-import { DATABASE_CONFIG } from "../../config/database.mjs";
+import { DATABASE_CONFIG } from "../../config/configuration.mjs";
 import { MongoClient, ObjectId } from "mongodb";
 import { createHash } from "crypto";
 
-const CLIENT_URI = "mongodb+srv://StelTheo73:Z0Pdy4ipKtGN3bZM@webprogrammingapp2023.jlbvfq6.mongodb.net/?retryWrites=true&w=majority";
+const CLIENT_URI = DATABASE_CONFIG.CONNECTION_STRING;
+const DATABASE_NAME = DATABASE_CONFIG.DATABASE_NAME;
 
 class MongoDBClient extends MongoClient {
     constructor () {
@@ -20,7 +21,7 @@ class MongoDBClient extends MongoClient {
         let response = [];
         try {
             await this.connect();
-            const database = this.db("El_Food_db");
+            const database = this.db(DATABASE_NAME);
             const collection = database.collection(collectionName);
 
             response = collection.aggregate(pipeline);
@@ -40,7 +41,7 @@ class MongoDBClient extends MongoClient {
         let response = [];
         try {
             await this.connect();
-            const database = this.db("El_Food_db");
+            const database = this.db(DATABASE_NAME);
             const collection = database.collection(collectionName);
 
             _projection = {projection : _projection}
@@ -63,7 +64,7 @@ class MongoDBClient extends MongoClient {
         let response = {};
         try {
             await this.connect();
-            const database = this.db("El_Food_db");
+            const database = this.db(DATABASE_NAME);
             const collection = database.collection(collectionName);
             
              response = await collection.updateOne(_filter, _update);
@@ -83,7 +84,7 @@ class MongoDBClient extends MongoClient {
         let response = {};
         try{
             await this.connect();
-            const database = this.db("El_Food_db");
+            const database = this.db(DATABASE_NAME);
             const collection = database.collection(collectionName);
 
             response = await collection.insertOne(object);

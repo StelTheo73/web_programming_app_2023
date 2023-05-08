@@ -1,5 +1,9 @@
 import { RequestMaker } from "../requestMaker.mjs";
-import { TRANSLATOR_API_CONFIG } from "../../config/translatorAPI.mjs"
+import { TRANSLATE_API_CONFIG } from "../../config/configuration.mjs";
+import { Translate } from "@google-cloud/translate/build/src/v2/index.js";
+
+const PROJECT_ID = TRANSLATE_API_CONFIG.PROJECT_ID;
+const API_KEY = TRANSLATE_API_CONFIG.API_KEY;
 
 /**
  * Class representing an API for translating text.
@@ -9,16 +13,18 @@ class TranslatorAPI extends RequestMaker {
 
     constructor() {
         super();
-        this.hostname = TRANSLATOR_API_CONFIG.host;
-        this.port = process.env.PORT || TRANSLATOR_API_CONFIG.port;
-        this.APIPath = TRANSLATOR_API_CONFIG.path;
-        this.translateTextPath = this.APIPath + "/translate-split-text";
     }
 
     async translateSplitText(text) {
-        let data = JSON.stringify({"text" : text});
-        let responseText = await this.doPOST(this.hostname, this.port, this.translateTextPath, data);
-        return responseText;
+        const translate = new Translate({
+            projectId: PROJECT_ID,
+            key: API_KEY
+        });
+        const target = 'en';
+        const [translation] = await translate.translate(text, target);
+        console.log(`Translation: ${translation}`);
+
+        return translation.split(" ");
     }
 
 }

@@ -464,11 +464,13 @@ class SessionAPI extends MongoDBClient {
     async translateAndSplitText(text) {
         let translator = new TranslatorAPI();
         let response = await translator.translateSplitText(text);
-        console.log(response.data)
-        let translatedText = JSON.parse(response.data)["translated_words"];
+        console.log(response);
 
-        console.log(translatedText);
-        return translatedText;
+        for (let index in response) {
+            response[index] = response[index].toLowerCase();
+        }
+
+        return response;
     }
 
     async searchShopsByName(textPattern, cityPattern) {
