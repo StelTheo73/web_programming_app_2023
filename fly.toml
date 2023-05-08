@@ -10,8 +10,8 @@ primary_region = "arn"
 #  builder = "paketobuildpacks/builder:base"
   builder = "heroku/buildpacks:20"
 
-[command]
-  start = "node app.mjs"
+#[command]
+#  start = "npm start"
 
 [env]
   PORT = "8080"

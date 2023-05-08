@@ -13,6 +13,7 @@ import { searchRouter } from "./routes/search.mjs";
 import { orderRouter } from "./routes/order.mjs";
 
 const app = express();
+const PORT = process.env.PORT || 8080;
 
 app.use(express.static("public"));
 app.use(express.urlencoded({extended : false}));
@@ -76,4 +77,4 @@ app.use((request, response) => {
     );
 });
 
-app.listen(8080, "0.0.0.0", () => console.log("Listening on port 8080..."))
+app.listen(PORT, "0.0.0.0", () => console.log(`Listening on ${PORT}...`));
