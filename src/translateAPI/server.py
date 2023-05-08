@@ -1,9 +1,10 @@
+import os
 from http.server import ThreadingHTTPServer
 from socketserver import ThreadingMixIn
 from src.translateAPI.HTTPRequestHandler import HTTPRequestHandler
 
-HOST = "127.0.0.1"
-PORT = 5000
+HOST = "0.0.0.0"
+PORT = int(os.getenv("PORT", "5000"))
 
 class Server(ThreadingHTTPServer, ThreadingMixIn):
     thread_count = 1000

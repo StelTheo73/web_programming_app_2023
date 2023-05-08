@@ -38,6 +38,7 @@ searchRouter.get("/search", async (request, response) => {
       
       const searchInput = request.query.searchInput;
       const city = request.query.city;
+      console.log("Search for: ", searchInput, city)
       let [shops, products] = await sessionAPI.searchShopsAndItems(searchInput, city);
     
       shops = searchResultsParser.parseShops(shops);
@@ -58,6 +59,7 @@ searchRouter.get("/search", async (request, response) => {
     console.log(error)
     response.render("internal-error",
         {
+            error,
             layout : "error"    
         }
     );

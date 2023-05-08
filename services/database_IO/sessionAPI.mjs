@@ -452,19 +452,19 @@ class SessionAPI extends MongoDBClient {
         
         // Translate and split
         let translatedTextList = await this.translateAndSplitText(text);
-
+        console.log("translatedTextList", translatedTextList);
         // Search for shops and items
-        let [shops, productsByTagSplit] = await Promise.all([
-            this.searchShopsByName(textPattern, cityPattern),
-            this.searchItemsByTagSPlit(translatedTextList, cityPattern)
-        ]);
-
+        let shops = await this.searchShopsByName(textPattern, cityPattern);
+        let productsByTagSplit = await this.searchItemsByTagSPlit(translatedTextList, cityPattern);
+        console.log(shops)
+        console.log(productsByTagSplit)
         return [shops, productsByTagSplit];
     }
 
     async translateAndSplitText(text) {
         let translator = new TranslatorAPI();
         let response = await translator.translateSplitText(text);
+        console.log(response.data)
         let translatedText = JSON.parse(response.data)["translated_words"];
 
         console.log(translatedText);

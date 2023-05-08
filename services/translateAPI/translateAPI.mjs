@@ -10,7 +10,7 @@ class TranslatorAPI extends RequestMaker {
     constructor() {
         super();
         this.hostname = TRANSLATOR_API_CONFIG.host;
-        this.port = TRANSLATOR_API_CONFIG.port;
+        this.port = process.env.PORT || TRANSLATOR_API_CONFIG.port;
         this.APIPath = TRANSLATOR_API_CONFIG.path;
         this.translateTextPath = this.APIPath + "/translate-split-text";
     }
