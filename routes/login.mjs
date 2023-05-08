@@ -20,7 +20,7 @@ loginRouter.post("/login/submit", async (request, response) => {
     const email = String(request.body.email);
     const pwd = String(request.body.password);
     const personId = await sessionAPI.userLogin(email, pwd);
-  
+    console.log(personId)
     if (personId.length) {
         request.session.userId = personId;
         let lastAddress = await sessionAPI.getLastAddress(request.session.userId[0]._id);

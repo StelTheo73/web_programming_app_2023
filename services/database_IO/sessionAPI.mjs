@@ -186,7 +186,7 @@ class SessionAPI extends MongoDBClient {
         ];
         lastAddress = await this.aggregate("orders", pipeline);
         let addressExists = false;
-        if (lastAddress !== []) {
+        if (lastAddress.length !== 0) {
             addressExists = await this.addressExists(_person_id, lastAddress[0]["address"]["address_id"]);
         }
 
