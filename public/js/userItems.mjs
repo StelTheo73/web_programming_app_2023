@@ -50,6 +50,7 @@ function userAddressesListener() {
         }
         else if (target.matches(".fa-trash-alt"))
         if (confirm("Επιθυμείτe να διαγράψετε αυτό το στοιχείο;")) {
+            console.log("Delete")
             deleteUserItem(event);
         }
     });
