@@ -33,7 +33,7 @@
 
 .shop-items-container > .shop-categories > .shop-categories-wrapper > ul > li:hover {
   background-color: gray;
-  box-shadow: 0 0.5em 0.5em 0 var(--black);
+  box-shadow: 0px 8px 8px 0px var(--black);
   color: var(--khaki);
   cursor: pointer;
 }
@@ -54,7 +54,8 @@
 .shop-items {
   border-bottom-left-radius: 1em;
   border-bottom-right-radius: 1em;
-  box-shadow: 0px 4px 0px var(--black);
+  box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.8);
+
 }
 
 .shop-items > .category-items {

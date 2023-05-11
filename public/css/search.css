@@ -15,13 +15,6 @@
     list-style-type: none;
 }
 
-/* .search-results > ul.shop-result {
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-} */
-
 .search-results > ul > li {
     margin-top: 1em;
     box-shadow: 2px 4px 2px var(--orange);

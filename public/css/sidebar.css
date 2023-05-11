@@ -80,7 +80,8 @@
     transition: 0.5s;
     font-size: 1em;
     color:  (var(--black));
-    background-color: var(--khaki)
+    background-color: var(--khaki);
+    border-radius: 0.5em;
 }
 
 .sidebar-item-div:hover {
