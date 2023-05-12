@@ -2,6 +2,7 @@ import { parseValue } from "../utils/valueParser.mjs";
 import { SessionAPI } from "../services/database_IO/sessionAPI.mjs";
 
 const sessionAPI = new SessionAPI();
+sessionAPI.connect();
 
 class OrderParser {
     constructor() {}

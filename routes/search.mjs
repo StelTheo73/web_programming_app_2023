@@ -26,6 +26,7 @@ Handlebars.registerHelper("search-list-items", function(items, shopId) {
 
 const searchRouter = express.Router();
 const sessionAPI = new SessionAPI();
+sessionAPI.connect();
 
 searchRouter.get("/search", async (request, response) => {
   try {

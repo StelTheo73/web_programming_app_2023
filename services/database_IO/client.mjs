@@ -20,7 +20,10 @@ class MongoDBClient extends MongoClient {
     async aggregate(collectionName, pipeline) {
         let response = [];
         try {
-            await this.connect();
+            if (!this.topology.isConnected()) {
+                await this.connect();
+            }
+
             const database = this.db(DATABASE_NAME);
             const collection = database.collection(collectionName);
 
@@ -32,7 +35,6 @@ class MongoDBClient extends MongoClient {
             response = [];
         }
         finally {
-            await this.close();
             return response;
         }
     }
@@ -40,7 +42,10 @@ class MongoDBClient extends MongoClient {
     async find(collectionName, _query, _projection = {_id : 1}, _sort = {} ) {
         let response = [];
         try {
-            await this.connect();
+            if (!this.topology.isConnected()) {
+                await this.connect();
+            }
+
             const database = this.db(DATABASE_NAME);
             const collection = database.collection(collectionName);
 
@@ -55,7 +60,6 @@ class MongoDBClient extends MongoClient {
             response = [];
         }
         finally {
-            await this.close();
             return response;
         }
     }
@@ -63,7 +67,10 @@ class MongoDBClient extends MongoClient {
     async updateRecord(collectionName, _filter, _update) {
         let response = {};
         try {
-            await this.connect();
+            if (!this.topology.isConnected()) {
+                await this.connect();
+            }
+
             const database = this.db(DATABASE_NAME);
             const collection = database.collection(collectionName);
             
@@ -74,7 +81,6 @@ class MongoDBClient extends MongoClient {
             response = [];
         }
         finally{
-            await this.close();
             return response;
         }
 
@@ -83,7 +89,10 @@ class MongoDBClient extends MongoClient {
     async insertOne(collectionName, object) {
         let response = {};
         try{
-            await this.connect();
+            if (!this.topology.isConnected()) {
+                await this.connect();
+            }
+            
             const database = this.db(DATABASE_NAME);
             const collection = database.collection(collectionName);
 
@@ -95,7 +104,6 @@ class MongoDBClient extends MongoClient {
             response = [];
         }
         finally{
-            await this.close();
             return response;
         }
     }

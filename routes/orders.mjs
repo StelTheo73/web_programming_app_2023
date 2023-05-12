@@ -3,8 +3,8 @@ import { SessionAPI } from "../services/database_IO/sessionAPI.mjs";
 import { OrdersParser } from "../controllers/orders.mjs";
 
 const ordersRouter = express.Router();
-const sessionAPI = new SessionAPI(); 
-
+const sessionAPI = new SessionAPI();
+sessionAPI.connect();
 
 ordersRouter.get("/orders", async (request, response) => {
     try {

@@ -4,6 +4,7 @@ import { AddressParser } from "../controllers/addresses.mjs";
 
 const addressRouter = express.Router();
 const sessionAPI = new SessionAPI();
+sessionAPI.connect();
 
 addressRouter.get("/addresses", async (request, response) => {
     try {

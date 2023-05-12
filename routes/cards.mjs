@@ -4,6 +4,7 @@ import { CardsParser } from "../controllers/cards.mjs";
 
 const cardsRouter = express.Router();
 const sessionAPI = new SessionAPI();
+sessionAPI.connect();
 
 cardsRouter.get("/cards", async (request, response) => {
     try {

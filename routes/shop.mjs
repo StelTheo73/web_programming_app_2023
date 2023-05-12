@@ -4,6 +4,7 @@ import { shopParser } from "../controllers/shop.mjs";
 
 const shopRouter = express.Router();
 const sessionAPI = new SessionAPI();
+sessionAPI.connect();
 
 shopRouter.get("/shops/:shop_id", async (request, response) => {
     try {

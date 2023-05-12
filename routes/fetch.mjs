@@ -5,6 +5,7 @@ import { AddressParser } from "../controllers/addresses.mjs";
 
 const fetchRouter = express.Router();
 const sessionAPI = new SessionAPI();
+sessionAPI.connect();
 
 fetchRouter.post("/fetch/user-items", async (request, response) => {
     try {
