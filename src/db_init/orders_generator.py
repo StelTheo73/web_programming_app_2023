@@ -30,7 +30,7 @@ def make_random_order(person, address, shop):
             pass
 
         order_contains.append(order_item)
-    
+
     order = {
         "person_id" : person["_id"],
         "shop_id" : shop["_id"],

@@ -73,7 +73,7 @@ def create_translate_API_server():
 def setup(init_db, deploy_translate_server):
     create_folders()
     if init_db:
-        initialize_db(1000, 100)
+        initialize_db(500, 500)
         clear_tmp_after_db_initialization()
     if deploy_translate_server:
         create_translate_API_server()
