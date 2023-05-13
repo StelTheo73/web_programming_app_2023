@@ -115,7 +115,7 @@
 
 /* =============================================================== */
 
-/* CHILDREN OF ITEMS & SHOP FLIP CARD (BACK) */
+/* CHILDREN OF ITEMS, SHOP & RATING FLIP CARD (BACK) */
 /* ITEM NAME */
 .order-items .order-wrapper > .item-info-flip-card > div > span:nth-child(1) {
     grid-column: 1 / span 2;
@@ -146,8 +146,22 @@
     font-weight: bolder;
     font-size: large;
 }
+
+.order-items .order-wrapper > .rating-flip-card form > .form-group > div {
+    width: 10em;
+    color: var(--orange);
+}
+
+.order-items .order-wrapper > .rating-flip-card form > .form-group > input {
+    width: 10em;
+}
+
+.order-items .order-wrapper > .rating-flip-card form > .form-group > input::-webkit-slider-thumb {
+    background-color: var(--orange);
+}
+
 /* END SHOP NAME BACK */
-/* END CHILDREN OF ITEMS & SHOP FLIP CARD (BACK) */
+/* END CHILDREN OF ITEMS, SHOP & RATING FLIP CARD (BACK) */
 
 /* =============================================================== */
 

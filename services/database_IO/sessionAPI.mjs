@@ -372,7 +372,7 @@ class SessionAPI extends MongoDBClient {
      * @param {String} year - Year of the orders.
      * @returns {Promise<Array>} Array containing the orders.
      */
-    async getPersonOrders(_person_id) {
+    async getPersonOrders(_person_id, _limit = 50) {
         let orders = [];
 
         _person_id = this.parseUserInput([_person_id])[0];
@@ -416,6 +416,9 @@ class SessionAPI extends MongoDBClient {
                 $sort : {
                     datetime : -1
                 }
+            },
+            {
+                $limit: parseInt(_limit)
             }
         ];
 
@@ -823,7 +826,6 @@ class SessionAPI extends MongoDBClient {
 
     async editPersonItem(_person_id, _item, _item_id, _type) {
         [_person_id, _item_id]= this.parseUserInput([_person_id, _item_id]);
-        console.log(_person_id, _item_id)
 
         let itemRecord = {};
         for (let field in _item) {
@@ -865,7 +867,7 @@ class SessionAPI extends MongoDBClient {
             await this.updateRecord("persons", _filter, _update);
         }
 
-        return
+        return;
     }
 
     async deletePersonItem(_person_id, _item_id, _type) {
@@ -923,6 +925,32 @@ class SessionAPI extends MongoDBClient {
 
         const response = await this.insertOne("orders", _order);
         return response;
+    }
+
+    async updateOrder(_order_id, _order) {
+        [_order_id] = this.parseUserInput([_order_id]);
+        
+        let ordersRecord = {};
+        for (let field in _order) {
+            _order[field] = this.parseUserInput([_order[field]])[0];
+
+            if (_order[field] != " ") {
+                ordersRecord[field] = _order[field];
+            }
+        }
+
+        const _filter = {
+            _id : new ObjectId(_order_id)
+        }
+        const _update= {
+            $set : {
+                "rating" : ordersRecord["rating"]
+            }
+        }
+
+        await this.updateRecord("orders", _filter, _update);
+
+        return;
     }
 }
 

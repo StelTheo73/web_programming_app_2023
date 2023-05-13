@@ -85,7 +85,7 @@ cardsRouter.get("/cards/delete/:cardId", async (request, response) => {
         console.log(error);
         response.render("internal-error",
             {
-                layout : "error"    
+                layout : "error"
             }
         );
     }

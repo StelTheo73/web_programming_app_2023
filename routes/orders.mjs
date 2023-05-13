@@ -40,4 +40,24 @@ ordersRouter.get("/orders", async (request, response) => {
     }
 });
 
+ordersRouter.post("/orders/rate/", async (request, response) => {
+    try {
+        if (!request.session.userId) {
+            response.redirect("/login");
+        }
+        else {
+            await sessionAPI.updateOrder(request.body["order-id"], request.body);
+            response.redirect("/orders");
+        }
+    }
+    catch (error) {
+        console.log(error)
+        response.render("internal-error",
+            {
+                layout : "error"    
+            }
+        );
+    }
+});
+
 export {ordersRouter};
