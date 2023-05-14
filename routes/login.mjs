@@ -11,7 +11,8 @@ loginRouter.get("/login", async (request, response) => {
     }
     response.render("login",
       {
-        layout: "authenticate"
+        layout: "authenticate",
+        login : true
       }
     );
 });
@@ -46,8 +47,13 @@ loginRouter.post("/login/submit", async (request, response) => {
         response.redirect("/");
     }
     else {
-        response.send("Failed to login.");
-        response.end();
+      response.render("login",
+      {
+        layout: "authenticate",
+        login : true,
+        failure: true
+      }
+    );
     }
   }
   catch (error) {

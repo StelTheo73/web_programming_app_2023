@@ -1,12 +1,34 @@
 <div class="container-fluid login">
-    <h1>Login</h1>
-    <form action="/login/submit" method="POST">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <input type="submit" value="Login">
-  </form>
+  <div class="row">
+    {{#if failure}}<h3>Αποτυχία σύνδεσης! Λάθος κωδικός ή email.</h3>{{/if}}
+  </div>
+  <div class="row px-4">
+    <div class="login-wrapper d-flex justify-content-center flex-wrap mt-4 py-3">
+      
+      <div class="login-form my-3 mx-3">
+        <h2>Σύνδεση</h2>
+        <form action="/login/submit" method="POST">
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <span class="d-flex">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+              <i class="fa fa-eye-slash" style="font-size: 1.25rem;"></i>
+            </span>
+          </div>
+          <button class="btn btn-secondary mt-2">Σύνδεση</button>
+        </form>
+      </div>
+
+      <div class="login-info d-flex flex-column justify-content-center align-items-center mt-3 my-3">
+          <h2 class="mb-3">Για τι έχεις όρεξη σήμερα;</h2>
+          <p>Ό,τι θέλεις, όποτε το θέλεις! Ξυπνάς και το καφεδάκι είναι απαραίτητο. Ή μπύρες. Το'χουμε! Εκείνο το παστίτσιο που βαριέσαι να μαγειρέψεις; Βρες τα όλα εδώ!</p>
+          <p>Πλήρωσε με κάρτα, μετρητά ή GooglePay.</p>
+      </div>
+    </div>
+
+  </div>
 </div>

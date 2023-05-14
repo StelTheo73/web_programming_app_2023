@@ -1,0 +1,1 @@
+"use strict";const PASSWORD_INPUT=document.querySelector("main > .login > .row > .login-wrapper form input#password");window.addEventListener("click",t=>{if(t.target.matches(".fa-eye-slash")){console.log(PASSWORD_INPUT);let e="password"===PASSWORD_INPUT.getAttribute("type")?"text":"password";PASSWORD_INPUT.setAttribute("type",e)}});

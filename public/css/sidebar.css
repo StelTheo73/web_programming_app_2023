@@ -17,7 +17,8 @@
     opacity: 0.9;
     overflow-x: hidden;
     transition: 0.5s;
-    border-radius: 10px;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
 }
 
 .overlay-content {
