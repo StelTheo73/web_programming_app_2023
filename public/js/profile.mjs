@@ -58,3 +58,23 @@ saveProfileButton.addEventListener("click", function(event) {
     });
 
   });
+
+
+  //Show and hide password
+  document.addEventListener('DOMContentLoaded', function() {
+    var showPasswordBtn = document.getElementById('showPasswordBtn');
+    var passwordInput = document.getElementById('password');
+    var passwordIcon = showPasswordBtn.querySelector('i');
+
+    showPasswordBtn.addEventListener('click', function() {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordIcon.classList.remove('fa-eye-slash');
+            passwordIcon.classList.add('fa-eye');
+        } else {
+            passwordInput.type = 'password';
+            passwordIcon.classList.remove('fa-eye');
+            passwordIcon.classList.add('fa-eye-slash');
+        }
+    });
+});

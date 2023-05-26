@@ -8,48 +8,48 @@
             <h2>Εγγραφή</h2>
             <form class="row needs-validation form-anticlear" action="/register/submit" method="POST" id="register-form" novalidate>
                 <div class="form-group col-6 my-1">
-                    <label class="required" for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required autofocus>
-                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                    <label for="email">Διεύθυνση email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Εισαγωγή διεύθυνσης email" required>
+                    <div class="invalid-feedback">Παρακαλώ εισάγετε μία έγκυρη διεύθυνση email.</div>
                     <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
                 </div>
                 <div class="col-6">
                 </div>
                 <div class="form-group col-6 my-1">
-                    <label class="required" for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
-                    <div class="invalid-feedback">Please enter a password.</div>
+                    <label class="required" for="password">Κωδικός πρόσβασης</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Εισαγωγή κωδικού πρόσβασης" required autofocus>
+                    <div class="invalid-feedback">Παρακαλώ εισάγετε έναν κωδικό πρόσβασης.</div>
                     <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
                 </div>
                 <div class="form-group col-6 my-1">
-                    <label class="required" for="confirm-password">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Confirm password" required>
-                    <div class="invalid-feedback">Please confirm your password.</div>
+                    <label class="required" for="confirm-password">Επιβεβαίωση κωδικού πρόσβασης</label>
+                    <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Επιβεβαίωση κωδικού πρόσβασης" required>
+                    <div class="invalid-feedback">Παρακαλώ επιβεβαιώστε τον κωδικό πρόσβασης σας.</div>
                     <div class="text-danger small password-match hidden">Οι κωδικοί πρέπει να ταιριάζουν.</div>
                     <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
                 </div>
                 <div class="form-group col-6 my-1">
-                    <label class="required" for="firstname">Firstname</label>
-                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your firstname" required>
-                    <div class="invalid-feedback">Please enter your firstname.</div>
+                    <label class="required" for="firstname">Όνομα</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Εισάγωγη του ονόματος σας" required>
+                    <div class="invalid-feedback">Παρακαλώ εισάγετε το όνομα σας.</div>
                     <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
                 </div>
                 <div class="form-group col-6 my-1">
-                    <label class="required" for="lastname">Lastname</label>
-                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter your lastname" required>
-                    <div class="invalid-feedback">Please enter your lastname.</div>
+                    <label class="required" for="lastname">Επώνυμο</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Εισαγωγή του επωνύμου σας" required>
+                    <div class="invalid-feedback">Παρακαλώ εισάγετε το επώνυμο σας.</div>
                     <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
                 </div>
                 <div class="form-group col-6 my-1">
-                    <label class="required" for="phone">Phone</label>
-                    <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter your phone" required>
-                    <div class="invalid-feedback">Please enter a valid phone number.</div>
+                    <label class="required" for="phone">Τηλέφωνο</label>
+                    <input type="phone" class="form-control" id="phone" name="phone" placeholder="Εισαγωγή τηλεφώνου" required>
+                    <div class="invalid-feedback">Παρακαλώ εισάγετε έναν έγκυρο αριθμό τηλεφώνου.</div>
                     <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
                 </div>
                 <div class="form-group col-6 my-1">
-                    <label class="required" for="birthdate">Birthdate</label>
-                    <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="Enter your birthdate" min="1960-01-01" value="2000-01-01" required>
-                    <div class="invalid-feedback">Please enter your birthdate.</div>
+                    <label class="required" for="birthdate">Ημερομηνία γέννσης</label>
+                    <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="Εισαγωγή ημερομηνίας γεννήσεως" required>
+                    <div class="invalid-feedback">Παρακαλώ εισάγετε την ημερομηνία γεννήσεως σας.</div>
                     <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
                 </div>
                 <div class="col-12 my-1 d-flex justify-content-end">
