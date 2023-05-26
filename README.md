@@ -31,4 +31,4 @@ Web application for ordering food.
     npm start
     ```
  - Access the app from localhost:8080 (from the device the server is running on)
- - AFind the local ip of the device the server is running on (e.g. 192.168.1.5) and access the app from any device of your local network (at 192.168.1.5:8080)
+ - Find the local ip of the device the server is running on (e.g. 192.168.1.5) and access the app from any device of your local network (at 192.168.1.5:8080)

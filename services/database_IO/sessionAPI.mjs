@@ -89,6 +89,7 @@ class SessionAPI extends MongoDBClient {
             firstname : 1,
             lastname : 1,
             phone : 1,
+            birthdate : 1,
             addresses : 1,
             cards : 1
         }

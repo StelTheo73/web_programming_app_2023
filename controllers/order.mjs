@@ -42,7 +42,7 @@ class OrderParser {
         parsedOrder.phone = parseValue(order["phone"]);
 
         parsedOrder.datetime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');;
-        parsedOrder.status = "SENT";
+        parsedOrder.status = "ΣΤΑΛΘΗΚΕ";
         parsedOrder.rating = "0";
 
         parsedOrder.address = await sessionAPI.getPersonAddressById(personId, order["order-address"]);

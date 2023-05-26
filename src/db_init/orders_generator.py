@@ -35,7 +35,7 @@ def make_random_order(person, address, shop):
         "person_id" : person["_id"],
         "shop_id" : shop["_id"],
         "datetime" : datetime,
-        "status" : "DELIVERED",
+        "status" : "ΠΑΡΑΔΟΘΗΚΕ",
         "order_contains" : order_contains,
         "payment_mean" : payment_mean,
         "address" : address,

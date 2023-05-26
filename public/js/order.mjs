@@ -122,7 +122,7 @@ function showEmptyOrder() {
 }
 
 function showOrder() {
-    const shopId = window.location.href.split("/")[4];
+    const shopId = window.location.href.split("/")[4].replace("#", "").replace("/", "").substring(0,24);
     const storedOrderItems = sessionStorage.getItem(shopId);
     
     ORDER_OVERLAY.classList.add("show");

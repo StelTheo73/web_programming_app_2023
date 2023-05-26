@@ -70,7 +70,7 @@ function showEmptyCart() {
 }
 
 function showItemsInCart() {
-    const shopId = window.location.href.split("/")[4];
+    const shopId = window.location.href.split("/")[4].replace("#", "").replace("/", "").substring(0,24);
     let cartItems = sessionStorage.getItem(shopId);
 
     CART_ITEMS_WRAPPER.innerHTML = "";
@@ -144,7 +144,7 @@ async function changeQuantity(type, event) {
     }
     BLOCK_SESSION_STORAGE = true; // Block changes
 
-    const shopId = window.location.href.split("/")[4];
+    const shopId = window.location.href.split("/")[4].replace("#", "").replace("/", "").substring(0,24);
     const itemId = event.target.parentNode.parentNode.getAttribute("data-item-id");
     let storedCart = sessionStorage.getItem(shopId);
     let shopCart = [];
@@ -179,7 +179,7 @@ async function addItemToCart(itemId, itemName, itemPrice) {
     }
     BLOCK_SESSION_STORAGE = true; // Block additions
 
-    const shopId = window.location.href.split("/")[4];
+    const shopId = window.location.href.split("/")[4].replace("#", "").replace("/", "").substring(0,24);
 
     let item = {
         "itemId" : itemId,
@@ -219,7 +219,7 @@ async function clearCart() {
     }
     BLOCK_SESSION_STORAGE = true; // Block changes
 
-    const shopId = window.location.href.split("/")[4];
+    const shopId = window.location.href.split("/")[4].replace("#", "").replace("/", "").substring(0,24);
     sessionStorage.removeItem(shopId);
 
     BLOCK_SESSION_STORAGE = false;
