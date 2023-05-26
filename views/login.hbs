@@ -1,4 +1,4 @@
-<div class="container-fluid login">
+ <div class="container-fluid login">
   <div class="row">
     {{#if failure}}<h3>Αποτυχία σύνδεσης! Λάθος κωδικός ή email.</h3>{{/if}}
   </div>
@@ -8,11 +8,11 @@
       <div class="login-form my-3 mx-3">
         <h2>Σύνδεση</h2>
         <form action="/login/submit" method="POST">
-          <div class="form-group">
+          <div class="form-group my-2">
             <label for="email">Email address</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
           </div>
-          <div class="form-group">
+          <div class="form-group my-2">
             <label for="password">Password</label>
             <span class="d-flex">
               <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>

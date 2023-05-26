@@ -17,16 +17,18 @@
 
         <!-- CUSTOM STYLESHEETS -->
         <link rel="stylesheet" href="/css/base_stylesheet.min.css">
-        <link rel="stylesheet" href="/css/login.min.css">
-        <script src="/js/authentication.min.mjs" defer type="module"></script>
+        <link rel="stylesheet" href="/css/login.css">
+        {{!-- <script src="/js/authentication.min.mjs" defer type="module"></script> --}}
+        <script src="/js/authentication.mjs" defer type="module"></script>
+
 
     </head>
     <body>
         <nav class="navbar p-0">
             <img src="/images/elfood.png" alt="Logo">
             <div class="me-5">
-                {{#if login}}<button type="button" class="btn btn-secondary"><a href="/register">Εγγραφή</a></button>{{/if}}
-                {{#if register}}<button type="button" class="btn btn-secondary"><a href="/login">Σύνδεση</a></button>{{/if}}
+                {{#if login}}<a class="btn btn-secondary" href="/register">Εγγραφή</a>{{/if}}
+                {{#if register}}<a class="btn btn-secondary" href="/login">Σύνδεση</a>{{/if}}
             </div>
         </nav>
         <main class="container-fluid px-0">

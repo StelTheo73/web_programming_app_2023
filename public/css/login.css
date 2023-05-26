@@ -24,7 +24,9 @@ nav button > a:visited
   text-decoration: none;
 }
 
-main .row > .login-wrapper{
+main .row > .login-wrapper,
+main .row > .register-wrapper
+{
   background-color: var(--khaki);
   border: 1px solid gray;
   border-radius: 1em;
@@ -34,6 +36,10 @@ main .row > .login-wrapper{
 main .row > .login-wrapper > div {
   min-width: 20em;
   max-width: 40em;
+}
+
+main .row form input {
+  box-shadow: 0px 8px 16px 0px rgba(0,1,0,0.5);
 }
 
 main .row > .login-wrapper > div i.fa-eye-slash {

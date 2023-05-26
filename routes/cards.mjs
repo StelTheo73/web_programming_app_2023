@@ -44,7 +44,7 @@ cardsRouter.get("/cards", async (request, response) => {
         console.log(error);
         response.render("internal-error",
             {
-                layout : "error"    
+                layout : "error"
             }
         );
     }

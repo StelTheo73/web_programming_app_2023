@@ -14,8 +14,18 @@ fetchRouter.post("/fetch/user-items", async (request, response) => {
         }
         else {
             let userItems = await sessionAPI.getPersonData(request.session.userId[0]._id);
-            userItems.cards = CardsParser.parseCards(userItems.cards);
-            userItems.addresses = AddressParser.parseAddresses(userItems.addresses);
+            if (userItems.cards === undefined) {
+                userItems.cards = [];
+            }
+            else {
+                userItems.cards = CardsParser.parseCards(userItems.cards);
+            }
+            if (userItems.addresses === undefined) {
+                userItems.addresses = [];
+            }
+            else {
+                userItems.addresses = AddressParser.parseAddresses(userItems.addresses);
+            }
     
             response.json(userItems);
             response.end();
