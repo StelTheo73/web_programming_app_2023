@@ -86,6 +86,25 @@ class MongoDBClient extends MongoClient {
 
     }
 
+    async updateProfile(collectionName, _id, _update) {
+        let response = {};
+        try {
+            if (!this.topology.isConnected()) {
+                await this.connect();
+            }
+    
+            const database = this.db(DATABASE_NAME);
+            const collection = database.collection(collectionName);
+            
+            response = await collection.updateOne({ _id: new ObjectId(_id) }, { $set: _update });
+        } catch (err) {
+            console.error(err);
+            response = [];
+        } finally {
+            return response;
+        }
+    }
+
     async insertOne(collectionName, object) {
         let response = {};
         try{

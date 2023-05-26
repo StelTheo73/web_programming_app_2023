@@ -11,6 +11,8 @@ import { cardsRouter } from "./routes/cards.mjs";
 import { shopRouter } from "./routes/shop.mjs";
 import { searchRouter } from "./routes/search.mjs";
 import { orderRouter } from "./routes/order.mjs";
+import { registerRouter } from "./routes/register.mjs";
+import { profileRouter } from "./routes/profile.mjs";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -36,6 +38,8 @@ app.use("/", cardsRouter);
 app.use("/", shopRouter);
 app.use("/", searchRouter);
 app.use("/", orderRouter);
+app.use("/", registerRouter)
+app.use("/", profileRouter)
 
 app.get("/", async (request, response) => {
     try {

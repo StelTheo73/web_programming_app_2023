@@ -77,12 +77,11 @@ class SessionAPI extends MongoDBClient {
      */
     async getPersonData(_personId) {
         let personData = [];
-        
         _personId = this.parseUserInput([_personId])[0];
-
+    
         let _query = {
-            _id : new ObjectId(_personId)
-        }
+            _id: new ObjectId(_personId)
+        };
         let _projection = {
             _id : 0,
             email : 1,
@@ -97,11 +96,12 @@ class SessionAPI extends MongoDBClient {
         personData = await this.find("persons", _query, _projection);
 
         if (personData.length === 0) {
-            return [];
+            return {}; // Return an empty object instead of an empty array
         }
-
+    
         return personData[0];
     }
+    
 
     /**
      * Returns the id of the person in the database.
@@ -112,6 +112,7 @@ class SessionAPI extends MongoDBClient {
      * @returns {Promise<ObjectId>} The id of the person in the database
      */
     async getPersonIdFromEmail(_email) {
+        console.log("Email parameter:", _email);
         let personId = [];
         
         _email = this.parseUserInput([_email])[0];
@@ -124,6 +125,7 @@ class SessionAPI extends MongoDBClient {
         }
 
         personId = await this.find("persons", _query, _projection);
+        console.log("Person ID from the database:", personId);
 
         return personId;
     } 

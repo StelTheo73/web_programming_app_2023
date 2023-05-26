@@ -1,0 +1,39 @@
+<div class="container-fluid profile">
+    <div class="row px-4">
+        <div class="profile-wrapper d-flex justify-content-center flex-wrap mt-4 py-3">
+            <div class="profile-form">
+                <h2>Προφίλ</h2>
+                <form action="/profile/submit" method="POST" id="profile-form">
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required value="{{personData.email}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required value="{{personData.password}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname">Firstname</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your firstname" required value="{{personData.firstname}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Lastname</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter your lastname" required value="{{personData.lastname}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter your phone" required value="{{personData.phone}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="birthdate">Birthdate</label>
+                        <input type="text" class="form-control" id="birthdate" name="birthdate" placeholder="Enter your birthdate" required value="{{personData.birthdate}}">
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" id="change-profile-button">Change Profile</button>
+                        <button type="submit" class="btn btn-primary d-none" id="save-profile-button">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
