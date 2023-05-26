@@ -1,18 +1,12 @@
-import { parseValue } from "../utils/valueParser.mjs";
-
 class RegisterParser {
   constructor() {}
 
-  static parseRegister(password) {
+  static mainParser(field, value) {
     const forbiddenCharacters = /[\{\}\[\]\(\)\^\+\*\/\=\|<>\~\`;:]/;
 
-    if (forbiddenCharacters.test(password)) {
-      throw new Error("Password contains forbidden characters");
+    if (forbiddenCharacters.test(value)) {
+      throw new Error(`${field} contains forbidden characters`);
     }
-
-    let parsedPassword = parseValue(password);
-
-    return parsedPassword;
   }
 }
 
