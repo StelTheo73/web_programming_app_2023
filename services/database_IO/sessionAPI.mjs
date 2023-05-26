@@ -85,6 +85,7 @@ class SessionAPI extends MongoDBClient {
         let _projection = {
             _id : 0,
             email : 1,
+            password : 1,
             firstname : 1,
             lastname : 1,
             phone : 1,

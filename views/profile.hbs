@@ -3,14 +3,14 @@
         <div class="profile-wrapper d-flex justify-content-center flex-wrap mt-4 py-3">
             <div class="profile-form">
                 <h2>Προφίλ</h2>
-                <form action="/profile/submit" method="POST" id="profile-form">
+                <form action="/profile/submit" method="POST" id="profile-form" autocomplete="off">
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required value="{{personData.email}}">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required value="{{personData.password}}">
+                        <input type="text" class="form-control" id="password" name="password" placeholder="Enter password" required value="{{personData.password}}">
                     </div>
                     <div class="form-group">
                         <label for="firstname">Firstname</label>

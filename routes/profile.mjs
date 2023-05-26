@@ -18,7 +18,6 @@ profileRouter.get("/profile", async (request, response) => {
     const personId = new ObjectId(idValue[0]._id);
 
     const personData = await sessionAPI.getPersonData(personId);
-
     response.render("profile", { profile: true, userItemsEdited, personData });
   } catch (error) {
     console.log(error);
@@ -46,10 +45,10 @@ profileRouter.post("/profile/submit", async (request, response) => {
       };
   
       // Console log the updateData object
-      console.log("Update Data:", updateData);
-      console.log("ID Value:", idValue);
+      // console.log("Update Data:", updateData);
+      // console.log("ID Value:", idValue);
       // Update the person's profile in the database
-      await sessionAPI.updateProfile("persons", idValue, updateData);
+      console.log(await sessionAPI.updateProfile("persons", idValue, updateData));
       
       // Redirect to a success page or any other desired action
       response.redirect("/profile");
