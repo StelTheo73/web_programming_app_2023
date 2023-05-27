@@ -60,7 +60,7 @@ def generate_shop_address():
     number = str(random.randint(1, 200))
     postcode = str(random.randint(10000, 99999))
     city = random.choice(GREECE_CITIES)
-    country = "Greece"
+    country = "Ελλάδα"
 
     address = {
         "city" : city,
