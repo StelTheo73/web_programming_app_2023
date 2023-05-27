@@ -42,12 +42,6 @@ main .row form input {
   box-shadow: 0px 8px 16px 0px rgba(0,1,0,0.5);
 }
 
-/* main .row > .login-wrapper > div i.fa-eye-slash {
-  margin-left: -2em;
-  margin-top: 0.5em;
-  cursor: pointer;
-} */
-
 main .row:nth-child(1) {
   text-align: center;
   color: red;
