@@ -68,11 +68,16 @@ function updateLastAddress(newAddressId) {
     let addresses = Object(JSON.parse(localStorage.getItem("addresses")));
 
     addresses.forEach(_address => {
-        if (_address.addressId == newAddressId) {
-            addresses[0] = {
-                addressId : _address.addressId,
-                addressText : _address.addressText
+        try {
+            if (_address.addressId == newAddressId) {
+                addresses[0] = {
+                    addressId : _address.addressId,
+                    addressText : _address.addressText
+                }
             }
+        }
+        catch (err) {
+            
         }
     });
 

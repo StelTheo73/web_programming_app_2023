@@ -7,7 +7,7 @@
 
         <div class="form-group col-12 col-sm-6">
             <label for="card_number" class="form-label required">Αρ. Κάρτας</label>
-            <input type="text" class="form-control" id="card_number" name="card_number" required pattern="\d{16}">
+            <input type="text" class="form-control" id="card_number" name="card_number" placeholder="Αριθμός κάρτας" required pattern="\d{16}" autocomplete="cc-number">
             <div class="invalid-feedback">
                 Παρακαλούμε πληκτρολόγησε τον αριθμό της κάρτας σου.
             </div>
@@ -15,7 +15,7 @@
 
         <div class="form-group col-12 col-sm-6 my-1">
             <label for="cvv" class="form-label required">CVV</label>
-            <input type="text" class="form-control" id="cvv" name="cvv" required pattern="\d{3}">
+            <input type="text" class="form-control" id="cvv" name="cvv" placeholder="xxx" required pattern="\d{3}" autocomplete="cc-csc">
             <div class="invalid-feedback">
                 Παρακαλούμε πληκτρολόγησε το CVV της κάρτας σου.
             </div>
@@ -23,7 +23,7 @@
 
         <div class="form-group col-12 col-sm-6 my-1">
             <label for="cardholder" class="form-label required">Όνομα Κατόχου</label>
-            <input type="text" class="form-control" id="cardholder" name="cardholder" required>
+            <input type="text" class="form-control" id="cardholder" name="cardholder" placeholder="Όνομα κατόχου" required autocomplete="cc-name">
             <div class="invalid-feedback">
                 Παρακαλούμε πληκτρολόγησε τo ονοματεπώνυμο του κατόχου της κάρτας.
             </div>
@@ -31,13 +31,13 @@
 
         <div class="form-group col-12 col-sm-6 my-1">
             <label for="expiration_date" class="form-label required">Ημερομηνία Λήξης</label>
-            <input type="month" class="form-control" id="expiration_date" name="expiration_date" required>
+            <input type="month" class="form-control" id="expiration_date" name="expiration_date" required autocomplete="cc-exp">
             <div class="invalid-feedback">
                 Παρακαλούμε επέλεξε την ημερομηνία λήξης της κάρτας σου.
             </div>
         </div>
 
-        <div class="col-12 my-1">
+        <div class="col-12 my-1 d-flex justify-content-end">
             <button type="submit" class="mt-2 me-2 btn btn-secondary" id="save-user-card">Αποθήκευση</button>
         </div>
     </form>

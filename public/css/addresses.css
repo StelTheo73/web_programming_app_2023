@@ -112,3 +112,7 @@
     width: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
 }
+
+.user-items .add-user-item-form-wrapper form input {
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
+}
