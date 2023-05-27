@@ -14,10 +14,12 @@
           </div>
           <div class="form-group my-2">
             <label for="password">Κωδικός πρόσβασης</label>
-            <span class="d-flex">
-              <input type="password" class="form-control" id="password" name="password" placeholder="Κωδικός πρόσβασης" required>
-              <i class="fa fa-eye-slash" style="font-size: 1.25rem;"></i>
-            </span>
+            <div class="input-group">
+              <input type="password" class="form-control" id="password" name="password" placeholder="Εισαγωγή κωδικού πρόσβασης" required value="{{personData.password}}">
+              <button class="btn btn-secondary" type="button" id="showPasswordBtn">
+                  <i class="mt-1 fa fa-eye-slash eye-icon" style="font-size: 1.25rem;"></i>
+              </button>
+            </div>
           </div>
           <button class="btn btn-secondary mt-2">Σύνδεση</button>
         </form>

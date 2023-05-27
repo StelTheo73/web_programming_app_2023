@@ -20,20 +20,29 @@ registerRouter.get("/register", async (request, response) => {
 registerRouter.post("/register/submit", async (request, response) => {
     try {
       const { email, password, firstname, lastname, phone, birthdate } = request.body;
+      const formData = {
+        email: email,
+        password: password,
+        firstname: firstname,
+        lastname: lastname,
+        phone: phone,
+        birthdate: birthdate 
+      };
+
+      // Verify that user does not already exists
       const existingPersonId = await sessionAPI.getPersonIdFromEmail(email);
-  
       if (existingPersonId.length > 0) {
         console.log("Email is already in use.");
         response.render("register", {
           register: true,
           inuse: true,
+          formData: formData,
           layout: "authenticate",
         });
         return;
       }
-  
+      // Verify that fields does not contain forbidden characters
       try {
-        // Parsing and validation for each field
         RegisterParser.mainParser("email", email);
         RegisterParser.mainParser("password", password);
         RegisterParser.mainParser("firstname", firstname);
@@ -46,6 +55,7 @@ registerRouter.post("/register/submit", async (request, response) => {
           layout: "authenticate",
           register: true,
           registrationFailed: true,
+          formData: formData 
         });
         return;
       }
@@ -75,6 +85,7 @@ registerRouter.post("/register/submit", async (request, response) => {
           layout: "authenticate",
           register: true,
           registrationFailed: true,
+          formData: formData
         });
       }
     } catch (error) {

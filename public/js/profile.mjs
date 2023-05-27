@@ -1,80 +1,82 @@
-window.addEventListener("DOMContentLoaded", function() {
-    // Get references to the elements
-    const changeProfileButton = document.getElementById("change-profile-button");
-    const saveProfileButton = document.getElementById("save-profile-button");
-    const form = document.getElementById("profile-form");
-    const inputs = form.querySelectorAll("input");
+"use strict";
 
-    // Store the initial input values
-    const initialValues = Array.from(inputs).map(input => input.value);
+const PASSWORD_INPUT = document.querySelector("main > .profile > .row > .profile-wrapper form input#password");
+const EYE_ICON = document.querySelector("main > .profile > .row > .profile-wrapper form button > i");
+const PROFILE_FORM = document.querySelector("main > .profile > .row > .profile-wrapper form");
 
-    // Add event listener to the "Change Profile" button
-    changeProfileButton.addEventListener("click", function() {
-      // Restore the initial input values
-      inputs.forEach(function(input, index) {
-        input.value = initialValues[index];
-      });
-
-      // Show the "Save" button and hide the "Change Profile" button
-      saveProfileButton.classList.remove("d-none");
-      changeProfileButton.classList.add("d-none");
-    });
-
-    
-    // Add event listener to the "Save" button
-saveProfileButton.addEventListener("click", function(event) {
-  // Prevent the default form submission behavior
-    event.preventDefault();
-
-    // Submit the form directly
-    form.submit();
-    });
-
-    // Listen for the form's submit event
-    form.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    // Get the updated form data
-    const formData = new FormData(form);
-
-    // Send the form data to the server using fetch
-    fetch("/profile/submit", {
-        method: "POST",
-        body: formData
-    })
-        .then(function(response) {
-        if (response.ok) {
-            // Handle the success response, e.g., show a success message, redirect, etc.
-            console.log("Profile successfully updated");
-            window.location.href = "/profile";
-        } else {
-            // Handle the error response, e.g., show an error message, display validation errors, etc.
-            console.log("Error updating profile");
-        }
-        })
-        .catch(function(error) {
-        console.log("Error updating profile", error);
-        });
-    });
-
-  });
-
-
-  //Show and hide password
-  document.addEventListener('DOMContentLoaded', function() {
-    var showPasswordBtn = document.getElementById('showPasswordBtn');
-    var passwordInput = document.getElementById('password');
-    var passwordIcon = showPasswordBtn.querySelector('i');
-
-    showPasswordBtn.addEventListener('click', function() {
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            passwordIcon.classList.remove('fa-eye-slash');
-            passwordIcon.classList.add('fa-eye');
-        } else {
-            passwordInput.type = 'password';
-            passwordIcon.classList.remove('fa-eye');
-            passwordIcon.classList.add('fa-eye-slash');
-        }
-    });
+window.addEventListener("click", (event) => {
+    const target = event.target;
+    if (target.matches("#showPasswordBtn") || target.matches(".eye-icon")) {
+        togglePasswordInput(target);
+    }
+    else if (target.matches("#save-profile-button")) {
+        validateProfileForm(event);
+    }
 });
+
+function validateProfileForm(event) {
+    const email = PROFILE_FORM.querySelector("#email");
+    const password = PROFILE_FORM.querySelector("#password");
+    const firstname = PROFILE_FORM.querySelector("#firstname");
+    const lastname = PROFILE_FORM.querySelector("#lastname");
+    const birthdate = PROFILE_FORM.querySelector("#birthdate");
+    const phone = PROFILE_FORM.querySelector("#phone");
+
+    // Verify that required fields are filled
+    if (email.checkValidity() === false || password.checkValidity() === false ||
+       firstname.checkValidity() === false || lastname.checkValidity() === false
+       || phone.checkValidity() === false || birthdate.checkValidity() === false
+    ) {
+        event.preventDefault();
+    }
+
+    // Verify that user is older than 16 years old
+    const currentDate = new Date();
+    const selectedDate = new Date(birthdate.value);
+    const ageDifference = currentDate.getFullYear() - selectedDate.getFullYear();
+    if (ageDifference < 16) {
+        birthdate.setCustomValidity("Πρέπει να είσαι μεγαλύτερος από 16 ετών!");
+        birthdate.reportValidity();
+        event.preventDefault();
+    }
+    else {
+        birthdate.setCustomValidity("");
+    }
+
+    // Verify absence of forbidden characters
+    const forbiddenCharsRegex = /[{}[\]()^*/=|<>~`;:]/;
+    const fields = [email, password, firstname, lastname, phone];
+    let hasForbiddenChars = false;
+
+    for (const field of fields) {
+        if (forbiddenCharsRegex.test(field.value)) {
+            field.parentElement.querySelector(".invalid-char").classList.remove("hidden");
+            hasForbiddenChars = true;
+        } else {
+            if (field === password) {
+                field.parentElement.parentElement.querySelector(".invalid-char").classList.add("hidden");
+            }
+            else {
+                field.parentElement.querySelector(".invalid-char").classList.add("hidden");
+            }
+        }
+    }
+    if (hasForbiddenChars) {
+        event.preventDefault();
+    }
+
+    PROFILE_FORM.classList.add("was-validated");
+}
+
+function togglePasswordInput() {
+    if (PASSWORD_INPUT.type === "password") {
+        EYE_ICON.classList.remove("fa-eye-slash");
+        EYE_ICON.classList.add("fa-eye");
+        PASSWORD_INPUT.type = "text";
+    }
+    else if (PASSWORD_INPUT.type === "text") {
+        EYE_ICON.classList.remove("fa-eye");
+        EYE_ICON.classList.add("fa-eye-slash");
+        PASSWORD_INPUT.type = "password";
+    }
+}
