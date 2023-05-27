@@ -6,22 +6,24 @@
     <div class="login-wrapper d-flex justify-content-center flex-wrap mt-4 py-3">
       
       <div class="login-form my-3 mx-3">
-        <h2>Σύνδεση</h2>
+        <h2 class="text-center">Σύνδεση</h2>
         <form action="/login/submit" method="POST">
-          <div class="form-group my-2">
-            <label for="email">Διεύθυνση email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Διεύθυνση email" required autofocus>
+          <div class="form-group my-2 d-flex flex-column justify-content-center align-items-center">
+            <label for="email">Email</label>
+            <input type="email" class="form-control w-75" id="email" name="email" placeholder="Διεύθυνση email" required autofocus>
           </div>
-          <div class="form-group my-2">
+          <div class="form-group my-2 d-flex flex-column justify-content-center align-items-center">
             <label for="password">Κωδικός πρόσβασης</label>
-            <div class="input-group">
+            <div class="input-group d-flex justify-content-center w-75">
               <input type="password" class="form-control" id="password" name="password" placeholder="Εισαγωγή κωδικού πρόσβασης" required value="{{personData.password}}">
               <button class="btn btn-secondary" type="button" id="showPasswordBtn">
                   <i class="mt-1 fa fa-eye-slash eye-icon" style="font-size: 1.25rem;"></i>
               </button>
             </div>
           </div>
-          <button class="btn btn-secondary mt-2">Σύνδεση</button>
+          <div class="my-2 d-flex flex-column justify-content-center align-items-center">
+            <button class="btn btn-secondary mt-2 w-75">Σύνδεση</button>
+          </div>
         </form>
       </div>
 

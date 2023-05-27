@@ -8,7 +8,7 @@
             <h2>Εγγραφή</h2>
             <form class="row needs-validation" action="/register/submit" method="POST" id="register-form" novalidate>
                 <div class="form-group col-12 col-md-6 my-1">
-                    <label for="email">Διεύθυνση email</label>
+                    <label class="required" for="email">Διεύθυνση email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email" required {{#if formData}}value="{{formData.email}}"{{/if}} autofocus autocomplete="email">
                     <div class="invalid-feedback">Παρακαλώ εισάγετε μία έγκυρη διεύθυνση email.</div>
                     <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
