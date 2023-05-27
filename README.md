@@ -1,6 +1,6 @@
 # WEB PROGRAMMING APP - 2022-23
 
-Web application for ordering food.
+Web application for food ordering.
 
 ## Authors
  - [StelTheo73](https://www.linkedin.com/in/stylianos-theofilou-976ab923b/)
@@ -18,15 +18,21 @@ Web application for ordering food.
  - Password: Aa123$00
 
 ## Deploy the app locally
- - Step 1: Run:
+ - Step 1:
     ```
     npm install
     ```
- - Step 2: Run:
+
+ - Step 2:
+    ```
+    pip install -r requirements.txt
+    ```
+
+ - Step 3:
     ```
     python -m setup -i true
     ```
- - Step 3: Run:
+ - Step 4:
     ```
     npm start
     ```
