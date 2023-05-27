@@ -73,8 +73,7 @@ class MongoDBClient extends MongoClient {
 
             const database = this.db(DATABASE_NAME);
             const collection = database.collection(collectionName);
-            
-             response = await collection.updateOne(_filter, _update);
+            response = await collection.updateOne(_filter, _update);
         }
         catch (err) {
             console(err);
@@ -86,24 +85,24 @@ class MongoDBClient extends MongoClient {
 
     }
 
-    async updateProfile(collectionName, _id, _update) {
-        let response = {};
-        try {
-            if (!this.topology.isConnected()) {
-                await this.connect();
-            }
+    // async updateProfile(collectionName, _id, _update) {
+    //     let response = {};
+    //     try {
+    //         if (!this.topology.isConnected()) {
+    //             await this.connect();
+    //         }
     
-            const database = this.db(DATABASE_NAME);
-            const collection = database.collection(collectionName);
+    //         const database = this.db(DATABASE_NAME);
+    //         const collection = database.collection(collectionName);
             
-            response = await collection.updateOne({ _id: new ObjectId(_id) }, { $set: _update });
-        } catch (err) {
-            console.error(err);
-            response = [];
-        } finally {
-            return response;
-        }
-    }
+    //         response = await collection.updateOne({ _id: new ObjectId(_id) }, { $set: _update });
+    //     } catch (err) {
+    //         console.error(err);
+    //         response = [];
+    //     } finally {
+    //         return response;
+    //     }
+    // }
 
     async insertOne(collectionName, object) {
         let response = {};

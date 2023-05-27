@@ -1,54 +1,58 @@
 <div class="container-fluid profile">
+    <div class="row">
+        {{#if inuse}}<span class="text-danger border p-1 display-6">Υπάρχει ήδη χρήστης με αυτή τη διεύθυνση email!</span>{{/if}}
+        {{#if profileUpdateFailed}}<span class="text-danger border p-1 display-6">Η επεξεργασία του προφίλ απέτυχε! Προσπάθησε ξανά!</span>{{/if}}
+    </div>
     <div class="row px-4">
-        <div class="profile-wrapper d-flex justify-content-center flex-wrap mt-4 py-3">
+        <div class="profile-wrapper d-flex justify-content-center flex-wrap mt-4 py-3" style="background-color: #e7e393; border: 1px solid gray; border-radius: 1em; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8)">
             <div class="profile-form">
                 <h2>Προφίλ</h2>
                 <form class="row needs-validation form-anticlear" action="/profile/submit" method="POST" id="profile-form" novalidate>
-                    <div class="form-group col-6 my-1">
-                        <label for="email">Διεύθυνση email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Εισαγωγή διεύθυνσης email" required value="{{personData.email}}">
+                    <div class="form-group col-12 col-md-6 my-1">
+                        <label class="required" for="email">Διεύθυνση email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required value="{{personData.email}}">
                         <div class="invalid-feedback">Παρακαλώ εισάγετε μία έγκυρη διεύθυνση email.</div>
-                        <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
+                        <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
                     </div>
-                   <div class="form-group col-6 my-1">
-                        <label for="password">Κωδικός πρόσβασης</label>
+                   <div class="form-group col-12 col-md-6 my-1">
+                        <label class="required" for="password">Κωδικός πρόσβασης</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Εισαγωγή κωδικού πρόσβασης" required value="{{personData.password}}">
-                            <button class="btn btn-outline-secondary" type="button" id="showPasswordBtn">
-                                <i class="fa fa-eye-slash" style="font-size: 1.25rem;"></i>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Κωδικός πρόσβασης" required value="{{personData.password}}">
+                            <button class="btn btn-secondary" type="button" id="showPasswordBtn">
+                                <i class="mt-1 fa fa-eye-slash eye-icon" style="font-size: 1.25rem;"></i>
                             </button>
                         </div>
                         <div class="invalid-feedback">Παρακαλώ εισάγετε έναν κωδικό πρόσβασης.</div>
-                        <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
+                        <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
                     </div>
 
-                    <div class="form-group col-6 my-1">
-                        <label for="firstname">Όνομα</label>
-                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Εισάγωγη του ονόματος σας" required value="{{personData.firstname}}">
+                    <div class="form-group col-12 col-md-6 my-1">
+                        <label class="required" for="firstname">Όνομα</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="'Ονομα" required value="{{personData.firstname}}">
                         <div class="invalid-feedback">Παρακαλώ εισάγετε το όνομα σας.</div>
-                        <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
+                        <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
                     </div>
-                    <div class="form-group col-6 my-1">
-                        <label for="lastname">Επώνυμο</label>
-                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Εισαγωγή του επωνύμου σας" required value="{{personData.lastname}}">
+                    <div class="form-group col-12 col-md-6 my-1">
+                        <label class="required" for="lastname">Επώνυμο</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Επώνυμο" required value="{{personData.lastname}}">
                         <div class="invalid-feedback">Παρακαλώ εισάγετε το επώνυμο σας.</div>
-                        <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
+                        <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
                     </div>
-                    <div class="form-group col-6 my-1">
-                        <label for="phone">Τηλέφωνο</label>
-                        <input type="phone" class="form-control" id="phone" name="phone" placeholder="Εισαγωγή τηλεφώνου" required value="{{personData.phone}}">
+                    <div class="form-group col-12 col-md-6 my-1">
+                        <label class="required" for="phone">Τηλέφωνο</label>
+                        {{!-- <input type="phone" class="form-control" id="phone" name="phone" placeholder="Τηλέφωνο" required value="{{personData.phone}}"> --}}
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Τηλέφωνο" required pattern="[+]?[0-9]{10,13}" inputmode="numeric" value="{{personData.phone}}" autocomplete="tel">
                         <div class="invalid-feedback">Παρακαλώ εισάγετε έναν έγκυρο αριθμό τηλεφώνου.</div>
-                        <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
+                        <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
                     </div>
-                    <div class="form-group col-6 my-1">
-                        <label for="birthdate">Ημερομηνία γεννήσεως</label>
-                        <input type="text" class="form-control" id="birthdate" name="birthdate" placeholder="Εισαγωγή ημερομηνίας γεννήσεως" required value="{{personData.birthdate}}">
-                        <div class="invalid-feedback">Παρακαλώ εισάγετε την ημερομηνία γεννήσεως σας.</div>
-                        <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
+                    <div class="form-group col-12 col-md-6 my-1">
+                        <label class="required" for="birthdate">Ημερομηνία γέννησης</label>
+                        <input type="date" class="form-control" id="birthdate" name="birthdate" min="1960-01-01" required value="{{personData.birthdate}}">
+                        <div class="invalid-feedback">Παρακαλώ εισάγετε την ημερομηνία γέννησής σας.</div>
+                        <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
                     </div>
-                    <div class="d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" id="change-profile-button">Change Profile</button>
-                        <button type="submit" class="btn btn-primary d-none" id="save-profile-button">Save</button>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="mt-2 me-2 btn btn-secondary" id="save-profile-button">Αποθήκευση</button>
                     </div>
                 </form>
             </div>

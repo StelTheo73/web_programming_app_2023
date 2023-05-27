@@ -25,7 +25,7 @@ class SessionAPI extends MongoDBClient {
 
             userInput = String(userInput);
 
-            for (let char of "{}[]()^+*/=|<>~`;:") {
+            for (let char of "{}[]()^*/=|<>~`;:") {
                 userInput = userInput.replace(char, "");
             }
             
@@ -956,6 +956,24 @@ class SessionAPI extends MongoDBClient {
 
         return;
     }
+
+    async updateProfile(_person_id, _fields) {
+        _person_id = this.parseUserInput([_person_id])[0];
+        for (let field in _fields) {
+            _fields[field] = this.parseUserInput([_fields[field]])[0];
+        }
+
+        const _filter = {
+            _id: new ObjectId(_person_id)
+        }
+        const _update = {
+            $set: _fields
+        }
+        
+        const response = await this.updateRecord("persons", _filter, _update);
+        return response;
+    }
+
 }
 
 export { SessionAPI };

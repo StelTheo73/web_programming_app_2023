@@ -6,59 +6,57 @@
     <div class="row px-4">
         <div class="register-wrapper mt-4 py-3">
             <h2>Εγγραφή</h2>
-            <form class="row needs-validation form-anticlear" action="/register/submit" method="POST" id="register-form" novalidate>
-                <div class="form-group col-6 my-1">
+            <form class="row needs-validation" action="/register/submit" method="POST" id="register-form" novalidate>
+                <div class="form-group col-12 col-md-6 my-1">
                     <label for="email">Διεύθυνση email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Εισαγωγή διεύθυνσης email" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required {{#if formData}}value="{{formData.email}}"{{/if}} autofocus autocomplete="email">
                     <div class="invalid-feedback">Παρακαλώ εισάγετε μία έγκυρη διεύθυνση email.</div>
-                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
+                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
                 </div>
                 <div class="col-6">
                 </div>
-                <div class="form-group col-6 my-1">
+                <div class="form-group col-12 col-md-6 my-1">
                     <label class="required" for="password">Κωδικός πρόσβασης</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Εισαγωγή κωδικού πρόσβασης" required autofocus>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Κωδικός πρόσβασης" required {{#if formData}}value="{{formData.password}}"{{/if}} autocomplete="new-password">
                     <div class="invalid-feedback">Παρακαλώ εισάγετε έναν κωδικό πρόσβασης.</div>
-                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
+                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
                 </div>
-                <div class="form-group col-6 my-1">
-                    <label class="required" for="confirm-password">Επιβεβαίωση κωδικού πρόσβασης</label>
-                    <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Επιβεβαίωση κωδικού πρόσβασης" required>
+                <div class="form-group col-12 col-md-6 my-1">
+                    <label class="required" for="confirm-password">Επιβεβαίωση κωδικού</label>
+                    <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Επιβεβαίωση κωδικού" required autocomplete="new-password">
                     <div class="invalid-feedback">Παρακαλώ επιβεβαιώστε τον κωδικό πρόσβασης σας.</div>
                     <div class="text-danger small password-match hidden">Οι κωδικοί πρέπει να ταιριάζουν.</div>
-                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
+                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
                 </div>
-                <div class="form-group col-6 my-1">
+                <div class="form-group col-12 col-md-6 my-1">
                     <label class="required" for="firstname">Όνομα</label>
-                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Εισάγωγη του ονόματος σας" required>
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="'Ονομα" required {{#if formData}}value="{{formData.firstname}}"{{/if}} autocomplete="name">
                     <div class="invalid-feedback">Παρακαλώ εισάγετε το όνομα σας.</div>
-                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
+                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
                 </div>
-                <div class="form-group col-6 my-1">
+                <div class="form-group col-12 col-md-6 my-1">
                     <label class="required" for="lastname">Επώνυμο</label>
-                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Εισαγωγή του επωνύμου σας" required>
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Επώνυμο" required {{#if formData}}value="{{formData.lastname}}"{{/if}} autocomplete="family-name">
                     <div class="invalid-feedback">Παρακαλώ εισάγετε το επώνυμο σας.</div>
-                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
+                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
                 </div>
-                <div class="form-group col-6 my-1">
+                <div class="form-group col-12 col-md-6 my-1">
                     <label class="required" for="phone">Τηλέφωνο</label>
-                    <input type="phone" class="form-control" id="phone" name="phone" placeholder="Εισαγωγή τηλεφώνου" required>
+                    {{!-- <input type="phone" class="form-control" id="phone" name="phone" placeholder="Τηλέφωνο" required value="{{formData.phone}}" autocomplete="tel"> --}}
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Τηλέφωνο" required pattern="[+]?[0-9]{10,13}" inputmode="numeric" {{#if formData}}value="{{formData.phone}}"{{/if}} autocomplete="tel">
                     <div class="invalid-feedback">Παρακαλώ εισάγετε έναν έγκυρο αριθμό τηλεφώνου.</div>
-                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
+                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
                 </div>
-                <div class="form-group col-6 my-1">
+                <div class="form-group col-12 col-md-6 my-1">
                     <label class="required" for="birthdate">Ημερομηνία γέννσης</label>
-                    <input type="date" class="form-control" id="birthdate" name="birthdate" placeholder="Εισαγωγή ημερομηνίας γεννήσεως" required>
+                    <input type="date" class="form-control" id="birthdate" name="birthdate" min="1960-01-01" required {{#if formData}}value="{{formData.birthdate}}"{{/if}} autocomplete="bday">
                     <div class="invalid-feedback">Παρακαλώ εισάγετε την ημερομηνία γεννήσεως σας.</div>
-                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^+*/=|<>~`;:</div>
+                    <div class="text-danger small invalid-char hidden">Το πεδίο δεν πρέπει να περιέχει τους ακόλουθους χαρακτήρες: {}[]()^*/=|<>~`;:</div>
                 </div>
                 <div class="col-12 my-1 d-flex justify-content-end">
-                    <input class="mt-2 me-2 btn btn-secondary" type="submit" value="Register" id="register-button">
+                    <input class="mt-2 me-2 btn btn-secondary" type="submit" value="Εγγραφή" id="register-button">
                 </div>
                 </form>
         </div>
     </div>
 </div>
-
-{{!-- SCRIPT TO PREVENT FORM FROM CLEARING AFTER SUBMISSION --}}
-{{!-- <script src="https://cdn.jsdelivr.net/gh/akjpro/form-anticlear/base.js"></script> --}}

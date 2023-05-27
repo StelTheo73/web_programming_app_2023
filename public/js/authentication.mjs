@@ -1,14 +1,15 @@
 "use strict";
 
 const PASSWORD_INPUT = document.querySelector("main > .login > .row > .login-wrapper form input#password");
+const EYE_ICON = document.querySelector("main > .login > .row > .login-wrapper form button > i");
 const REGISTRATION_FORM = document.querySelector("main > .register > .row > .register-wrapper form");
 
 window.addEventListener("click", (event) => {
-    if (event.target.matches(".fa-eye-slash")) {
-        const type = PASSWORD_INPUT.getAttribute('type') === 'password' ? 'text' : 'password';
-        PASSWORD_INPUT.setAttribute("type", type);
+    const target = event.target;
+    if (target.matches("#showPasswordBtn") || target.matches(".eye-icon")) {
+        togglePasswordInput(target);
     }
-    else if (event.target.matches("#register-button")) {
+    else if (target.matches("#register-button")) {
         validateRegistrationForm(event);
     }
 });
@@ -45,7 +46,6 @@ function validateRegistrationForm(event) {
     }
 
     // Verify that passwords match
-    // console.log(password.value, confirmPassword.value)
     if (password.value !== confirmPassword.value) {
         confirmPassword.parentElement.querySelector(".password-match").classList.remove("hidden");
         event.preventDefault();
@@ -54,7 +54,7 @@ function validateRegistrationForm(event) {
     }
 
     // Verify absence of forbidden characters
-    const forbiddenCharsRegex = /[{}[\]()^+*/=|<>~`;:]/;
+    const forbiddenCharsRegex = /[{}[\]()^*/=|<>~`;:]/;
     const fields = [email, password, confirmPassword, firstname, lastname, phone];
     let hasForbiddenChars = false;
 
@@ -71,4 +71,17 @@ function validateRegistrationForm(event) {
     }
 
     REGISTRATION_FORM.classList.add("was-validated");
+}
+
+function togglePasswordInput() {
+    if (PASSWORD_INPUT.type === "password") {
+        EYE_ICON.classList.remove("fa-eye-slash");
+        EYE_ICON.classList.add("fa-eye");
+        PASSWORD_INPUT.type = "text";
+    }
+    else if (PASSWORD_INPUT.type === "text") {
+        EYE_ICON.classList.remove("fa-eye");
+        EYE_ICON.classList.add("fa-eye-slash");
+        PASSWORD_INPUT.type = "password";
+    }
 }
