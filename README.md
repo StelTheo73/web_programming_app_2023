@@ -23,7 +23,7 @@ Web application for food ordering.
     npm install
     ```
 
- - Step 2:
+ - Step 2 (Optional, needed only if you wish to reinstantiate database at Step 3:
     ```
     pip install -r requirements.txt
     ```
