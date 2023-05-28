@@ -28,7 +28,7 @@ Web application for food ordering.
     pip install -r requirements.txt
     ```
 
- - Step 3:
+ - Step 3 (Optional, reinstantiates database):
     ```
     python -m setup -i true
     ```
