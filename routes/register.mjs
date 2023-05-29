@@ -71,23 +71,23 @@ registerRouter.post("/register/submit", async (request, response) => {
   
       await sessionAPI.insertOne("persons", userData);
   
-      const personId = await sessionAPI.userLogin(email, password);
+      // const personId = await sessionAPI.userLogin(email, password);
   
-      if (personId) {
-        request.session.userId = personId;
-        request.session.lastAddress = [];
-        request.session.addresses = [];
-        request.session.addNewAddress = true;
-        request.session.userItemsEdited = true;
-        response.redirect("/");
-      } else {
-        response.render("register", {
-          layout: "authenticate",
-          register: true,
-          registrationFailed: true,
-          formData: formData
-        });
-      }
+      // if (personId) {
+      //   request.session.userId = personId;
+      //   request.session.lastAddress = [];
+      //   request.session.addresses = [];
+      //   request.session.addNewAddress = true;
+      //   request.session.userItemsEdited = true;
+      response.redirect("/login");
+      // } else {
+      //   response.render("register", {
+      //     layout: "authenticate",
+      //     register: true,
+      //     registrationFailed: true,
+      //     formData: formData
+      //   });
+      // }
     } catch (error) {
       console.log(error);
       response.render("internal-error", {
